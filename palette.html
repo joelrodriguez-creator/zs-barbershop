@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Z's Barbershop — Direction Exploration (Phase 3)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Cinzel:wght@500;700&family=Inter:wght@400;500;600;700&family=Alfa+Slab+One&family=Lora:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #efebe2;
+      color: #1a1a1a;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ───── Page chrome ───── */
+    .page-head {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 4rem 2rem 2rem;
+    }
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #b04d2b;
+      margin-bottom: 1rem;
+    }
+    .page-head h1 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-weight: 600;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      max-width: 760px;
+      margin-bottom: 1rem;
+    }
+    .page-head p {
+      font-size: 1.05rem;
+      color: #5a5a5a;
+      max-width: 720px;
+      margin-bottom: 0.75rem;
+    }
+    .quick-compare {
+      max-width: 1280px;
+      margin: 1rem auto 2rem;
+      padding: 0 2rem;
+      font-size: 0.85rem;
+      color: #5a5a5a;
+    }
+    .quick-compare table { border-collapse: collapse; width: 100%; }
+    .quick-compare th, .quick-compare td { padding: 0.5rem 0.75rem; text-align: left; border-bottom: 1px solid #d8d2c4; }
+    .quick-compare th { font-weight: 600; color: #1a1a1a; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .quick-compare td:first-child { font-weight: 600; color: #1a1a1a; }
+
+    /* ───── Direction cards ───── */
+    .directions {
+      display: grid;
+      gap: 2.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    @media (min-width: 1100px) {
+      .directions { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    }
+    .direction {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+
+    .dir-head {
+      padding: 2rem 1.5rem 1.5rem;
+    }
+    .dir-letter {
+      display: inline-block;
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-weight: 600;
+      font-size: 1rem;
+      opacity: 0.6;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    .dir-name {
+      font-size: 2.25rem;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+    .dir-tag {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+    .dir-soul {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      opacity: 0.85;
+    }
+
+    /* Hero mock */
+    .hero-mock {
+      aspect-ratio: 16 / 10;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+      overflow: hidden;
+    }
+    .hero-mock::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.7;
+    }
+    .hero-mock-content { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      opacity: 0.9;
+    }
+    .hero-headline {
+      font-size: 1.75rem;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+    .hero-cta {
+      display: inline-block;
+      padding: 0.55rem 1.25rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: 999px;
+    }
+
+    /* Swatches */
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+    }
+    .swatch {
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0.5rem;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .swatch-role { text-transform: uppercase; opacity: 0.8; }
+    .swatch-hex { opacity: 0.6; }
+
+    /* Type specimens */
+    .type-block {
+      padding: 1.5rem;
+    }
+    .type-block h3 {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      margin-bottom: 1rem;
+      font-family: 'Inter', sans-serif;
+    }
+    .display-spec {
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .body-spec {
+      font-size: 0.9rem;
+      line-height: 1.55;
+      opacity: 0.85;
+    }
+    .type-meta {
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      opacity: 0.55;
+    }
+
+    /* Pros / costs */
+    .breakdown {
+      padding: 1.5rem;
+      font-size: 0.85rem;
+    }
+    .breakdown h3 {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      margin-bottom: 0.75rem;
+      font-family: 'Inter', sans-serif;
+    }
+    .breakdown ul { padding-left: 1.1rem; margin-bottom: 1.25rem; line-height: 1.55; }
+    .breakdown li { margin-bottom: 0.3rem; }
+    .breakdown .cost { font-size: 0.8rem; opacity: 0.7; font-style: italic; }
+
+    /* ─── A — The House (Dark heritage cinema) ─── */
+    .dir-a { background: #1a1612; color: #e8dfd0; }
+    .dir-a .dir-letter { color: #c8a35a; }
+    .dir-a .dir-name { font-family: 'Big Shoulders Display', 'Oswald', sans-serif; font-weight: 800; text-transform: uppercase; color: #e8dfd0; }
+    .dir-a .hero-mock {
+      background: linear-gradient(135deg, #2a221b 0%, #1a1410 50%, #15110d 100%);
+    }
+    .dir-a .hero-mock::before {
+      background: radial-gradient(ellipse at 30% 40%, rgba(200,163,90,0.18) 0%, transparent 60%);
+      opacity: 1;
+    }
+    .dir-a .hero-eyebrow { color: #c8a35a; }
+    .dir-a .hero-headline { font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; text-transform: uppercase; color: #e8dfd0; }
+    .dir-a .hero-cta { background: #c8a35a; color: #1a1612; }
+    .dir-a .type-block .display-spec { font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; text-transform: uppercase; color: #e8dfd0; }
+    .dir-a .type-block .body-spec { font-family: 'Source Serif 4', Georgia, serif; color: #e8dfd0; }
+
+    /* ─── B — The Storefront (Cream + navy + pole-red) ─── */
+    .dir-b { background: #f4ede0; color: #1c2840; }
+    .dir-b .dir-letter { color: #c84e2c; }
+    .dir-b .dir-name { font-family: 'Cinzel', serif; font-weight: 700; color: #1c2840; letter-spacing: 0.02em; }
+    .dir-b .hero-mock {
+      background: linear-gradient(180deg, #2a3550 0%, #1c2840 60%, #11192a 100%);
+    }
+    .dir-b .hero-mock::before {
+      background: radial-gradient(ellipse at 50% 70%, rgba(244,237,224,0.22) 0%, transparent 60%);
+      opacity: 1;
+    }
+    .dir-b .hero-eyebrow { color: #f4ede0; opacity: 0.7; letter-spacing: 0.2em; }
+    .dir-b .hero-headline { font-family: 'Cinzel', serif; font-weight: 700; color: #f4ede0; line-height: 1.15; }
+    .dir-b .hero-cta { background: #c84e2c; color: #f4ede0; }
+    .dir-b .type-block .display-spec { font-family: 'Cinzel', serif; font-weight: 700; color: #1c2840; }
+    .dir-b .type-block .body-spec { font-family: 'Inter', sans-serif; color: #1c2840; }
+
+    /* ─── C — The Chair (Cognac + cream + mustard) ─── */
+    .dir-c { background: #f5e9d6; color: #3d1810; }
+    .dir-c .dir-letter { color: #7a4a2e; }
+    .dir-c .dir-name { font-family: 'Alfa Slab One', serif; font-weight: 400; color: #3d1810; letter-spacing: -0.01em; }
+    .dir-c .hero-mock {
+      background: linear-gradient(135deg, #7a4a2e 0%, #5e3520 50%, #3d1810 100%);
+    }
+    .dir-c .hero-mock::before {
+      background: radial-gradient(ellipse at 70% 30%, rgba(217,168,71,0.25) 0%, transparent 60%);
+      opacity: 1;
+    }
+    .dir-c .hero-eyebrow { color: #d9a847; }
+    .dir-c .hero-headline { font-family: 'Alfa Slab One', serif; color: #f5e9d6; text-transform: uppercase; font-size: 1.5rem; }
+    .dir-c .hero-cta { background: #d9a847; color: #3d1810; }
+    .dir-c .type-block .display-spec { font-family: 'Alfa Slab One', serif; color: #3d1810; text-transform: uppercase; }
+    .dir-c .type-block .body-spec { font-family: 'Lora', serif; color: #3d1810; }
+
+    /* Footer */
+    .page-foot {
+      max-width: 1280px;
+      margin: 4rem auto 0;
+      padding: 3rem 2rem 5rem;
+      border-top: 1px solid #d8d2c4;
+    }
+    .page-foot h2 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+    .page-foot p { color: #5a5a5a; max-width: 720px; margin-bottom: 0.75rem; }
+  </style>
+</head>
+<body>
+
+<header class="page-head">
+  <div class="eyebrow">Z's Barbershop · Phase 3 — Direction Exploration</div>
+  <h1>Three directions. All heritage-rooted. All owner-led. Different on color, type, and how the hero shoots.</h1>
+  <p>
+    Primary anchor = House of Heritage. Secondary = Huckle. These three directions live inside that frame — heritage register, cinematic real-shop photography, owner narrative — but they go three different ways on warmth, type voice, and hero treatment.
+  </p>
+  <p style="font-size: 0.85rem; color: #888;">
+    The three locks from Phase 2 (trust strip / sticky phone / call-or-text-to-book CTA) are baked into all three. Pick on aesthetics, not on UX patterns.
+  </p>
+</header>
+
+<div class="quick-compare">
+  <table>
+    <thead>
+      <tr><th></th><th>A — The House</th><th>B — The Storefront</th><th>C — The Chair</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Mood</td><td>Dim cinema, vintage Americana</td><td>Warm heritage, classical</td><td>Warm leather, sign-painter, fun</td></tr>
+      <tr><td>Primary color</td><td>Near-black + brass mustard</td><td>Cream + deep navy + pole-red</td><td>Cognac brown + cream + mustard</td></tr>
+      <tr><td>Type voice</td><td>Bold condensed Americana display</td><td>Thin classical serif (Cinzel)</td><td>Sign-painter slab (Alfa Slab One)</td></tr>
+      <tr><td>Hero shot</td><td>Empty shop interior, warm-lit</td><td>Storefront at golden hour, glow inside</td><td>Customer in chair, mid-cut, close</td></tr>
+      <tr><td>Logo direction</td><td>Heritage seal in arch</td><td>Slab-serif wordmark or hand-drawn</td><td>Custom illustrated barber-pole mark</td></tr>
+      <tr><td>Risk</td><td>Could read upscale for \$35 pricing</td><td>Could feel formal / less "fun"</td><td>Could lean too costume-y</td></tr>
+      <tr><td>Best for</td><td>Heritage-serious credibility</td><td>Owner-led classic, warmest of three</td><td>Fun + quirky personality lead</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<main class="directions">
+
+  <!-- ─── DIRECTION A ─── -->
+  <article class="direction dir-a">
+    <div class="dir-head">
+      <div class="dir-letter">DIRECTION A</div>
+      <h2 class="dir-name">The House</h2>
+      <div class="dir-tag">"Westchester's barbershop. Old-school done right."</div>
+      <p class="dir-soul">
+        Dim cinema. Brass on near-black. The Wolosky aesthetic, but for a barbershop. Cinematic shot of Z's actual shop interior — chairs, mirrors, warm bulbs — carries the entire hero. Heritage seal logo inside an arched frame. Vintage Americana display type for headlines. Most disciplined, most upscale-coded.
+      </p>
+    </div>
+
+    <div class="hero-mock">
+      <div class="hero-mock-content">
+        <div class="hero-eyebrow">WESTCHESTER · EST. 20XX</div>
+        <div class="hero-headline">Sit With Z.<br>The House of Cuts.</div>
+        <div class="hero-cta">Call or Text — (786) 281-8181</div>
+      </div>
+    </div>
+
+    <div class="swatches">
+      <div class="swatch" style="background:#1a1612;color:#e8dfd0"><span class="swatch-role">Primary</span><span class="swatch-hex">#1a1612</span></div>
+      <div class="swatch" style="background:#2a221b;color:#e8dfd0"><span class="swatch-role">Surface</span><span class="swatch-hex">#2a221b</span></div>
+      <div class="swatch" style="background:#c8a35a;color:#1a1612"><span class="swatch-role">Accent</span><span class="swatch-hex">#c8a35a</span></div>
+      <div class="swatch" style="background:#e8dfd0;color:#1a1612"><span class="swatch-role">Ink-rev</span><span class="swatch-hex">#e8dfd0</span></div>
+      <div class="swatch" style="background:#7a7165;color:#1a1612"><span class="swatch-role">Muted</span><span class="swatch-hex">#7a7165</span></div>
+    </div>
+
+    <div class="type-block">
+      <h3>Display headline · Big Shoulders Display 800</h3>
+      <div class="display-spec" style="font-size: 2.5rem">EXPERT CUTS<br>SINCE FOREVER</div>
+      <div class="type-meta">Big Shoulders Display — bold condensed industrial sans. Sign-carved, vintage Americana feel. Pairs with classical serif body.</div>
+    </div>
+    <div class="type-block" style="padding-top: 0">
+      <h3>Body · Source Serif 4</h3>
+      <div class="body-spec" style="font-size: 1rem">
+        Ziad has been cutting hair in Westchester for over a decade. The old-school hot-towel shave isn't a service we tacked on — it's how the shop opened. Walk in, take a seat, and let the steam do its work.
+      </div>
+    </div>
+
+    <div class="breakdown">
+      <h3>Why this could win</h3>
+      <ul>
+        <li>Maps cleanest to your HoH anchor</li>
+        <li>Dark palette + brass = barbershop-canonical</li>
+        <li>Most "heritage credibility" for the hot-towel-shave specialty</li>
+        <li>Holds up even if photography isn't ready (dark palette + type-driven)</li>
+      </ul>
+      <h3>Why it might not</h3>
+      <ul>
+        <li>Could read more upscale than $35 cuts deserve</li>
+        <li>Least "fun and quirky" of the three — most reserved</li>
+      </ul>
+      <p class="cost">Cost-to-build: identical across all three (vanilla HTML + CSS, ~1–2 days for Phase 7 either way)</p>
+    </div>
+  </article>
+
+  <!-- ─── DIRECTION B ─── -->
+  <article class="direction dir-b">
+    <div class="dir-head">
+      <div class="dir-letter">DIRECTION B</div>
+      <h2 class="dir-name">The Storefront</h2>
+      <div class="dir-tag">"Where Westchester Gets Its Fade."</div>
+      <p class="dir-soul">
+        Warm cream paper + deep navy ink + a single bright pole-red accent that earns its loudness by being the only saturated thing on the page. Hero is Z's storefront at golden hour — exterior shot, interior warm glow visible through the window. Classical serif (Cinzel) for the type voice, Inter for body. The Huckle-anchored direction.
+      </p>
+    </div>
+
+    <div class="hero-mock">
+      <div class="hero-mock-content">
+        <div class="hero-eyebrow">8455 SW BIRD RD · MIAMI</div>
+        <div class="hero-headline">Where Westchester<br>Gets Its Fade.</div>
+        <div class="hero-cta">Call or Text — (786) 281-8181</div>
+      </div>
+    </div>
+
+    <div class="swatches">
+      <div class="swatch" style="background:#f4ede0;color:#1c2840"><span class="swatch-role">Surface</span><span class="swatch-hex">#f4ede0</span></div>
+      <div class="swatch" style="background:#ffffff;color:#1c2840;border:1px solid #e0d8c8"><span class="swatch-role">Paper</span><span class="swatch-hex">#ffffff</span></div>
+      <div class="swatch" style="background:#1c2840;color:#f4ede0"><span class="swatch-role">Ink</span><span class="swatch-hex">#1c2840</span></div>
+      <div class="swatch" style="background:#c84e2c;color:#f4ede0"><span class="swatch-role">Accent</span><span class="swatch-hex">#c84e2c</span></div>
+      <div class="swatch" style="background:#807466;color:#f4ede0"><span class="swatch-role">Muted</span><span class="swatch-hex">#807466</span></div>
+    </div>
+
+    <div class="type-block">
+      <h3>Display headline · Cinzel 700</h3>
+      <div class="display-spec" style="font-size: 2rem; letter-spacing: 0.02em">CUTS, BEARDS<br>&amp; HOT-TOWEL<br>SHAVES</div>
+      <div class="type-meta">Cinzel — thin classical roman serif. Heritage register without going Gothic. Reads "established" without trying too hard. Pairs with modern sans body.</div>
+    </div>
+    <div class="type-block" style="padding-top: 0">
+      <h3>Body · Inter 400</h3>
+      <div class="body-spec" style="font-size: 1rem">
+        Ziad has been cutting hair in Westchester for over a decade. The old-school hot-towel shave isn't a service we tacked on — it's how the shop opened. Walk in, take a seat, and let the steam do its work.
+      </div>
+    </div>
+
+    <div class="breakdown">
+      <h3>Why this could win</h3>
+      <ul>
+        <li>Warmest of the three — the cream paper does heavy lifting</li>
+        <li>Pole-red accent is the most "barbershop coded" color</li>
+        <li>Cinzel reads heritage to anyone, instantly</li>
+        <li>Lightest mode = most readable on a phone in sunlight</li>
+      </ul>
+      <h3>Why it might not</h3>
+      <ul>
+        <li>Cinzel can feel formal / wedding-invitation if used too much</li>
+        <li>Less "fun and quirky" than C (but more than A)</li>
+      </ul>
+      <p class="cost">Cost-to-build: identical across all three (vanilla HTML + CSS, ~1–2 days for Phase 7 either way)</p>
+    </div>
+  </article>
+
+  <!-- ─── DIRECTION C ─── -->
+  <article class="direction dir-c">
+    <div class="dir-head">
+      <div class="dir-letter">DIRECTION C</div>
+      <h2 class="dir-name">The Chair</h2>
+      <div class="dir-tag">"The seat. The cut. The conversation."</div>
+      <p class="dir-soul">
+        Cognac leather + cream + mustard yellow. Sign-painter slab type for headlines (Alfa Slab One). Custom illustrated barber-pole monogram for the logo — Z's quirk made visual. Hero is a tight documentary shot of someone IN the chair mid-cut, not the empty shop. The most personality-forward, most fun-and-quirky of the three. Warmest temperature, most distinctive visual identity.
+      </p>
+    </div>
+
+    <div class="hero-mock">
+      <div class="hero-mock-content">
+        <div class="hero-eyebrow">WESTCHESTER · OPEN MON–SAT</div>
+        <div class="hero-headline">CUTS YOU'LL<br>BRING YOUR<br>KID TO.</div>
+        <div class="hero-cta">Call or Text — (786) 281-8181</div>
+      </div>
+    </div>
+
+    <div class="swatches">
+      <div class="swatch" style="background:#7a4a2e;color:#f5e9d6"><span class="swatch-role">Primary</span><span class="swatch-hex">#7a4a2e</span></div>
+      <div class="swatch" style="background:#f5e9d6;color:#3d1810"><span class="swatch-role">Surface</span><span class="swatch-hex">#f5e9d6</span></div>
+      <div class="swatch" style="background:#d9a847;color:#3d1810"><span class="swatch-role">Accent</span><span class="swatch-hex">#d9a847</span></div>
+      <div class="swatch" style="background:#3d1810;color:#f5e9d6"><span class="swatch-role">Ink</span><span class="swatch-hex">#3d1810</span></div>
+      <div class="swatch" style="background:#a89679;color:#3d1810"><span class="swatch-role">Muted</span><span class="swatch-hex">#a89679</span></div>
+    </div>
+
+    <div class="type-block">
+      <h3>Display headline · Alfa Slab One</h3>
+      <div class="display-spec" style="font-size: 2rem">SIT DOWN.<br>RELAX.<br>GET LIT.</div>
+      <div class="type-meta">Alfa Slab One — sign-painter heavy slab serif. Reads "shop signage" / "diner menu" / "old neighborhood." Most distinctive of the three. Pairs with Lora (readable warm serif) for body.</div>
+    </div>
+    <div class="type-block" style="padding-top: 0">
+      <h3>Body · Lora 500</h3>
+      <div class="body-spec" style="font-size: 1rem">
+        Ziad has been cutting hair in Westchester for over a decade. The old-school hot-towel shave isn't a service we tacked on — it's how the shop opened. Walk in, take a seat, and let the steam do its work.
+      </div>
+    </div>
+
+    <div class="breakdown">
+      <h3>Why this could win</h3>
+      <ul>
+        <li>Most "fun and quirky" of the three — matches your Z descriptor</li>
+        <li>Custom barber-pole illustrated logo is the most distinctive visual identity</li>
+        <li>Warm leather palette feels lived-in, not aspirational</li>
+        <li>Sign-painter type reads "neighborhood institution" — matches Z's 5-star reputation</li>
+      </ul>
+      <h3>Why it might not</h3>
+      <ul>
+        <li>Sign-painter slab can lean rockabilly / costume-y if not balanced carefully</li>
+        <li>Cognac brown is unconventional — less safe than navy or black</li>
+        <li>Most dependent on a strong custom logo asset (Phase 5 work harder)</li>
+      </ul>
+      <p class="cost">Cost-to-build: identical across all three (vanilla HTML + CSS, ~1–2 days for Phase 7 either way). Logo design effort slightly higher (illustrated mark vs. type-only).</p>
+    </div>
+  </article>
+
+</main>
+
+<section class="heritage" style="max-width: 1280px; margin: 4rem auto 0; padding: 3rem 2rem; border-top: 1px solid #d8d2c4;">
+  <div class="eyebrow">The Heritage Layer · Direction-agnostic</div>
+  <h2 style="font-family: 'Source Serif 4', Georgia, serif; font-size: 2rem; font-weight: 600; margin-bottom: 1rem; max-width: 760px; letter-spacing: -0.02em;">
+    Anchoring Ziad's Lebanese roots — inclusive, not exclusive.
+  </h2>
+  <p style="color: #5a5a5a; max-width: 720px; margin-bottom: 1rem;">
+    Ziad is Lebanese. His clientele includes a strong Muslim community alongside Westchester's Cuban-American majority. The goal: signal where Ziad's from and how he learned the craft — making his Muslim clients feel seen — without making the shop feel exclusive or limited to any one community.
+  </p>
+  <p style="color: #5a5a5a; max-width: 720px; margin-bottom: 2rem; font-size: 0.9rem;">
+    <strong style="color: #1a1a1a;">Framing rule:</strong> cultural, not religious. Lebanese (national/cultural) and Arabic (the language + the artistic tradition) signal heritage. Religious symbols (crescent, mosque, Quranic calligraphy, "halal" labels) would do the opposite of what you want — they'd narrow the audience instead of widening it. These are kept off the menu intentionally.
+  </p>
+
+  <div style="display: grid; gap: 1.5rem; grid-template-columns: 1fr;" id="heritage-options">
+
+    <div style="background: #fff; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
+      <h3 style="font-family: 'Source Serif 4', serif; font-size: 1.25rem; margin-bottom: 0.5rem;">1. Trilingual welcome trio</h3>
+      <p style="font-size: 0.95rem; color: #555; margin-bottom: 0.75rem;">A small header strip or footer line greeting in three languages:</p>
+      <p style="font-family: 'Source Serif 4', serif; font-size: 1.5rem; text-align: center; padding: 1rem; background: #f6f3ee; border-radius: 8px; margin-bottom: 0.75rem;">
+        Welcome &middot; Bienvenidos &middot; <span style="font-family: serif;">أهلاً وسهلاً</span>
+      </p>
+      <p style="font-size: 0.85rem; color: #777;">Acknowledges Cuban-American Westchester, Z's Lebanese roots, and his Arabic-speaking clientele — all at once. Inclusive by addition. Fits all three directions; small footprint.</p>
+    </div>
+
+    <div style="background: #fff; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
+      <h3 style="font-family: 'Source Serif 4', serif; font-size: 1.25rem; margin-bottom: 0.5rem;">2. Lebanese cedar mark</h3>
+      <p style="font-size: 0.95rem; color: #555; margin-bottom: 0.75rem;">A small cedar tree icon — the Lebanese national symbol, on the flag — used as a footer accent, inside the logo arch, or as the "i" dot in the wordmark.</p>
+      <p style="font-size: 0.85rem; color: #777;"><strong>Purely national, not religious.</strong> Christians, Muslims, and Jewish Lebanese all claim the cedar. Universally recognized as "Lebanese." Quiet, dignified, no risk of misreading.</p>
+      <p style="font-size: 0.85rem; color: #555; margin-top: 0.5rem;"><em>Best in:</em> Direction A (heritage seal works around it) or Direction C (illustrated mark naturally accepts it).</p>
+    </div>
+
+    <div style="background: #fff; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
+      <h3 style="font-family: 'Source Serif 4', serif; font-size: 1.25rem; margin-bottom: 0.5rem;">3. Service names that honor technique origin</h3>
+      <p style="font-size: 0.95rem; color: #555; margin-bottom: 0.75rem;">Name services in a way that respects where the technique comes from — without restricting who can book them:</p>
+      <ul style="font-size: 0.9rem; color: #555; padding-left: 1.25rem; line-height: 1.7;">
+        <li>"Lebanese Hot-Towel Shave" instead of generic "Hot-Towel Shave"</li>
+        <li>"Eyebrow Threading" (uniquely Middle Eastern technique — common request from Z's Muslim clients but also widely loved across all communities)</li>
+        <li>"Traditional Beard Sculpting" (Middle Eastern grooming heritage, universal appeal)</li>
+        <li>"Father &amp; Son Cuts" (family ritual, resonates with both Cuban and Lebanese family cultures)</li>
+      </ul>
+      <p style="font-size: 0.85rem; color: #777; margin-top: 0.75rem;">Heritage shows up in the menu, not as a gate. Anyone can book any of these.</p>
+    </div>
+
+    <div style="background: #fff; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
+      <h3 style="font-family: 'Source Serif 4', serif; font-size: 1.25rem; margin-bottom: 0.5rem;">4. Bio language that tells Ziad's story authentically</h3>
+      <p style="font-size: 0.95rem; color: #555; margin-bottom: 0.75rem;">The About page is where heritage lives in full prose. Sample:</p>
+      <blockquote style="font-family: 'Source Serif 4', serif; font-size: 1rem; line-height: 1.6; padding: 1rem 1.25rem; background: #f6f3ee; border-left: 3px solid #c8a35a; border-radius: 6px; margin-bottom: 0.75rem; color: #1a1a1a;">
+        Ziad learned to cut hair in Lebanon, where the hot-towel shave isn't a special service — it's how every barber works. He brought the old-school tradition to Westchester, and ten years later, he's still working out of the same chair on Bird Road. Cubans, Lebanese, anyone who needs a fade and a story — the door is open.
+      </blockquote>
+      <p style="font-size: 0.85rem; color: #777;">Heritage carried by personal narrative, not iconography. The line "Cubans, Lebanese, anyone who needs a fade and a story" makes the inclusivity explicit — and the door-is-open framing is universally welcoming.</p>
+    </div>
+
+    <div style="background: #fff; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
+      <h3 style="font-family: 'Source Serif 4', serif; font-size: 1.25rem; margin-bottom: 0.5rem;">5. Arabic geometric pattern as decorative accent</h3>
+      <p style="font-size: 0.95rem; color: #555; margin-bottom: 0.75rem;">Islamic geometric patterns (8-pointed star, arabesque tessellations) are admired worldwide as art independent of religion — used historically by Christians, Jews, and Muslims, and recognized by UNESCO as world cultural heritage.</p>
+      <p style="font-size: 0.85rem; color: #777;">Used sparingly — a thin geometric border above the footer, a single 8-point star as a section divider, or subtle pattern in the logo arch — adds visual heritage to the brand without dominating it.</p>
+      <p style="font-size: 0.85rem; color: #555; margin-top: 0.5rem;"><em>Best in:</em> Direction A (dark palette + brass + geometric pattern = classic Lebanese/Damascene barbershop aesthetic, an established style). Possible in C with restraint.</p>
+    </div>
+
+    <div style="background: #fff; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 16px rgba(0,0,0,0.05);">
+      <h3 style="font-family: 'Source Serif 4', serif; font-size: 1.25rem; margin-bottom: 0.5rem;">6. Hospitality framing — "have a coffee"</h3>
+      <p style="font-size: 0.95rem; color: #555; margin-bottom: 0.75rem;">Both Cuban and Lebanese cultures share a "sit, have a coffee, take your time" hospitality ethic. The site can mention this explicitly:</p>
+      <p style="font-family: 'Source Serif 4', serif; font-size: 1.1rem; padding: 0.75rem 1rem; background: #f6f3ee; border-radius: 6px; margin-bottom: 0.75rem; color: #1a1a1a; font-style: italic;">
+        "There's coffee on. Cuban or Lebanese — your call."
+      </p>
+      <p style="font-size: 0.85rem; color: #777;">One line on the Home or Contact page. Acknowledges both cultures, makes the shop feel like a place to sit, and quietly signals Ziad's heritage. The most personality-led option of the six.</p>
+    </div>
+
+  </div>
+
+  <div style="background: #1a1612; color: #e8dfd0; padding: 2rem; border-radius: 12px; margin-top: 2rem;">
+    <h3 style="font-family: 'Source Serif 4', serif; font-size: 1.25rem; margin-bottom: 1rem; color: #c8a35a;">Recommended starter combo</h3>
+    <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 0.75rem;">
+      If picking conservatively: <strong style="color: #c8a35a;">#1 (Trilingual welcome) + #3 (Service names with heritage) + #4 (Bio language)</strong>. Zero visual risk, heritage lives in copy + service names. Reads inclusive immediately. Add #2 (cedar mark) when the logo lands in Phase 5.
+    </p>
+    <p style="font-size: 0.95rem; line-height: 1.6;">
+      If picking bolder: add <strong style="color: #c8a35a;">#5 (Arabic geometric accent)</strong> if Direction A wins — Damascene barbershop aesthetic is well-established and culturally rich. Add <strong style="color: #c8a35a;">#6 ("there's coffee on")</strong> regardless — it's almost no risk and adds real personality.
+    </p>
+  </div>
+</section>
+
+<footer class="page-foot">
+  <h2>What happens next</h2>
+  <p>
+    Pick one of A / B / C, plus any of the heritage anchors 1–6 (or the recommended starter combo). The winner's palette + type + photography brief + heritage details get written into <code>BRAND.md</code> as locked design tokens (Phase 4). Then Phase 5 builds 3–5 logo concepts in that direction (incorporating the cedar mark if you opted in), Phase 6 generates atmospheric imagery, and Phase 7 builds the actual 5-page prototype using these tokens.
+  </p>
+  <p>
+    If none of these three is hitting it, tell me what's missing — I can do a second pass with a different cut. Could be "I want quirky but A's darkness is right" (= darker C), or "I love B's pole-red but want C's slab type" (= mash-up), or "none of these capture it, try ___."
+  </p>
+  <p style="margin-top: 1.5rem; font-size: 0.85rem; color: #888;">
+    These hero mocks are CSS gradients standing in for real photography — they show the palette + type direction, not the final design. Phase 6 generates real (or AI-placeholder) imagery for the actual hero.
+  </p>
+</footer>
+
+</body>
+</html>
