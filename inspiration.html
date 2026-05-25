@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Z's Barbershop — Inspiration Board</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f3ee;
+      --surface: #ffffff;
+      --ink: #1a1a1a;
+      --muted: #6b6b6b;
+      --line: #e3ddd2;
+      --accent: #c84e2c;
+      --accent-soft: #fde4dc;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+      --radius: 12px;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .header {
+      padding: 4rem 2rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      max-width: 800px;
+      margin-bottom: 1.5rem;
+    }
+    .intro {
+      font-size: 1.125rem;
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 1rem;
+    }
+    .meta {
+      font-size: 0.875rem;
+      color: var(--muted);
+      padding: 1rem 0;
+      border-top: 1px solid var(--line);
+      margin-top: 2rem;
+    }
+    .meta strong { color: var(--ink); }
+
+    .grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+      display: grid;
+      gap: 2rem;
+    }
+    @media (min-width: 900px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+
+    .card-images {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2px;
+      background: var(--line);
+      aspect-ratio: 3 / 2;
+    }
+    .card-images img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: #000;
+    }
+    .card-images img.mobile { background: #fff; }
+
+    .card-body { padding: 1.5rem; }
+    .card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem; }
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .card-loc {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+    .card-tag {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .card-tag.local { background: #fff2cc; color: #8a6500; }
+    .card-tag.peak { background: #e3e1d8; color: #4a4737; }
+    .card-tag.salon { background: #fde2eb; color: #a8367f; }
+    .card-tag.community { background: #e0eef0; color: #2c6a72; }
+
+    .why {
+      font-size: 0.9375rem;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+      line-height: 1.55;
+    }
+
+    .attrs {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.4rem 1rem;
+      font-size: 0.85rem;
+      margin-bottom: 1.25rem;
+      padding: 1rem;
+      background: var(--bg);
+      border-radius: 8px;
+    }
+    .attrs dt { font-weight: 600; color: var(--muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; padding-top: 0.15rem; }
+    .attrs dd { color: var(--ink); }
+
+    .borrowable {
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+    .borrowable strong {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+    }
+    .borrowable ul { padding-left: 1.1rem; }
+    .borrowable li { margin-bottom: 0.35rem; }
+
+    .card-foot {
+      padding: 0.85rem 1.5rem;
+      background: var(--bg);
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.8rem;
+    }
+    .card-foot a { font-weight: 500; }
+    .read-more {
+      font-family: var(--font-sans);
+      color: var(--muted);
+    }
+
+    .footer {
+      max-width: 1400px;
+      margin: 4rem auto 0;
+      padding: 3rem 2rem 5rem;
+      border-top: 1px solid var(--line);
+    }
+    .footer h2 {
+      font-family: var(--font-serif);
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+    .footer p { color: var(--muted); max-width: 720px; margin-bottom: 1rem; }
+    .footer ol { padding-left: 1.5rem; margin-top: 1rem; max-width: 720px; }
+    .footer li { margin-bottom: 0.5rem; color: var(--ink); }
+    .footer li strong { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="eyebrow">Z's Barbershop · Phase 2 — Inspiration</div>
+  <h1>Six references, three vibes. Pick a primary anchor + a secondary influence.</h1>
+  <p class="intro">
+    These are real working barbershops (plus one Nashville salon for design-move stealing). They span community-personality, regional-friendly, local-Miami, salon-pastel, dark-minimalist, and heritage-luxury. Each card shows desktop + mobile screenshots and the annotated patterns worth lifting for Z's.
+  </p>
+  <p class="intro">
+    Open the full markdown notes in <code>inspiration/pages/&lt;site&gt;.md</code> for the longer analysis.
+  </p>
+  <div class="meta">
+    <strong>Project:</strong> Z's Barbershop (Ziad Dib, 8455 SW Bird Rd, Miami) ·
+    <strong>Stack:</strong> Vanilla HTML + CSS + Vercel ·
+    <strong>Workflow:</strong> Wolosky 10-phase ·
+    <strong>Next:</strong> Joel picks 1 primary + 1 secondary, then I build palette.html (Phase 3)
+  </div>
+</header>
+
+<main class="grid">
+
+  <!-- HUCKLE -->
+  <article class="card">
+    <div class="card-images">
+      <img src="inspiration/screenshots/huckle-desktop.png" alt="Huckle Barbershop — desktop view" loading="lazy">
+      <img src="inspiration/screenshots/huckle-mobile.png" alt="Huckle Barbershop — mobile view" class="mobile" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-head">
+        <h2 class="card-title">Huckle</h2>
+        <span class="card-loc">London · UK</span>
+      </div>
+      <span class="card-tag community">Community anchor</span>
+      <p class="why"><strong>Why this reference:</strong> the cleanest "owner-led, community-anchored shop" example in the lineup. Real shop as the hero photograph. Documentary photography, restrained palette, one loud CTA color.</p>
+      <dl class="attrs">
+        <dt>Hero</dt><dd>Documentary photo of actual storefront at night, two-line tagline overlay</dd>
+        <dt>CTA</dt><dd>"Book Now" — bright orange/red, only saturated color on page</dd>
+        <dt>Palette</dt><dd>Black / white / cream / warm wood + one bright accent</dd>
+        <dt>Type</dt><dd>Lowercase wordmark + geometric sans</dd>
+        <dt>Photography</dt><dd>Real shop, real people, low light, warm tones</dd>
+      </dl>
+      <div class="borrowable">
+        <strong>Borrow for Z's</strong>
+        <ul>
+          <li>Hero as Z's actual shop photographed at golden hour</li>
+          <li>"Where ___ Meets ___" two-line tagline structure</li>
+          <li>One saturated accent color, everything else restrained</li>
+          <li>Owner-bio narrative section (Z's history, why Westchester, the hot-towel shave story)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-foot">
+      <a href="https://wearehuckle.com/" target="_blank" rel="noopener">wearehuckle.com ↗</a>
+      <span class="read-more"><a href="inspiration/pages/huckle.md">Full notes →</a></span>
+    </div>
+  </article>
+
+  <!-- FRUITS -->
+  <article class="card">
+    <div class="card-images">
+      <img src="inspiration/screenshots/fruits-desktop.png" alt="Fruits Hair Lab — desktop view" class="mobile" loading="lazy">
+      <img src="inspiration/screenshots/fruits-mobile.png" alt="Fruits Hair Lab — mobile view" class="mobile" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-head">
+        <h2 class="card-title">Fruits Hair Lab</h2>
+        <span class="card-loc">Nashville · TN</span>
+      </div>
+      <span class="card-tag salon">Personality (salon, not barber)</span>
+      <p class="why"><strong>Why this reference:</strong> singled out as "screams personality." <em>Caveat:</em> it's a women-leaning hair salon, not a barbershop. Borrow the design moves (custom illustration, warm pastel palette, poetic tagline) — not the positioning.</p>
+      <dl class="attrs">
+        <dt>Hero</dt><dd>Two-col: pill chip + serif headline + dual CTAs / custom character illustration</dd>
+        <dt>CTA</dt><dd>Black pill — restrained; personality lives in type + illustration</dd>
+        <dt>Palette</dt><dd>Soft peach / cream / warm rust accent / sage / near-black</dd>
+        <dt>Type</dt><dd>Large editorial serif (Bodoni-like) + clean sans body</dd>
+        <dt>Photography</dt><dd>None — custom illustration replaces photography in hero</dd>
+      </dl>
+      <div class="borrowable">
+        <strong>Borrow for Z's</strong>
+        <ul>
+          <li>Custom illustrated mark of Z as the personality vehicle (in place of photography)</li>
+          <li>"WESTCHESTER BARBERSHOP" pill chip above the headline for context</li>
+          <li>4-word poetic tagline compression ("Fresh hair, calm space" → "Old-school cuts, Westchester")</li>
+          <li>Warm-light palette as alternative to default dark/masculine barber coding</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-foot">
+      <a href="https://fruitshairlab.com/" target="_blank" rel="noopener">fruitshairlab.com ↗</a>
+      <span class="read-more"><a href="inspiration/pages/fruits.md">Full notes →</a></span>
+    </div>
+  </article>
+
+  <!-- BIRDS -->
+  <article class="card">
+    <div class="card-images">
+      <img src="inspiration/screenshots/birds-desktop.png" alt="Birds Barbershop — desktop view" loading="lazy">
+      <img src="inspiration/screenshots/birds-mobile.png" alt="Birds Barbershop — mobile view" class="mobile" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-head">
+        <h2 class="card-title">Birds Barbershop</h2>
+        <span class="card-loc">Austin · TX</span>
+      </div>
+      <span class="card-tag">Regional friendly</span>
+      <p class="why"><strong>Why this reference:</strong> personality voice without trying too hard. The tagline IS the brand. Inclusive editorial portraits + one bright accent color + bold italic display type.</p>
+      <dl class="attrs">
+        <dt>Hero</dt><dd>Full-bleed editorial portrait + "HAIRCUTS FOR ALL Y'ALL" overlay</dd>
+        <dt>CTA</dt><dd>Lime yellow filled pill ("Book Now") + outlined "Apply"</dd>
+        <dt>Palette</dt><dd>Lime yellow brand color / cream / black / coral / photographic warm tones</dd>
+        <dt>Type</dt><dd>Bold italic condensed display sans for headlines + sans body</dd>
+        <dt>Photography</dt><dd>Real customers, deadpan/playful, plain backdrops</dd>
+      </dl>
+      <div class="borrowable">
+        <strong>Borrow for Z's</strong>
+        <ul>
+          <li>Bold italic display headline with Miami / Westchester regional voice</li>
+          <li>One bright accent color owns the brand (mustard / coral / pole-red / teal)</li>
+          <li>Real-customer portraits beat polished marketing photography for trust</li>
+          <li>In-page booking modal = same energy works for Z's "call or text" modal</li>
+          <li>Free coffee/cafecito + hot-towel-shave specialty as personality details</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-foot">
+      <a href="https://birdsbarbershop.com/" target="_blank" rel="noopener">birdsbarbershop.com ↗</a>
+      <span class="read-more"><a href="inspiration/pages/birds.md">Full notes →</a></span>
+    </div>
+  </article>
+
+  <!-- FRESH -->
+  <article class="card">
+    <div class="card-images">
+      <img src="inspiration/screenshots/fresh-desktop.png" alt="Fresh Barbershop — desktop view" loading="lazy">
+      <img src="inspiration/screenshots/fresh-mobile.png" alt="Fresh Barbershop — mobile view" class="mobile" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-head">
+        <h2 class="card-title">Fresh Barbershop</h2>
+        <span class="card-loc">Miami Lakes · FL</span>
+      </div>
+      <span class="card-tag local">Direct local competitor</span>
+      <p class="why"><strong>Why this reference:</strong> the most relevant comp. Family-owned (Galdamez family), Hispanic-owned, kid-friendly, same Miami region as Z. Design is weak but two moves are excellent — the three-column trust strip and the real team photo.</p>
+      <dl class="attrs">
+        <dt>Hero</dt><dd>Confused green-scissors visual + 3-col Address/Phone/Hours strip below</dd>
+        <dt>CTA</dt><dd>Phone number IS the CTA — "FOR BOOKING" caption underneath</dd>
+        <dt>Palette</dt><dd>Bright green (matches actual shop interior) / black / white</dd>
+        <dt>Type</dt><dd>Generic WordPress sans (weakness)</dd>
+        <dt>Photography</dt><dd>Real team photo with matching shop t-shirts + kids in shot</dd>
+      </dl>
+      <div class="borrowable">
+        <strong>Borrow for Z's (THIS IS THE LOCAL BENCHMARK)</strong>
+        <ul>
+          <li><strong>Three-column trust strip (Address / Phone / Hours) above the fold</strong> — single best UX move across all 6 references. Goes into Z's design no matter what direction wins.</li>
+          <li>Phone number as primary CTA — matches Z's reality exactly</li>
+          <li>Real team photo with matching apparel = trust signal AI imagery can't replicate</li>
+          <li>Brand color matches actual shop interior — honest, strong</li>
+          <li>Family-owned framing made explicit</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-foot">
+      <a href="https://fresh-barbershop.com/" target="_blank" rel="noopener">fresh-barbershop.com ↗</a>
+      <span class="read-more"><a href="inspiration/pages/fresh.md">Full notes →</a></span>
+    </div>
+  </article>
+
+  <!-- HOFS -->
+  <article class="card">
+    <div class="card-images">
+      <img src="inspiration/screenshots/hofs-desktop.png" alt="THE HOFS — desktop view" loading="lazy">
+      <img src="inspiration/screenshots/hofs-mobile.png" alt="THE HOFS — mobile view" class="mobile" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-head">
+        <h2 class="card-title">THE HOFS · House of Fades</h2>
+        <span class="card-loc">Miami Lakes · FL</span>
+      </div>
+      <span class="card-tag local">Local + hot-towel</span>
+      <p class="why"><strong>Why this reference:</strong> Miami-local, family-owned, hot-towel-finish specialty (matches Z's old-school shave specialty). Strong dark-minimalist sensibility — confidence without photography. Sticky phone bar pattern is excellent.</p>
+      <dl class="attrs">
+        <dt>Hero</dt><dd>Pure black background + centered logo monogram + cream typographic card + Book Now pill</dd>
+        <dt>CTA</dt><dd>Sticky phone bar always visible + Book Now pill (Schedulicity)</dd>
+        <dt>Palette</dt><dd>Pure black (95% of page) + sand cream + white + warm cream logo accents</dd>
+        <dt>Type</dt><dd>Thin classical serif (Cinzel-like) for heritage signal — not Gothic</dd>
+        <dt>Photography</dt><dd>None above the fold (austere — calculated risk)</dd>
+      </dl>
+      <div class="borrowable">
+        <strong>Borrow for Z's</strong>
+        <ul>
+          <li><strong>Sticky phone bar at top — always-on tel: link.</strong> Most important UX element for a phone-booking shop.</li>
+          <li>"Appointments are our priority. Walk ins are always welcome" framing = exact match for Z</li>
+          <li>Dark palette with cream typographic cards as defensible fallback if photography isn't ready</li>
+          <li>Thin classical serif for heritage register without going saloon-poster</li>
+          <li>Complimentary-drinks + family-owned credibility signals</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-foot">
+      <a href="https://thehofs.net/" target="_blank" rel="noopener">thehofs.net ↗</a>
+      <span class="read-more"><a href="inspiration/pages/hofs.md">Full notes →</a></span>
+    </div>
+  </article>
+
+  <!-- HOUSE OF HERITAGE -->
+  <article class="card">
+    <div class="card-images">
+      <img src="inspiration/screenshots/heritage-desktop.png" alt="House of Heritage — desktop view" loading="lazy">
+      <img src="inspiration/screenshots/heritage-mobile.png" alt="House of Heritage — mobile view" class="mobile" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-head">
+        <h2 class="card-title">House of Heritage</h2>
+        <span class="card-loc">Las Vegas · NV</span>
+      </div>
+      <span class="card-tag peak">Heritage peak</span>
+      <p class="why"><strong>Why this reference:</strong> the heritage / hot-towel-shave / vintage-barbering peak of the spectrum. Cinematic hero photography of the actual shop interior is the single best photo move in the lineup. Sets the maximum on the "old-school done seriously" axis.</p>
+      <dl class="attrs">
+        <dt>Hero</dt><dd>Full-bleed cinematic shop interior (chairs, herringbone floor, B&W portraits) + centered headline</dd>
+        <dt>CTA</dt><dd>"CHOOSE YOUR STYLIST" — warm mustard pill (frames barber as artisan, not vendor)</dd>
+        <dt>Palette</dt><dd>Near-black + warm brown leather + brass/mustard + cream — all extracted from the photographed interior</dd>
+        <dt>Type</dt><dd>Bold condensed industrial sans display (sign-carved feel) + classical serif body + heritage seal logo</dd>
+        <dt>Photography</dt><dd>Professional cinematic shot of actual shop — deep shadows, warm pools of light</dd>
+      </dl>
+      <div class="borrowable">
+        <strong>Borrow for Z's</strong>
+        <ul>
+          <li><strong>Cinematic photograph of Z's actual shop as the hero.</strong> If the photo session lands one shot like this, the entire design rests on it.</li>
+          <li>"Meet the barber" / "Sit with Z" framing — single-barber shop earns this even harder than HoH's stylist roster</li>
+          <li>Brand color extracted from Z's actual shop interior — match honestly</li>
+          <li>Vintage Americana display type + readable serif body for heritage register</li>
+          <li>Heritage seal monogram with arched frame + "EST." detail if Z wants old-school visual identity</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-foot">
+      <a href="https://houseofheritagelv.com/" target="_blank" rel="noopener">houseofheritagelv.com ↗</a>
+      <span class="read-more"><a href="inspiration/pages/heritage.md">Full notes →</a></span>
+    </div>
+  </article>
+
+</main>
+
+<footer class="footer">
+  <h2>Patterns that appear in EVERY direction (locks)</h2>
+  <p>
+    Regardless of which direction wins Phase 3, these three patterns are getting built into Z's site because they're load-bearing for any phone-booked owner-operated shop:
+  </p>
+  <ol>
+    <li><strong>Three-column trust strip above the fold</strong> — Address (8455 SW Bird Rd) / Phone tel: (786) 281-8181 / Hours (Mon-Sat 9-7:30). Fresh's best move.</li>
+    <li><strong>Sticky phone bar at the top of every page</strong> — always-on tel: link. THE HOFS's best move.</li>
+    <li><strong>"Call or text to book"</strong> as the explicit primary CTA, with "walk-ins always welcome" as the secondary framing. Matches Z's reality.</li>
+  </ol>
+  <p style="margin-top: 2rem;">
+    Joel — once you pick a primary anchor + a secondary influence from the 6 above, I'll build <strong>palette.html</strong> (Phase 3) with 3 design directions side-by-side: each a different color/type/photography treatment for Z's, all incorporating the locks above. You pick one, that becomes BRAND.md (Phase 4), then we build the actual prototype.
+  </p>
+</footer>
+
+</body>
+</html>
