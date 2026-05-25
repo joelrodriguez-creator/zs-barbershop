@@ -41,17 +41,28 @@ git pull origin main
 8. **Phase 9 — Case-study HTML** as deliverable.
 9. **Phase 10 — Vercel deploy** to `zs-barbershop.vercel.app`. HOLD on domain purchase until Z reviews case-study.
 
-### From Z (owner-supplied content needed before launch)
+### From Z (owner-supplied content)
 
-- Real hours
-- Real address
-- Real phone
-- Services + prices (full list)
-- Photos: shop interior, recent cuts, Z at work
-- Social handles (Instagram especially)
-- Google Business Profile URL
-- Color/vibe preference (will influence Phase 3 direction choice)
-- Booking system decision: Square Appointments / Booksy / Squire / phone-only (default)
+✓ Captured from Z's Google Business Profile (2026-05-25):
+- Owner: **Ziad Dib** (IG: @zbarbershop1)
+- Address: **8455 SW Bird Rd, Miami, FL 33155** (Westchester)
+- Phone: **(786) 281-8181**
+- Hours: **Mon–Sat 9:00 AM – 7:30 PM** (Sunday TBD)
+- Standard cut: **$35**
+- Specialty: **Old-school hot-towel shave**
+- Reputation: **5.0 stars, 169 Google reviews**
+- Family-friendly: yes
+- Booking: phone + walk-in (no online platform exists)
+- No existing website
+
+Still needed from Z (capture in upcoming session with him):
+- Sunday hours (closed? open?)
+- Full services + prices (beard trim, line-up, kids', senior, hot-towel shave prices)
+- Ziad's bio: years cutting, training, what drew him to it
+- Real photos: shop interior, Ziad at work, recent cuts, beard work, hot-towel shave action
+- Whether the site should be bilingual / Spanish-friendly (Westchester is heavily Cuban-American)
+- Color/vibe preference (will be presented in Phase 3 direction exploration first)
+- Whether to add online booking later (Square Appointments / Booksy / Squire), or stay phone-only
 
 ## Prompt to paste into next Claude Code session
 
