@@ -1,0 +1,25 @@
+# Claude state — per-machine, never committed
+.claude/*
+!.claude/settings.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Vercel local
+.vercel
+
+# Editor
+.vscode/
+.idea/
+
+# Node (in case we add a build step later)
+node_modules/
+npm-debug.log*
+
+# Generated PDF outputs from case-study.html
+*.pdf
+
+# Local Playwright traces / snapshots
+test-results/
+playwright-report/
