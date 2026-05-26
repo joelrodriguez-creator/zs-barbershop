@@ -17,32 +17,36 @@ Reference exemplars in priority order:
 
 ```css
 :root {
-  /* Primary surface — near-black with warmth (not pure #000) */
-  --color-primary:   #1a1612;
-  /* Card / elevated surface — slightly warmer */
-  --color-surface:   #2a221b;
-  /* Accent — brass mustard. Used for CTAs, key visual accents, logo highlights. */
-  --color-accent:    #c8a35a;
-  /* Body text on dark backgrounds (the primary read mode) */
-  --color-ink:       #e8dfd0;
-  /* Body text on light backgrounds (rare — for the cream cards) */
-  --color-ink-dark:  #1a1612;
-  /* Light cream — for typographic cards, callouts, contrast blocks */
+  /* Primary surface — near-black with subtle warmth, NOT brown. Matches HoH's bg. */
+  --color-primary:   #161413;
+  /* Cream — used for logo, headlines, body text on dark, and cream-card surfaces */
   --color-cream:     #e8dfd0;
-  /* Muted text on dark — for captions, supporting copy, fine print */
-  --color-muted:     #7a7165;
-  /* Accent-soft — for hover states, subtle backgrounds */
-  --color-accent-soft: rgba(200, 163, 90, 0.15);
-  /* Border / divider on dark */
-  --color-line:      #3a3128;
+  /* Brass mustard accent — RESERVED FOR CTAs ONLY. The only saturated color. */
+  --color-accent:    #c8a35a;
+  /* Brass mustard for hover/focus on accent CTAs */
+  --color-accent-hover: #d4b370;
+  /* Ink color when text is on cream surface (rare — cream cards on dark bg) */
+  --color-ink-dark:  #161413;
+  /* Muted text on dark — captions, supporting copy, fine print */
+  --color-muted:     #8a7f72;
+  /* Subtle border / divider on dark — when separation is needed */
+  --color-line:      #2a2724;
+  /* Accent-soft (very subtle brass tint for outlines / hover) */
+  --color-accent-soft: rgba(200, 163, 90, 0.12);
 }
 ```
 
-Color usage rules:
-- `--color-primary` is the dominant background, ~80% of any given page.
-- `--color-accent` (brass mustard) is the ONLY saturated color. CTAs, the cedar mark, key headlines accents, and the geometric pattern stroke all use it. Don't introduce a second saturated color.
-- `--color-cream` cards on `--color-primary` background = the "House of Heritage card" pattern. Use for important callouts (hours, CTA blocks).
-- White is NOT in the palette. If "white" is needed for a logo or icon, use `--color-cream`.
+**Color usage rules (revised 2026-05-26 — HoH 1:1 fidelity):**
+
+- `--color-primary` is the dominant background — ~90% of any given page. It's near-black with the faintest warm undertone (R26 G20 B19). It is NOT brown. The previous warm-brown surface color `#2a221b` was REMOVED.
+- `--color-cream` `#e8dfd0` does the heavy lifting for everything that's NOT a CTA: logo, headlines, body text on dark, the cedar mark in the logo, and the cream-card surfaces when content needs to float on top of the dark.
+- `--color-accent` `#c8a35a` (brass mustard) is **RESERVED FOR CTAs ONLY**. Primary buttons. The "Call or Text" / "Book Now" / "More Services" actions. Nothing else. This is the HoH discipline — brass is earned by being almost the only saturated color on the page.
+- Headlines are cream, NOT brass. Logo is cream, NOT brass. The cedar mark in the logo is cream, NOT brass. (This is the major revision from yesterday — Joel correctly observed HoH's logo is white/cream, not brass.)
+- White (`#ffffff`) is NOT in the palette. If "white" is needed, use `--color-cream`.
+
+**Where the cream-card pattern applies (HoH-faithful):**
+- Some hero overlays use a cream rectangular card with dark text (HoH's "Welcome to the House of Heritage" pattern). For Z's: use sparingly — primarily the hero might lean this way if a clean cream-on-dark hero card lands the welcome better than over-photo text.
+- Most of the site uses cream TEXT on `--color-primary` background, NOT cream cards.
 
 ## Typography
 
@@ -131,19 +135,24 @@ Display headlines are ALWAYS uppercase. Body never is. Eyebrow text is uppercase
 }
 ```
 
-## Logo direction
+## Logo direction (REVISED 2026-05-26)
 
-**Heritage seal monogram** inside an arched frame, with **Lebanese cedar mark** integrated. Final SVG produced in Phase 5.
+**Concept #3 selected: Type Lockup with Cedar.** No frame. Pure typography with the Lebanese cedar as the only decorative element.
 
-Concept brief for Phase 5:
-- Arched frame (Damascene / vintage barbershop sign register)
-- "Z's" or "ZD" monogram in center (Big Shoulders Display style lettering)
-- Lebanese cedar tree silhouette as a small element — either above the monogram inside the arch, OR as the "Z" stem replacement, OR as a tiny seal at the bottom of the arch
-- Surrounding text in the arch: "BARBERSHOP" (top) + "EST." (bottom) or "WESTCHESTER · MIAMI" (bottom)
-- Two-color (brass `#c8a35a` on `--color-primary`) plus an optional cream version
-- SVG format, optimizable to <5KB
+**Color: CREAM `#e8dfd0`** (NOT brass). Matches HoH's white/cream wordmark approach. Brass is reserved for CTAs only.
 
-The cedar must be recognizable as a Lebanese cedar, not a generic Christmas tree — broad-spreading horizontal branches, distinctive silhouette.
+Lockup specifics:
+- "Z's" in Big Shoulders Display 800 (uppercase "Z" + lowercase "s" — apostrophe-s lowercase reads naturally, all-caps "Z'S" reads jarring at scale)
+- "BARBERSHOP" stacked below in Big Shoulders 700, smaller, wider letter-spacing
+- Lebanese cedar silhouette to the left of "Z's" as a fixed-width decorative element (~equal height to the "Z's" line)
+- Optional tagline below "BARBERSHOP": "WESTCHESTER · MIAMI · EST." in Inter 500, all caps, fine letter-spacing
+- All elements in `--color-cream` `#e8dfd0`
+- SVG format, single file, scales from 32px favicon to large signage
+
+Cedar silhouette refinement (Phase 5b):
+- Broad-spreading horizontal branches, narrowing to point at top (the Lebanese cedar is famous for its horizontal-branching profile, distinct from a generic pine/Christmas tree)
+- Symmetric, stylized — recognizable as cedar but not photo-realistic
+- Stroke width matches Big Shoulders weight so the cedar sits visually correct next to "Z's"
 
 ## Damascene geometric pattern accent (heritage anchor #5)
 
