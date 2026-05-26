@@ -23,3 +23,14 @@ npm-debug.log*
 # Local Playwright traces / snapshots
 test-results/
 playwright-report/
+.playwright-mcp/
+
+# Imagen variant PNGs — keep only the 5 canonical service icons + the picker.
+# Variants are easy to regenerate via scripts/gen-icon.mjs ($0.08/batch via Vertex AI Imagen 4 Fast).
+assets/generated/icons/*
+!assets/generated/icons/haircut.png
+!assets/generated/icons/beard-trim.png
+!assets/generated/icons/cut-beard.png
+!assets/generated/icons/lineup.png
+!assets/generated/icons/kids.png
+!assets/generated/icons/picker.html

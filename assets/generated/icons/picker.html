@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Icon picker — Z's Barbershop</title>
+<style>
+  :root { --bg: #191818; --brass: #c8a35a; --ink: #ffffff; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Montserrat', system-ui, sans-serif; padding: 40px; }
+  h1 { font-family: 'Teko', sans-serif; font-weight: 600; letter-spacing: 0.04em; font-size: 36px; margin: 0 0 8px; }
+  h2 { font-family: 'Teko', sans-serif; font-weight: 500; letter-spacing: 0.04em; margin-top: 56px; font-size: 24px; }
+  .eyebrow { color: var(--brass); text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; font-weight: 700; margin-bottom: 4px; }
+  p { color: #b8b8b8; font-size: 13px; max-width: 720px; line-height: 1.6; }
+  .locked { display: inline-block; background: var(--brass); color: var(--bg); padding: 2px 8px; font-size: 10px; font-weight: 700; letter-spacing: 0.15em; margin-left: 8px; vertical-align: middle; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 32px; }
+  .card { background: #221f1f; border: 1px solid #2c2929; border-radius: 4px; padding: 24px; text-align: center; }
+  .card .label { color: var(--brass); font-family: 'Teko', sans-serif; font-size: 22px; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .card .note { color: #888; font-size: 11px; margin-bottom: 16px; }
+  .card img { width: 100%; max-width: 220px; height: auto; display: block; margin: 0 auto; }
+  .compare { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; margin-top: 24px; }
+  .compare .swatch { background: #221f1f; padding: 16px; border-radius: 4px; text-align: center; }
+  .compare .swatch img { display: block; margin: 0 auto; }
+  .compare .cap { font-size: 11px; color: #888; margin-top: 8px; letter-spacing: 0.1em; }
+  .locked-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 16px; }
+  .locked-row .slot { background: #221f1f; border: 1px solid #2c2929; padding: 16px; border-radius: 4px; text-align: center; aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .locked-row .slot.active { border-color: var(--brass); }
+  .locked-row .slot img { width: 64px; height: 64px; }
+  .locked-row .slot .name { font-size: 10px; color: var(--brass); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 8px; }
+  .locked-row .slot.empty { color: #444; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .change-note { background: rgba(200, 163, 90, 0.08); border-left: 3px solid var(--brass); padding: 12px 16px; margin: 16px 0; font-size: 12px; color: var(--brass); }
+  .footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid #2c2929; color: #666; font-size: 12px; }
+</style>
+</head>
+<body>
+  <h2 style="margin-top: 0;">SET PROGRESS — 5 ICONS</h2>
+  <div class="change-note">Hot-towel shave dropped — Ziad doesn't offer it as a standalone service. Set is now 5, not 6.</div>
+  <div class="locked-row">
+    <div class="slot"><img src="haircut.png" alt="haircut"><div class="name">Haircut ✓</div></div>
+    <div class="slot"><img src="beard-trim.png" alt="beard-trim"><div class="name">Beard Trim ✓</div></div>
+    <div class="slot"><img src="cut-beard.png" alt="cut-beard"><div class="name">Cut+Beard ✓</div></div>
+    <div class="slot"><img src="lineup.png" alt="lineup"><div class="name">Line-Up ✓</div></div>
+    <div class="slot active empty">Kids' (pick now)</div>
+  </div>
+
+  <div class="eyebrow" style="margin-top: 56px;">Icon batch 5 of 5 — final</div>
+  <h1>KIDS' CUT <span class="locked">CHILD SIDE-PROFILE + SPARKLE</span></h1>
+  <p>Smaller, rounder head than the adult side-profile in cut+beard, with a small four-point sparkle accent. V1 and V2 are pure icons (match haircut/beard-trim/cut-beard). V3 is a framed badge (matches the line-up you just picked). V4 has a double-frame on cream — off-set.</p>
+
+  <div class="grid">
+    <div class="card"><div class="label">V1</div><div class="note">pure icon, no frame</div><img src="kids-v1.png" alt="v1"></div>
+    <div class="card"><div class="label">V2</div><div class="note">pure icon, different hair shape</div><img src="kids-v2.png" alt="v2"></div>
+    <div class="card"><div class="label">V3</div><div class="note">framed badge — matches line-up</div><img src="kids-v3.png" alt="v3"></div>
+    <div class="card"><div class="label">V4</div><div class="note">framed + cream mat — off-set</div><img src="kids-v4.png" alt="v4"></div>
+  </div>
+
+  <h2>AT 64 PX (HOMEPAGE SCALE)</h2>
+  <div class="compare" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="swatch"><img src="kids-v1.png" width="64" height="64"><div class="cap">V1</div></div>
+    <div class="swatch"><img src="kids-v2.png" width="64" height="64"><div class="cap">V2</div></div>
+    <div class="swatch"><img src="kids-v3.png" width="64" height="64"><div class="cap">V3</div></div>
+    <div class="swatch"><img src="kids-v4.png" width="64" height="64"><div class="cap">V4</div></div>
+  </div>
+
+  <h2>FULL-SET COHERENCE — V1 (PURE ICON)</h2>
+  <p>All 5 icons together. V1 matches the unframed treatment of haircut/beard-trim/cut-beard, contrasts with framed line-up.</p>
+  <div class="compare">
+    <div class="swatch"><img src="haircut.png" width="64" height="64"><div class="cap">HAIRCUT</div></div>
+    <div class="swatch"><img src="beard-trim.png" width="64" height="64"><div class="cap">BEARD TRIM</div></div>
+    <div class="swatch"><img src="cut-beard.png" width="64" height="64"><div class="cap">CUT+BEARD</div></div>
+    <div class="swatch"><img src="lineup.png" width="64" height="64"><div class="cap">LINE-UP</div></div>
+    <div class="swatch" style="border: 1px solid var(--brass);"><img src="kids-v1.png" width="64" height="64"><div class="cap" style="color: var(--brass);">+ V1</div></div>
+  </div>
+
+  <h2>FULL-SET COHERENCE — V3 (FRAMED BADGE)</h2>
+  <p>V3 matches the framed treatment of line-up, contrasts with the other three unframed icons.</p>
+  <div class="compare">
+    <div class="swatch"><img src="haircut.png" width="64" height="64"><div class="cap">HAIRCUT</div></div>
+    <div class="swatch"><img src="beard-trim.png" width="64" height="64"><div class="cap">BEARD TRIM</div></div>
+    <div class="swatch"><img src="cut-beard.png" width="64" height="64"><div class="cap">CUT+BEARD</div></div>
+    <div class="swatch"><img src="lineup.png" width="64" height="64"><div class="cap">LINE-UP</div></div>
+    <div class="swatch" style="border: 1px solid var(--brass);"><img src="kids-v3.png" width="64" height="64"><div class="cap" style="color: var(--brass);">+ V3</div></div>
+  </div>
+
+  <h2 style="display: none;">PREVIOUS BATCH (for reference)</h2>
+
+  <div class="eyebrow" style="margin-top: 56px;">Icon batch 4 of 5 — regenerated</div>
+  <h1>LINE-UP / CLIPPER <span class="locked">CORDLESS, VERTICAL — 4 FRESH VARIANTS</span></h1>
+  <p>Regenerated from scratch with explicit "no cord, no plug, fully closed handle, straight vertical" cues. V1 and V4 came back framed (rounded brass border). V2 and V3 are pure icons on matte black — those are the candidates that match the rest of the set.</p>
+
+  <div class="grid">
+    <div class="card"><div class="label">V1</div><div class="note">framed brass border — off-set</div><img src="lineup-r1-v1.png" alt="v1"></div>
+    <div class="card"><div class="label">V2</div><div class="note">pure icon, classic clipper silhouette</div><img src="lineup-r1-v2.png" alt="v2"></div>
+    <div class="card"><div class="label">V3</div><div class="note">pure icon, slightly chunkier handle</div><img src="lineup-r1-v3.png" alt="v3"></div>
+    <div class="card"><div class="label">V4</div><div class="note">framed brass border — off-set</div><img src="lineup-r1-v4.png" alt="v4"></div>
+  </div>
+
+  <h2>AT 64 PX (HOMEPAGE SCALE)</h2>
+  <div class="compare" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="swatch"><img src="lineup-r1-v1.png" width="64" height="64"><div class="cap">V1</div></div>
+    <div class="swatch"><img src="lineup-r1-v2.png" width="64" height="64"><div class="cap">V2</div></div>
+    <div class="swatch"><img src="lineup-r1-v3.png" width="64" height="64"><div class="cap">V3</div></div>
+    <div class="swatch"><img src="lineup-r1-v4.png" width="64" height="64"><div class="cap">V4</div></div>
+  </div>
+
+  <h2>SET COHERENCE — V2 IN CONTEXT</h2>
+  <div class="compare">
+    <div class="swatch"><img src="haircut.png" width="64" height="64"><div class="cap">HAIRCUT</div></div>
+    <div class="swatch"><img src="beard-trim.png" width="64" height="64"><div class="cap">BEARD TRIM</div></div>
+    <div class="swatch"><img src="cut-beard.png" width="64" height="64"><div class="cap">CUT+BEARD</div></div>
+    <div class="swatch" style="border: 1px solid var(--brass);"><img src="lineup-r1-v2.png" width="64" height="64"><div class="cap" style="color: var(--brass);">+ V2</div></div>
+    <div class="swatch empty" style="background: none; color: #444; font-size: 10px; letter-spacing: 0.1em;">KIDS' TBD</div>
+  </div>
+
+  <h2>SET COHERENCE — V3 IN CONTEXT</h2>
+  <div class="compare">
+    <div class="swatch"><img src="haircut.png" width="64" height="64"><div class="cap">HAIRCUT</div></div>
+    <div class="swatch"><img src="beard-trim.png" width="64" height="64"><div class="cap">BEARD TRIM</div></div>
+    <div class="swatch"><img src="cut-beard.png" width="64" height="64"><div class="cap">CUT+BEARD</div></div>
+    <div class="swatch" style="border: 1px solid var(--brass);"><img src="lineup-r1-v3.png" width="64" height="64"><div class="cap" style="color: var(--brass);">+ V3</div></div>
+    <div class="swatch empty" style="background: none; color: #444; font-size: 10px; letter-spacing: 0.1em;">KIDS' TBD</div>
+  </div>
+
+  <h2 style="display: none;">PREVIOUS BATCH (for reference)</h2>
+
+  <div class="grid">
+    <div class="card"><div class="label">V1</div><div class="note">framed cream-mat badge — off-set</div><img src="lineup-v1.png" alt="v1"></div>
+    <div class="card"><div class="label">V2</div><div class="note">framed cream-mat badge — off-set</div><img src="lineup-v2.png" alt="v2"></div>
+    <div class="card"><div class="label">V3</div><div class="note">clipper + attached curled cord — one continuous shape</div><img src="lineup-v3.png" alt="v3"></div>
+    <div class="card"><div class="label">V4</div><div class="note">clipper + separate coiled cord — two-object, mirrors haircut</div><img src="lineup-v4.png" alt="v4"></div>
+  </div>
+
+  <h2>AT 64 PX (HOMEPAGE SCALE)</h2>
+  <p>How each would actually render in the service-card grid.</p>
+  <div class="compare" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="swatch"><img src="lineup-v1.png" width="64" height="64"><div class="cap">V1</div></div>
+    <div class="swatch"><img src="lineup-v2.png" width="64" height="64"><div class="cap">V2</div></div>
+    <div class="swatch"><img src="lineup-v3.png" width="64" height="64"><div class="cap">V3</div></div>
+    <div class="swatch"><img src="lineup-v4.png" width="64" height="64"><div class="cap">V4</div></div>
+  </div>
+
+  <h2>SET COHERENCE — V3 IN CONTEXT</h2>
+  <p>How V3 sits in the row alongside the 3 already-locked icons. Both candidates are at 64px — homepage scale.</p>
+  <div class="compare">
+    <div class="swatch"><img src="haircut.png" width="64" height="64"><div class="cap">HAIRCUT</div></div>
+    <div class="swatch"><img src="beard-trim.png" width="64" height="64"><div class="cap">BEARD TRIM</div></div>
+    <div class="swatch"><img src="cut-beard.png" width="64" height="64"><div class="cap">CUT+BEARD</div></div>
+    <div class="swatch" style="border: 1px solid var(--brass);"><img src="lineup-v3.png" width="64" height="64"><div class="cap" style="color: var(--brass);">+ V3</div></div>
+    <div class="swatch empty" style="background: none; color: #444; font-size: 10px; letter-spacing: 0.1em;">KIDS' TBD</div>
+  </div>
+
+  <h2>SET COHERENCE — V4 IN CONTEXT</h2>
+  <p>Same comparison with V4 in the slot instead.</p>
+  <div class="compare">
+    <div class="swatch"><img src="haircut.png" width="64" height="64"><div class="cap">HAIRCUT</div></div>
+    <div class="swatch"><img src="beard-trim.png" width="64" height="64"><div class="cap">BEARD TRIM</div></div>
+    <div class="swatch"><img src="cut-beard.png" width="64" height="64"><div class="cap">CUT+BEARD</div></div>
+    <div class="swatch" style="border: 1px solid var(--brass);"><img src="lineup-v4.png" width="64" height="64"><div class="cap" style="color: var(--brass);">+ V4</div></div>
+    <div class="swatch empty" style="background: none; color: #444; font-size: 10px; letter-spacing: 0.1em;">KIDS' TBD</div>
+  </div>
+
+  <div class="footer">Model: imagen-4.0-fast-generate-001 via Vertex AI &middot; project driven-torus-493217-q5 &middot; batch cost ≈ $0.08</div>
+</body>
+</html>
