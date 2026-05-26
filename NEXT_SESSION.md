@@ -1,17 +1,27 @@
 # NEXT_SESSION.md
 
-_Last checkpoint: 2026-05-26 on FalconXtreme PC. Session ended mid-review-scrape after recurring API errors. Resume prompt at the bottom._
+_Last sync: 2026-05-26 on FalconXtreme PC. Mid-session save: foundation work (SEO + showcase + claude-seo plugin) shipped; bespoke homepage hero variants 2 of 3 generated, Variant A retry blocked on a transient Google 503 (model capacity). Resume prompt at the bottom._
 
 ## TL;DR
 
-This session delivered the full 5-icon brass-on-matte-black service-icon set, integrated them into the prototype, fixed all the size/border/box issues Joel flagged, bumped the header logo size, and stripped every hot-towel mention from the live site (Ziad doesn't actually offer hot-towel shaves as a standalone service). The Zohan reference is now woven into Ziad's bio on both `index.html` and `barbers.html`.
+This session pivoted from the planned Google-reviews-marquee work into two foundational hardwirings + a bespoke hero imagery iteration:
 
-**Where the next session picks up:** scraping real Google reviews for a House-of-Heritage-style auto-scrolling marquee. Got 1 full review (Gino Fernandez) + 5 more named reviewers (Isabel Nieto Gaviria, Luisdel López Beltrán, sigfredo pacheco, Vladislava Koleva, Layla Nsoor) from Birdeye but couldn't pull their body text before the API died. The marquee component itself hasn't been built — the homepage Testimonials section is still showing 3 placeholder cards.
+1. **SEO + showcase log hardwired** — new project-level [CLAUDE.md](CLAUDE.md), [SEO.md](SEO.md) checklist, and [docs/showcase/client-showcase.md](docs/showcase/client-showcase.md) running log. Project CLAUDE.md auto-loads on every future session in this directory. Showcase markdown is the source-of-truth log; render to PDF via Claude Design when Ziad needs a polished snapshot.
+2. **claude-seo plugin v2.0.0 installed globally** on PC at `~/.claude/skills/seo*` (Mac was already done). 32 `/seo*` skills now available in every Claude Code session. Lighthouse v13.1.0 already global. `npx unlighthouse` available on demand.
+3. **Bespoke homepage hero generation via Nano Banana 2** — wired the `GEMINI_API_KEY` into `~/.claude.json` (was a placeholder string until today), Joel added $50 AI Studio prepay, restarted Claude Code, MCP respawned with new key. 2 of 3 variants generated successfully at 2K/16:9. Variant A failed first because billing hadn't propagated; retries blocked on transient Google 503 (model high demand).
+
+**Where the next session picks up:** retry Variant A (House of Z), build hero-picker.html for side-by-side compare, get Joel's pick, finalize at 4K, wire into `prototype/index.html`. Then move on to barbers.html + services.html heroes. THEN `/seo audit https://zsbarbershop.com` once heroes land. THEN Impeccable polish pass.
 
 ## Currently in flight
 
-- **Real Google reviews scrape** — Birdeye (`https://reviews.birdeye.com/zs-barbershop-170249571721062`) is the right source. 182 reviews total there. First scroll exposed only the first batch of names — body text needs more aggressive scrolling/expansion. Use Playwright MCP (`mcp__playwright__*`). The 3 anonymized Google SERP snippets are also captured below as a fallback.
-- **Streaming marquee component** — Joel wants the House of Heritage cycling-strip pattern: **3 reviews visible at a time, auto-scrolls right-to-left, more than 3 in the queue**. Reference: `inspiration/pages/heritage.md` (or the live `https://houseofheritage.com` if needed). No framework — pure CSS animation + vanilla JS (match the project's no-framework rule).
+- **Homepage hero generation** — 2 of 3 variants at `assets/generated/heroes/`:
+  - `index-the-chair-2k.jpg` (Variant B, owner-craftsman intimate) — landed
+  - `index-mediterranean-warmth-2k.jpg` (Variant C, Damascene tile + cedar + arched mirrors) — landed
+  - Variant A (House of Z, wide cinematic interior) — needs retry. First attempt 429 (credits not propagated); retries 503 (Gemini high demand). Try again in 5–10 minutes via `mcp__nano-banana-2__generate_image`. Prompt preserved in [plans/after-restart-paste-this-graceful-fairy.md](C:/Users/Trader/.claude/plans/after-restart-paste-this-graceful-fairy.md).
+- **Hero picker** — once Variant A lands, build `prototype/hero-picker.html` showing all 3 side-by-side at 16:9 with A/B/C labels, open in Chrome for Joel to pick. Then finalize the winner at 4K, wire into `prototype/index.html` `.hero` block.
+- **Parked: real Google reviews marquee** — original session pickup brief. Birdeye scrape + auto-scroll marquee at `index.html` testimonials. Resume after heroes land. Full plan preserved in [plans/after-restart-paste-this-graceful-fairy.md](C:/Users/Trader/.claude/plans/after-restart-paste-this-graceful-fairy.md) "Parked: reviews marquee" section.
+- **API key hygiene rotation** — `GEMINI_API_KEY` (`AIzaSyA9hdz-...BqFg`) was shared in a screenshot earlier in the chat transcript. After heroes are done, delete it in AI Studio and create a fresh one, then update `~/.claude.json`. Not urgent, hygiene.
+- **Workspace CLAUDE.md /seo-first rule** — Joel authorized adding "default to /seo skill family for web project SEO" to `infrastructure/claude-global-config/workspace-CLAUDE.md` plus claude-seo entry in Known installed tools. Defer to /checkpoint phase; not blocking heroes.
 
 ## First actions on the other machine (or after restart)
 

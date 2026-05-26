@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Z's Barbershop — Homepage Hero Variant Picker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #191818;
+      --color-cream: #ffffff;
+      --color-accent: #c8a35a;
+      --color-line: #2a2828;
+      --font-display: 'Teko', sans-serif;
+      --font-body: 'Montserrat', sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--color-primary);
+      color: var(--color-cream);
+      font-family: var(--font-body);
+      font-weight: 600;
+      padding: 3rem 2rem;
+      min-height: 100vh;
+    }
+    .page-head {
+      max-width: 1400px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+    .page-head .eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 0.5rem;
+    }
+    .page-head h1 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+    }
+    .page-head p {
+      font-weight: 500;
+      font-size: 0.95rem;
+      opacity: 0.7;
+      margin-top: 1rem;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .variants {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      gap: 2.5rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 1100px) {
+      .variants { grid-template-columns: 1fr; }
+    }
+    .variant {
+      background: #0e0d0d;
+      border: 1px solid var(--color-line);
+      overflow: hidden;
+    }
+    .variant-image {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #050505;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .variant-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .variant-image .placeholder {
+      text-align: center;
+      padding: 2rem;
+    }
+    .variant-image .placeholder .spin {
+      width: 48px;
+      height: 48px;
+      border: 3px solid rgba(200, 163, 90, 0.2);
+      border-top-color: var(--color-accent);
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      animation: spin 1.2s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .variant-image .placeholder .msg {
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 0.5rem;
+    }
+    .variant-image .placeholder .sub {
+      font-size: 0.8rem;
+      opacity: 0.5;
+      font-weight: 500;
+    }
+    /* Overlay preview showing how the hero would look with text */
+    .variant-image .overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 6%;
+    }
+    .overlay .o-eyebrow {
+      font-size: clamp(0.7rem, 0.9vw, 0.85rem);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--color-cream);
+      margin-bottom: 0.75rem;
+      opacity: 0.85;
+    }
+    .overlay .o-headline {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2rem, 4.5vw, 4rem);
+      text-transform: uppercase;
+      line-height: 1;
+      color: var(--color-cream);
+      margin-bottom: 1.25rem;
+      max-width: 50%;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.6);
+    }
+    .overlay .o-cta {
+      display: inline-block;
+      padding: 0.85rem 1.75rem;
+      background: var(--color-accent);
+      color: #191818;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      width: max-content;
+      align-self: flex-start;
+    }
+    .variant-info {
+      padding: 2rem 2rem 2.25rem;
+      border-top: 1px solid var(--color-line);
+    }
+    .variant-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      padding: 0.25rem 0.75rem;
+      border: 1px solid var(--color-accent);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    .variant-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .variant-tagline {
+      font-size: 0.9rem;
+      font-weight: 500;
+      opacity: 0.75;
+      line-height: 1.6;
+    }
+    .toggle-bar {
+      max-width: 1400px;
+      margin: 0 auto 2rem;
+      text-align: center;
+    }
+    .toggle-bar button {
+      background: transparent;
+      color: var(--color-cream);
+      border: 1px solid var(--color-line);
+      padding: 0.6rem 1.25rem;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin: 0 0.5rem;
+      transition: border-color 0.2s;
+    }
+    .toggle-bar button.active {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+    }
+    body.no-overlay .overlay { display: none; }
+  </style>
+</head>
+<body>
+
+  <header class="page-head">
+    <p class="eyebrow">HOMEPAGE HERO</p>
+    <h1>Pick your direction</h1>
+    <p>Three bespoke placeholder heroes generated via Nano Banana 2 at 16:9 / 2K. Pick the direction that feels most like Z's. The winner gets refined and regenerated at 4K for the final crop.</p>
+  </header>
+
+  <div class="toggle-bar">
+    <button class="active" onclick="document.body.classList.remove('no-overlay'); this.classList.add('active'); this.nextElementSibling.classList.remove('active');">SHOW WITH OVERLAY TEXT</button>
+    <button onclick="document.body.classList.add('no-overlay'); this.classList.add('active'); this.previousElementSibling.classList.remove('active');">HIDE OVERLAY (IMAGE ONLY)</button>
+  </div>
+
+  <div class="variants">
+
+    <article class="variant">
+      <div class="variant-image">
+        <div class="placeholder">
+          <div class="spin"></div>
+          <div class="msg">Variant A regenerating</div>
+          <div class="sub">Google Gemini hitting capacity 503s — Claude is retrying. Refresh in a few minutes.</div>
+        </div>
+      </div>
+      <div class="variant-info">
+        <span class="variant-tag">Variant A · House of Z</span>
+        <h2 class="variant-name">Wide cinematic interior</h2>
+        <p class="variant-tagline">Wide-angle down the length of the shop. Two chairs in symmetric row, herringbone floor catching warm bulb glow, mirrors reflecting back, vintage frames on dark walls. House of Heritage 1:1 translation. Confident, classic.</p>
+      </div>
+    </article>
+
+    <article class="variant">
+      <div class="variant-image">
+        <img src="../assets/generated/heroes/index-the-chair-2k.jpg" alt="Variant B: single barber chair foreground, intimate">
+        <div class="overlay">
+          <p class="o-eyebrow">Westchester · Miami</p>
+          <h2 class="o-headline">Welcome to<br>Z's Barbershop</h2>
+          <a class="o-cta">Choose your barber</a>
+        </div>
+      </div>
+      <div class="variant-info">
+        <span class="variant-tag">Variant B · The Chair</span>
+        <h2 class="variant-name">Single chair foreground, intimate</h2>
+        <p class="variant-tagline">One chair 3/4 angle, heavy leather + brass armrests glowing under a single Edison bulb. Mirrors with vintage product bottles softly out of focus behind. Owner-craftsman register, "this is Ziad's chair" not "this is the shop."</p>
+      </div>
+    </article>
+
+    <article class="variant">
+      <div class="variant-image">
+        <img src="../assets/generated/heroes/index-mediterranean-warmth-2k.jpg" alt="Variant C: Mediterranean warmth with Damascene tile">
+        <div class="overlay">
+          <p class="o-eyebrow">Westchester · Miami</p>
+          <h2 class="o-headline">Welcome to<br>Z's Barbershop</h2>
+          <a class="o-cta">Choose your barber</a>
+        </div>
+      </div>
+      <div class="variant-info">
+        <span class="variant-tag">Variant C · Mediterranean Warmth</span>
+        <h2 class="variant-name">Z's distinct twist</h2>
+        <p class="variant-tagline">Two chairs framed by Damascene 8-point star tile pattern in the floor, cedar wood shelving on the right, arched mirrors in dark Mediterranean wood, exposed brick accent wall. Same heritage register as A, but identifiably Z's not generic.</p>
+      </div>
+    </article>
+
+  </div>
+
+</body>
+</html>

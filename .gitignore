@@ -34,3 +34,12 @@ assets/generated/icons/*
 !assets/generated/icons/lineup.png
 !assets/generated/icons/kids.png
 !assets/generated/icons/picker.html
+
+# Nano Banana 2 hero variants — keep only the accepted finals per page.
+# Variants are easy to regenerate via the MCP at ~$0.067/1K image.
+assets/generated/heroes/*
+!assets/generated/heroes/*-final.jpg
+!assets/generated/heroes/*-final.png
+
+# Client showcase PDF — committed at milestones, whitelisted past the *.pdf rule above
+!docs/showcase/client-showcase.pdf
