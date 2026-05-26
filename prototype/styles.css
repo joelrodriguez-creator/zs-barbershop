@@ -55,7 +55,7 @@ a { color: inherit; text-decoration: none; }
   justify-content: space-between;
   gap: 1rem;
 }
-.logo-wordmark { display: block; height: 56px; width: auto; }
+.logo-wordmark { display: block; height: 96px; width: auto; }
 .nav-links {
   display: none;
   gap: 2.5rem;
@@ -264,11 +264,12 @@ a { color: inherit; text-decoration: none; }
 @media (min-width: 700px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
 .service-card { padding: 0 1rem; }
 .service-icon {
-  width: 64px;
-  height: 64px;
+  width: 112px;
+  height: 112px;
   margin: 0 auto 1.25rem;
   display: block;
   color: var(--color-accent);
+  object-fit: contain;
 }
 .service-icon path, .service-icon line, .service-icon circle, .service-icon rect, .service-icon polyline {
   stroke: var(--color-accent);
