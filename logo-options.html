@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Z's Barbershop — Logo Concepts (Phase 5)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary:#1a1612;
+      --surface:#2a221b;
+      --accent:#c8a35a;
+      --ink:#e8dfd0;
+      --muted:#7a7165;
+      --line:#3a3128;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:'Inter',system-ui,sans-serif;
+      background:var(--primary);
+      color:var(--ink);
+      line-height:1.5;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    .page-head{max-width:1280px;margin:0 auto;padding:4rem 2rem 2rem}
+    .eyebrow{
+      font-size:.75rem;font-weight:600;letter-spacing:.12em;
+      text-transform:uppercase;color:var(--accent);margin-bottom:1rem;
+    }
+    .page-head h1{
+      font-family:'Source Serif 4',serif;font-weight:600;
+      font-size:clamp(2rem,4vw,3rem);line-height:1.1;
+      letter-spacing:-.02em;max-width:760px;margin-bottom:1rem;color:var(--ink);
+    }
+    .page-head p{color:var(--muted);max-width:720px;margin-bottom:.75rem;font-size:1.05rem}
+
+    .concepts{
+      max-width:1280px;margin:2rem auto 0;padding:0 2rem;
+      display:grid;gap:3rem;
+    }
+
+    .concept{
+      background:var(--surface);
+      border-radius:16px;
+      padding:2.5rem;
+      box-shadow:0 8px 32px rgba(0,0,0,.4);
+    }
+    .concept-head{display:flex;align-items:baseline;gap:1rem;margin-bottom:.5rem;flex-wrap:wrap}
+    .concept-num{
+      font-family:'Big Shoulders Display',sans-serif;font-weight:800;
+      font-size:2rem;color:var(--accent);line-height:1;
+    }
+    .concept-name{
+      font-family:'Source Serif 4',serif;font-weight:600;
+      font-size:1.5rem;color:var(--ink);letter-spacing:-.01em;
+    }
+    .concept-tag{
+      font-size:.75rem;font-weight:600;letter-spacing:.08em;
+      text-transform:uppercase;color:var(--accent);
+      padding:.25rem .6rem;border:1px solid var(--accent);border-radius:999px;
+      margin-left:auto;
+    }
+    .concept-desc{color:var(--muted);max-width:720px;margin-bottom:2rem;font-size:.95rem;line-height:1.6}
+
+    .showcase{
+      display:grid;gap:1.5rem;
+      grid-template-columns:1fr;
+    }
+    @media(min-width:900px){
+      .showcase{grid-template-columns:1.5fr 1fr 1fr}
+    }
+
+    .showcase-cell{
+      background:var(--primary);
+      border:1px solid var(--line);
+      border-radius:8px;
+      padding:2rem 1.5rem;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      min-height:200px;
+      position:relative;
+    }
+    .showcase-cell.cream{background:var(--ink)}
+    .showcase-label{
+      position:absolute;top:.75rem;left:.75rem;
+      font-size:.65rem;font-weight:600;letter-spacing:.1em;
+      text-transform:uppercase;color:var(--muted);
+    }
+    .showcase-cell.cream .showcase-label{color:var(--muted)}
+
+    /* Logo size contexts */
+    .logo-large{width:200px;height:auto;display:block}
+    .logo-nav{height:48px;width:auto;display:block}
+    .logo-favicon{width:32px;height:32px;display:block}
+
+    /* Nav mock */
+    .nav-mock{
+      width:100%;display:flex;align-items:center;justify-content:space-between;
+      padding:1rem 1.25rem;border-bottom:1px solid var(--line);
+      background:var(--primary);border-radius:6px;
+    }
+    .nav-mock .nav-links{display:flex;gap:1rem;font-family:'Inter',sans-serif;font-size:.8rem;color:var(--muted);font-weight:500;letter-spacing:.05em;text-transform:uppercase}
+    .nav-mock .cta{
+      background:var(--accent);color:var(--primary);
+      padding:.4rem .9rem;border-radius:999px;
+      font-size:.7rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+    }
+
+    /* Favicon mock */
+    .favicon-mock{
+      background:var(--primary);
+      border:1px solid var(--line);
+      padding:.4rem .6rem;
+      display:inline-flex;align-items:center;gap:.5rem;
+      border-radius:6px;font-size:.75rem;color:var(--muted);
+      font-family:'Inter',sans-serif;
+    }
+
+    .concept-notes{
+      margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--line);
+      display:grid;gap:1rem;
+    }
+    @media(min-width:700px){
+      .concept-notes{grid-template-columns:1fr 1fr}
+    }
+    .note-block h3{
+      font-size:.7rem;font-weight:600;letter-spacing:.1em;
+      text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;
+    }
+    .note-block ul{padding-left:1.1rem;font-size:.875rem;color:var(--ink);line-height:1.55}
+    .note-block li{margin-bottom:.3rem}
+    .note-block p{font-size:.875rem;color:var(--ink);line-height:1.55}
+
+    .page-foot{
+      max-width:1280px;margin:4rem auto 0;padding:3rem 2rem 5rem;
+      border-top:1px solid var(--line);
+    }
+    .page-foot h2{font-family:'Source Serif 4',serif;font-size:1.75rem;margin-bottom:1rem}
+    .page-foot p{color:var(--muted);max-width:720px;margin-bottom:.75rem}
+  </style>
+</head>
+<body>
+
+<header class="page-head">
+  <div class="eyebrow">Z's Barbershop · Phase 5 — Logo Concepts</div>
+  <h1>Four directions for the heritage seal. All in brass. All with cedar. Different on shape, formality, and how cedar integrates.</h1>
+  <p>
+    Direction A's brand identity needs a heritage-seal-with-cedar logo that works at three scales: large standalone (250px+), nav-header (40–60px), and favicon (32×32). Each concept below shows all three, on dark backgrounds (the dominant context) and cream backgrounds (for cards + the case-study deliverable).
+  </p>
+  <p style="font-size:.85rem">
+    These are first-pass SVG drafts. Pick a direction, then we refine the winner — adjust proportions, fine-tune the cedar silhouette, tweak the lockup. Any of the four can become final.
+  </p>
+</header>
+
+<main class="concepts">
+
+  <!-- ─── CONCEPT 1: THE ARCHED SEAL ─── -->
+  <article class="concept">
+    <div class="concept-head">
+      <span class="concept-num">01</span>
+      <h2 class="concept-name">The Arched Seal</h2>
+      <span class="concept-tag">Most traditional</span>
+    </div>
+    <p class="concept-desc">
+      Classic heritage barbershop seal in an arched frame. Cedar tree at the apex, "Z'S" monogram in oversized Big Shoulders, "BARBERSHOP" arched along the bottom, "EST. WESTCHESTER · MIAMI" beneath. Closest to House of Heritage's seal vocabulary. Reads "this place has been here for a while" instantly.
+    </p>
+
+    <div class="showcase">
+      <div class="showcase-cell">
+        <span class="showcase-label">Large · 200px on dark</span>
+        <svg class="logo-large" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" aria-label="Z's Barbershop logo concept 1: arched seal">
+          <!-- Outer arched frame -->
+          <path d="M 20,210 L 20,80 A 80,80 0 0 1 180,80 L 180,210 Z"
+                fill="none" stroke="#c8a35a" stroke-width="3"/>
+          <!-- Inner thin arch line -->
+          <path d="M 30,205 L 30,82 A 70,70 0 0 1 170,82 L 170,205 Z"
+                fill="none" stroke="#c8a35a" stroke-width="1"/>
+          <!-- Cedar tree silhouette at apex -->
+          <g transform="translate(100, 32)" fill="#c8a35a">
+            <path d="M 0,-8 L -8,4 L -3,4 L -12,18 L -4,18 L -16,32 L -7,32 L -7,40 L 7,40 L 7,32 L 16,32 L 4,18 L 12,18 L 3,4 L 8,4 Z"/>
+          </g>
+          <!-- Z'S monogram -->
+          <text x="100" y="140" font-family="'Big Shoulders Display','Oswald',sans-serif"
+                font-weight="800" font-size="64" fill="#c8a35a"
+                text-anchor="middle" letter-spacing="2">Z'S</text>
+          <!-- Decorative line under monogram -->
+          <line x1="65" y1="155" x2="135" y2="155" stroke="#c8a35a" stroke-width="1"/>
+          <!-- Barbershop curve text -->
+          <text x="100" y="180" font-family="'Inter',sans-serif"
+                font-weight="700" font-size="11" fill="#c8a35a"
+                text-anchor="middle" letter-spacing="6">BARBERSHOP</text>
+          <!-- Est line -->
+          <text x="100" y="198" font-family="'Inter',sans-serif"
+                font-weight="500" font-size="8" fill="#c8a35a"
+                text-anchor="middle" letter-spacing="2" opacity=".7">WESTCHESTER · MIAMI</text>
+        </svg>
+      </div>
+
+      <div class="showcase-cell">
+        <span class="showcase-label">Nav header · 48px</span>
+        <div class="nav-mock">
+          <svg class="logo-nav" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M 20,210 L 20,80 A 80,80 0 0 1 180,80 L 180,210 Z" fill="none" stroke="#c8a35a" stroke-width="3"/>
+            <path d="M 30,205 L 30,82 A 70,70 0 0 1 170,82 L 170,205 Z" fill="none" stroke="#c8a35a" stroke-width="1"/>
+            <g transform="translate(100, 32)" fill="#c8a35a">
+              <path d="M 0,-8 L -8,4 L -3,4 L -12,18 L -4,18 L -16,32 L -7,32 L -7,40 L 7,40 L 7,32 L 16,32 L 4,18 L 12,18 L 3,4 L 8,4 Z"/>
+            </g>
+            <text x="100" y="140" font-family="'Big Shoulders Display',sans-serif" font-weight="800" font-size="64" fill="#c8a35a" text-anchor="middle" letter-spacing="2">Z'S</text>
+            <line x1="65" y1="155" x2="135" y2="155" stroke="#c8a35a" stroke-width="1"/>
+            <text x="100" y="180" font-family="'Inter',sans-serif" font-weight="700" font-size="11" fill="#c8a35a" text-anchor="middle" letter-spacing="6">BARBERSHOP</text>
+          </svg>
+          <div class="nav-links"><span>Services</span><span>About</span><span>Contact</span></div>
+          <span class="cta">Call</span>
+        </div>
+      </div>
+
+      <div class="showcase-cell cream">
+        <span class="showcase-label">Favicon 32px · on cream</span>
+        <div class="favicon-mock" style="background:#e8dfd0;color:#1a1612">
+          <svg class="logo-favicon" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 20,210 L 20,80 A 80,80 0 0 1 180,80 L 180,210 Z" fill="none" stroke="#1a1612" stroke-width="6"/>
+            <text x="100" y="160" font-family="'Big Shoulders Display',sans-serif" font-weight="800" font-size="100" fill="#1a1612" text-anchor="middle" letter-spacing="2">Z'S</text>
+          </svg>
+          <span>zsbarbershop.com</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-notes">
+      <div class="note-block">
+        <h3>Strengths</h3>
+        <ul>
+          <li>Maps cleanest to House of Heritage's seal vocabulary</li>
+          <li>Reads "heritage" instantly without explanation</li>
+          <li>Works on both dark and cream backgrounds without modification</li>
+          <li>Cedar at apex makes the heritage anchor explicit but discreet</li>
+        </ul>
+      </div>
+      <div class="note-block">
+        <h3>Tradeoffs</h3>
+        <ul>
+          <li>Most "barbershop-canonical" — least distinctive among barbershop seals</li>
+          <li>Favicon-scale loses the cedar (only "Z'S" survives)</li>
+          <li>Could feel slightly upscale for $35 pricing — voice rules in BRAND.md will counterbalance</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- ─── CONCEPT 2: THE DAMASCENE ROUNDEL ─── -->
+  <article class="concept">
+    <div class="concept-head">
+      <span class="concept-num">02</span>
+      <h2 class="concept-name">The Damascene Roundel</h2>
+      <span class="concept-tag">Most distinctly Lebanese</span>
+    </div>
+    <p class="concept-desc">
+      Circular seal with an 8-pointed Damascene star pattern as the outer border ring. "Z'S" monogram dead center. Cedar integrated into the ring — replacing one of the 8 star points, or as a tiny detail in the center field. Folds heritage anchor #5 (Damascene pattern) directly into the logo itself. Most distinctly Lebanese-Mediterranean of the four.
+    </p>
+
+    <div class="showcase">
+      <div class="showcase-cell">
+        <span class="showcase-label">Large · 200px on dark</span>
+        <svg class="logo-large" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="Z's Barbershop logo concept 2: Damascene roundel">
+          <!-- Outer circle -->
+          <circle cx="100" cy="100" r="95" fill="none" stroke="#c8a35a" stroke-width="2"/>
+          <!-- 8-pointed star pattern (formed by two overlapping squares rotated) -->
+          <g stroke="#c8a35a" stroke-width="1.5" fill="none">
+            <!-- Square 1 -->
+            <path d="M 100,15 L 160,40 L 185,100 L 160,160 L 100,185 L 40,160 L 15,100 L 40,40 Z"/>
+            <!-- Square 2 rotated 22.5deg -->
+            <path d="M 100,28 L 155,55 L 172,100 L 155,145 L 100,172 L 45,145 L 28,100 L 45,55 Z"/>
+          </g>
+          <!-- Inner circle border -->
+          <circle cx="100" cy="100" r="60" fill="none" stroke="#c8a35a" stroke-width="1.5"/>
+          <!-- Small cedar at top of inner circle -->
+          <g transform="translate(100, 55)" fill="#c8a35a">
+            <path d="M 0,-6 L -6,3 L -2,3 L -9,13 L -3,13 L -12,23 L -5,23 L -5,28 L 5,28 L 5,23 L 12,23 L 3,13 L 9,13 L 2,3 L 6,3 Z"/>
+          </g>
+          <!-- Z'S monogram -->
+          <text x="100" y="125" font-family="'Big Shoulders Display','Oswald',sans-serif"
+                font-weight="800" font-size="40" fill="#c8a35a"
+                text-anchor="middle" letter-spacing="1">Z'S</text>
+          <!-- Bottom text -->
+          <text x="100" y="148" font-family="'Inter',sans-serif"
+                font-weight="700" font-size="7" fill="#c8a35a"
+                text-anchor="middle" letter-spacing="3">BARBERSHOP</text>
+        </svg>
+      </div>
+
+      <div class="showcase-cell">
+        <span class="showcase-label">Nav header · 48px</span>
+        <div class="nav-mock">
+          <svg class="logo-nav" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="100" cy="100" r="95" fill="none" stroke="#c8a35a" stroke-width="2"/>
+            <g stroke="#c8a35a" stroke-width="1.5" fill="none">
+              <path d="M 100,15 L 160,40 L 185,100 L 160,160 L 100,185 L 40,160 L 15,100 L 40,40 Z"/>
+              <path d="M 100,28 L 155,55 L 172,100 L 155,145 L 100,172 L 45,145 L 28,100 L 45,55 Z"/>
+            </g>
+            <circle cx="100" cy="100" r="60" fill="none" stroke="#c8a35a" stroke-width="1.5"/>
+            <text x="100" y="120" font-family="'Big Shoulders Display',sans-serif" font-weight="800" font-size="50" fill="#c8a35a" text-anchor="middle" letter-spacing="1">Z'S</text>
+          </svg>
+          <div class="nav-links"><span>Services</span><span>About</span><span>Contact</span></div>
+          <span class="cta">Call</span>
+        </div>
+      </div>
+
+      <div class="showcase-cell cream">
+        <span class="showcase-label">Favicon 32px · on cream</span>
+        <div class="favicon-mock" style="background:#e8dfd0;color:#1a1612">
+          <svg class="logo-favicon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="95" fill="none" stroke="#1a1612" stroke-width="6"/>
+            <g stroke="#1a1612" stroke-width="4" fill="none">
+              <path d="M 100,15 L 160,40 L 185,100 L 160,160 L 100,185 L 40,160 L 15,100 L 40,40 Z"/>
+              <path d="M 100,28 L 155,55 L 172,100 L 155,145 L 100,172 L 45,145 L 28,100 L 45,55 Z"/>
+            </g>
+            <text x="100" y="120" font-family="'Big Shoulders Display',sans-serif" font-weight="800" font-size="50" fill="#1a1612" text-anchor="middle" letter-spacing="1">Z'S</text>
+          </svg>
+          <span>zsbarbershop.com</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-notes">
+      <div class="note-block">
+        <h3>Strengths</h3>
+        <ul>
+          <li>Most distinctive — circular roundels are uncommon in barbershop branding</li>
+          <li>Folds heritage anchor #5 (Damascene pattern) directly into the logo, freeing the rest of the site from carrying the pattern repeatedly</li>
+          <li>Roundels favicon-down better than arched seals (circle survives at 32px)</li>
+          <li>Mediterranean / Lebanese coding is the strongest of the four — Damascene star is universally recognized</li>
+        </ul>
+      </div>
+      <div class="note-block">
+        <h3>Tradeoffs</h3>
+        <ul>
+          <li>The Damascene star is so distinctive it doesn't fold easily back into "barbershop" — could read like a coffee shop or rug merchant if photography isn't dialed</li>
+          <li>Cedar is harder to spot (smaller inside the inner circle)</li>
+          <li>Refinement needs care — the two overlapping squares can look busy if not perfectly aligned</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- ─── CONCEPT 3: TYPE LOCKUP WITH CEDAR ─── -->
+  <article class="concept">
+    <div class="concept-head">
+      <span class="concept-num">03</span>
+      <h2 class="concept-name">Type Lockup with Cedar</h2>
+      <span class="concept-tag">Most minimal · scales best</span>
+    </div>
+    <p class="concept-desc">
+      No frame. Pure typography: massive "Z'S BARBERSHOP" in Big Shoulders Display 800, with the cedar tree positioned as a fixed-width element to the left of "Z'S" — almost like a serif drop-cap. The cedar IS the only decorative element. Works smallest. Modern feel inside the heritage register.
+    </p>
+
+    <div class="showcase">
+      <div class="showcase-cell">
+        <span class="showcase-label">Large · 240px wide on dark</span>
+        <svg viewBox="0 0 280 100" xmlns="http://www.w3.org/2000/svg" style="width:240px;height:auto;display:block" aria-label="Z's Barbershop logo concept 3: type lockup with cedar">
+          <!-- Cedar to the left -->
+          <g transform="translate(10, 30)" fill="#c8a35a">
+            <path d="M 18,-8 L 8,8 L 14,8 L 0,22 L 10,22 L -4,40 L 8,40 L 8,52 L 28,52 L 28,40 L 40,40 L 26,22 L 36,22 L 22,8 L 28,8 Z"/>
+          </g>
+          <!-- Z'S BARBERSHOP type -->
+          <text x="65" y="50" font-family="'Big Shoulders Display','Oswald',sans-serif"
+                font-weight="800" font-size="46" fill="#c8a35a"
+                letter-spacing="1">Z'S</text>
+          <text x="65" y="75" font-family="'Big Shoulders Display','Oswald',sans-serif"
+                font-weight="700" font-size="18" fill="#c8a35a"
+                letter-spacing="3">BARBERSHOP</text>
+          <text x="65" y="92" font-family="'Inter',sans-serif"
+                font-weight="500" font-size="7" fill="#c8a35a"
+                letter-spacing="2" opacity=".7">WESTCHESTER · MIAMI · EST.</text>
+        </svg>
+      </div>
+
+      <div class="showcase-cell">
+        <span class="showcase-label">Nav header · 48px</span>
+        <div class="nav-mock">
+          <svg viewBox="0 0 280 100" xmlns="http://www.w3.org/2000/svg" style="height:48px;width:auto;display:block" aria-hidden="true">
+            <g transform="translate(10, 30)" fill="#c8a35a">
+              <path d="M 18,-8 L 8,8 L 14,8 L 0,22 L 10,22 L -4,40 L 8,40 L 8,52 L 28,52 L 28,40 L 40,40 L 26,22 L 36,22 L 22,8 L 28,8 Z"/>
+            </g>
+            <text x="65" y="50" font-family="'Big Shoulders Display',sans-serif" font-weight="800" font-size="46" fill="#c8a35a" letter-spacing="1">Z'S</text>
+            <text x="65" y="75" font-family="'Big Shoulders Display',sans-serif" font-weight="700" font-size="18" fill="#c8a35a" letter-spacing="3">BARBERSHOP</text>
+          </svg>
+          <div class="nav-links"><span>Services</span><span>About</span><span>Contact</span></div>
+          <span class="cta">Call</span>
+        </div>
+      </div>
+
+      <div class="showcase-cell cream">
+        <span class="showcase-label">Favicon 32px · on cream</span>
+        <div class="favicon-mock" style="background:#e8dfd0;color:#1a1612">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:32px">
+            <g transform="translate(50, 35)" fill="#1a1612">
+              <path d="M 0,-20 L -16,2 L -8,2 L -28,22 L -14,22 L -32,42 L -14,42 L -14,52 L 14,52 L 14,42 L 32,42 L 14,22 L 28,22 L 8,2 L 16,2 Z"/>
+            </g>
+          </svg>
+          <span>zsbarbershop.com</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-notes">
+      <div class="note-block">
+        <h3>Strengths</h3>
+        <ul>
+          <li>Scales down the best of the four — cedar alone works as the favicon</li>
+          <li>Most modern feel inside the heritage register — doesn't lean costume-y</li>
+          <li>Type-led = matches Direction A's display-driven visual identity (Big Shoulders does heavy lifting throughout the site already)</li>
+          <li>Easy to refine — adjust spacing and proportions, no frame geometry to worry about</li>
+        </ul>
+      </div>
+      <div class="note-block">
+        <h3>Tradeoffs</h3>
+        <ul>
+          <li>Less "logo-ish" — some clients want a sealed lockup they can put on merch / business cards / shop signage</li>
+          <li>No frame = no clear "this is the logo" container, sometimes ambiguous in busy layouts</li>
+          <li>Doesn't read "barbershop" without the wordmark; harder to use without text</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- ─── CONCEPT 4: VINTAGE SIGN PLATE ─── -->
+  <article class="concept">
+    <div class="concept-head">
+      <span class="concept-num">04</span>
+      <h2 class="concept-name">Vintage Sign Plate</h2>
+      <span class="concept-tag">Most "old neighborhood"</span>
+    </div>
+    <p class="concept-desc">
+      Rectangular Americana barbershop sign aesthetic. "Z'S BARBERSHOP" stamped across center. Cedar in the left corner as a corner ornament; "EST. WESTCHESTER" stamped right corner. Reads "this sign has been hanging outside the shop for thirty years." Most "old neighborhood institution" of the four — matches Z's actual 5-star reputation built over a decade.
+    </p>
+
+    <div class="showcase">
+      <div class="showcase-cell">
+        <span class="showcase-label">Large · 240px wide on dark</span>
+        <svg viewBox="0 0 280 120" xmlns="http://www.w3.org/2000/svg" style="width:240px;height:auto;display:block" aria-label="Z's Barbershop logo concept 4: vintage sign plate">
+          <!-- Outer rectangle frame (double border) -->
+          <rect x="6" y="6" width="268" height="108" fill="none" stroke="#c8a35a" stroke-width="2"/>
+          <rect x="12" y="12" width="256" height="96" fill="none" stroke="#c8a35a" stroke-width="1"/>
+          <!-- Cedar in left -->
+          <g transform="translate(34, 60)" fill="#c8a35a">
+            <path d="M 0,-22 L -10,-8 L -4,-8 L -16,8 L -6,8 L -20,26 L -8,26 L -8,32 L 8,32 L 8,26 L 20,26 L 6,8 L 16,8 L 4,-8 L 10,-8 Z"/>
+          </g>
+          <!-- Decorative vertical divider after cedar -->
+          <line x1="64" y1="22" x2="64" y2="98" stroke="#c8a35a" stroke-width="1" opacity=".5"/>
+          <!-- Main text Z'S BARBERSHOP -->
+          <text x="75" y="55" font-family="'Big Shoulders Display','Oswald',sans-serif"
+                font-weight="800" font-size="30" fill="#c8a35a"
+                letter-spacing="1">Z'S BARBERSHOP</text>
+          <!-- Decorative line under main text -->
+          <line x1="75" y1="65" x2="240" y2="65" stroke="#c8a35a" stroke-width=".5" opacity=".6"/>
+          <!-- Subtitle line -->
+          <text x="75" y="85" font-family="'Inter',sans-serif"
+                font-weight="600" font-size="9" fill="#c8a35a"
+                letter-spacing="4">HOT-TOWEL SHAVES · WESTCHESTER · MIAMI</text>
+          <!-- Tiny EST -->
+          <text x="75" y="98" font-family="'Inter',sans-serif"
+                font-weight="500" font-size="7" fill="#c8a35a"
+                letter-spacing="2" opacity=".6">EST. ___ · (786) 281-8181</text>
+        </svg>
+      </div>
+
+      <div class="showcase-cell">
+        <span class="showcase-label">Nav header · 48px</span>
+        <div class="nav-mock">
+          <svg viewBox="0 0 280 120" xmlns="http://www.w3.org/2000/svg" style="height:48px;width:auto;display:block" aria-hidden="true">
+            <rect x="6" y="6" width="268" height="108" fill="none" stroke="#c8a35a" stroke-width="2"/>
+            <rect x="12" y="12" width="256" height="96" fill="none" stroke="#c8a35a" stroke-width="1"/>
+            <g transform="translate(34, 60)" fill="#c8a35a">
+              <path d="M 0,-22 L -10,-8 L -4,-8 L -16,8 L -6,8 L -20,26 L -8,26 L -8,32 L 8,32 L 8,26 L 20,26 L 6,8 L 16,8 L 4,-8 L 10,-8 Z"/>
+            </g>
+            <line x1="64" y1="22" x2="64" y2="98" stroke="#c8a35a" stroke-width="1" opacity=".5"/>
+            <text x="75" y="55" font-family="'Big Shoulders Display',sans-serif" font-weight="800" font-size="30" fill="#c8a35a" letter-spacing="1">Z'S BARBERSHOP</text>
+            <text x="75" y="85" font-family="'Inter',sans-serif" font-weight="600" font-size="9" fill="#c8a35a" letter-spacing="4">HOT-TOWEL SHAVES · WESTCHESTER</text>
+          </svg>
+          <div class="nav-links"><span>Services</span><span>About</span></div>
+          <span class="cta">Call</span>
+        </div>
+      </div>
+
+      <div class="showcase-cell cream">
+        <span class="showcase-label">Favicon 32px · on cream</span>
+        <div class="favicon-mock" style="background:#e8dfd0;color:#1a1612">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width:32px;height:32px">
+            <rect x="6" y="6" width="88" height="88" fill="none" stroke="#1a1612" stroke-width="4"/>
+            <rect x="14" y="14" width="72" height="72" fill="none" stroke="#1a1612" stroke-width="2"/>
+            <text x="50" y="64" font-family="'Big Shoulders Display',sans-serif" font-weight="800" font-size="44" fill="#1a1612" text-anchor="middle">Z'S</text>
+          </svg>
+          <span>zsbarbershop.com</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-notes">
+      <div class="note-block">
+        <h3>Strengths</h3>
+        <ul>
+          <li>Reads "old neighborhood institution" stronger than any of the others — matches Z's 5-star/169-review reputation built over a decade</li>
+          <li>Rectangular = works for physical sign / awning / business card without re-design</li>
+          <li>Has natural space to surface specialty ("HOT-TOWEL SHAVES") and contact ("(786) 281-8181") in the lockup itself — useful for shop signage and Instagram-bio crops</li>
+          <li>Cedar is visible at the large + medium sizes (loses it at favicon)</li>
+        </ul>
+      </div>
+      <div class="note-block">
+        <h3>Tradeoffs</h3>
+        <ul>
+          <li>Most "barbershop sign" of the four — less brand-led, more functional-signage-led</li>
+          <li>Heritage cues are subtle — cedar is the only Lebanese touch (no Damascene pattern)</li>
+          <li>Wide aspect ratio = harder to use in square-only contexts (Instagram profile)</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+</main>
+
+<footer class="page-foot">
+  <h2>What happens next</h2>
+  <p>
+    Pick a direction (1 / 2 / 3 / 4). The winner gets refined — adjust proportions, fine-tune the cedar silhouette, tighten the lockup, finalize the SVG paths. Refinement is interactive: you'll see V2, V3, etc. until it lands.
+  </p>
+  <p>
+    Specifically what to think about when picking:
+  </p>
+  <ul style="padding-left:1.25rem;font-size:.95rem;color:var(--ink);margin:0 auto 1rem;max-width:720px">
+    <li><strong>How important is favicon readability?</strong> Concept 3 wins (cedar alone scales). Concept 2 next (roundel survives). Concepts 1 and 4 lose detail at 32px.</li>
+    <li><strong>How "Lebanese" should the visual identity feel?</strong> Concept 2 is most distinctly Lebanese/Mediterranean. Concept 4 is most generic-Americana. Concepts 1 and 3 are middle ground.</li>
+    <li><strong>How important is a sealed "logo lockup"?</strong> Concepts 1, 2, 4 have framed lockups. Concept 3 is unframed type-and-cedar.</li>
+    <li><strong>Where will the logo physically appear?</strong> Awning sign? Business card? Instagram? Shop window decal? Concept 4 already looks like a sign. Concept 2 lives best in digital. Concept 3 is most flexible.</li>
+  </ul>
+  <p>
+    If none feel right, tell me what's off — I'll iterate. Concept 5, mash-ups, completely different direction — all on the table.
+  </p>
+  <p style="margin-top:1.5rem;font-size:.85rem;color:var(--muted)">
+    The cedar silhouette across all four is a hand-coded SVG path that's intentionally a rough draft. Final version gets a cleaner, more recognizably-Lebanese cedar shape in the refinement pass.
+  </p>
+</footer>
+
+</body>
+</html>
