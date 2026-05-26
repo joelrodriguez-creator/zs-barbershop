@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Z's Barbershop — Homepage Hero Variant Picker</title>
+  <title>Z's Barbershop — Barbers Page Hero Variant Picker</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -25,11 +25,7 @@
       padding: 3rem 2rem;
       min-height: 100vh;
     }
-    .page-head {
-      max-width: 1400px;
-      margin: 0 auto 3rem;
-      text-align: center;
-    }
+    .page-head { max-width: 1400px; margin: 0 auto 3rem; text-align: center; }
     .page-head .eyebrow {
       font-size: 0.75rem;
       letter-spacing: 0.2em;
@@ -61,14 +57,7 @@
       gap: 2.5rem;
       grid-template-columns: 1fr;
     }
-    @media (min-width: 1100px) {
-      .variants { grid-template-columns: 1fr; }
-    }
-    .variant {
-      background: #0e0d0d;
-      border: 1px solid var(--color-line);
-      overflow: hidden;
-    }
+    .variant { background: #0e0d0d; border: 1px solid var(--color-line); overflow: hidden; }
     .variant-image {
       position: relative;
       width: 100%;
@@ -78,19 +67,10 @@
       align-items: center;
       justify-content: center;
     }
-    .variant-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .variant-image .placeholder {
-      text-align: center;
-      padding: 2rem;
-    }
+    .variant-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .variant-image .placeholder { text-align: center; padding: 2rem; }
     .variant-image .placeholder .spin {
-      width: 48px;
-      height: 48px;
+      width: 48px; height: 48px;
       border: 3px solid rgba(200, 163, 90, 0.2);
       border-top-color: var(--color-accent);
       border-radius: 50%;
@@ -105,12 +85,7 @@
       color: var(--color-accent);
       margin-bottom: 0.5rem;
     }
-    .variant-image .placeholder .sub {
-      font-size: 0.8rem;
-      opacity: 0.5;
-      font-weight: 500;
-    }
-    /* Overlay preview showing how the hero would look with text */
+    .variant-image .placeholder .sub { font-size: 0.8rem; opacity: 0.5; font-weight: 500; }
     .variant-image .overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -135,27 +110,10 @@
       text-transform: uppercase;
       line-height: 1;
       color: var(--color-cream);
-      margin-bottom: 1.25rem;
       max-width: 50%;
       text-shadow: 0 2px 16px rgba(0,0,0,0.6);
     }
-    .overlay .o-cta {
-      display: inline-block;
-      padding: 0.85rem 1.75rem;
-      background: var(--color-accent);
-      color: #191818;
-      font-family: var(--font-body);
-      font-weight: 700;
-      font-size: 0.85rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      width: max-content;
-      align-self: flex-start;
-    }
-    .variant-info {
-      padding: 2rem 2rem 2.25rem;
-      border-top: 1px solid var(--color-line);
-    }
+    .variant-info { padding: 2rem 2rem 2.25rem; border-top: 1px solid var(--color-line); }
     .variant-tag {
       display: inline-block;
       font-size: 0.7rem;
@@ -175,17 +133,8 @@
       letter-spacing: 0.02em;
       margin-bottom: 0.5rem;
     }
-    .variant-tagline {
-      font-size: 0.9rem;
-      font-weight: 500;
-      opacity: 0.75;
-      line-height: 1.6;
-    }
-    .toggle-bar {
-      max-width: 1400px;
-      margin: 0 auto 2rem;
-      text-align: center;
-    }
+    .variant-tagline { font-size: 0.9rem; font-weight: 500; opacity: 0.75; line-height: 1.6; }
+    .toggle-bar { max-width: 1400px; margin: 0 auto 2rem; text-align: center; }
     .toggle-bar button {
       background: transparent;
       color: var(--color-cream);
@@ -200,19 +149,16 @@
       margin: 0 0.5rem;
       transition: border-color 0.2s;
     }
-    .toggle-bar button.active {
-      border-color: var(--color-accent);
-      color: var(--color-accent);
-    }
+    .toggle-bar button.active { border-color: var(--color-accent); color: var(--color-accent); }
     body.no-overlay .overlay { display: none; }
   </style>
 </head>
 <body>
 
   <header class="page-head">
-    <p class="eyebrow">HOMEPAGE HERO</p>
+    <p class="eyebrow">BARBERS PAGE HERO</p>
     <h1>Pick your direction</h1>
-    <p>Three bespoke placeholder heroes generated via Nano Banana 2 at 16:9 / 2K. Pick the direction that feels most like Z's. The winner gets refined and regenerated at 4K for the final crop.</p>
+    <p>Three bespoke placeholder heroes for the Our Barbers page. Each one a distinct register: the team scale, the craft of the hands, or the artisan's workstation. Pick the keeper.</p>
   </header>
 
   <div class="toggle-bar">
@@ -224,49 +170,46 @@
 
     <article class="variant">
       <div class="variant-image">
-        <img src="../assets/generated/heroes/index-house-of-z-2k.jpg" alt="Variant A: wide cinematic interior, House of Z">
+        <img src="../assets/generated/heroes/barbers-lineup-2k.jpg" alt="Variant A: empty four-chair lineup">
         <div class="overlay">
-          <p class="o-eyebrow">Westchester · Miami</p>
-          <h2 class="o-headline">Welcome to<br>Z's Barbershop</h2>
-          <a class="o-cta">Choose your barber</a>
+          <p class="o-eyebrow">Meet the team</p>
+          <h2 class="o-headline">Our<br>Barbers</h2>
         </div>
       </div>
       <div class="variant-info">
-        <span class="variant-tag">Variant A · House of Z</span>
-        <h2 class="variant-name">Wide cinematic interior</h2>
-        <p class="variant-tagline">Wide-angle down the length of the shop. Two chairs in symmetric row, herringbone floor catching warm bulb glow, mirrors reflecting back, vintage frames on dark walls. House of Heritage 1:1 translation. Confident, classic.</p>
+        <span class="variant-tag">Variant A · The Lineup</span>
+        <h2 class="variant-name">Four chairs, team scale</h2>
+        <p class="variant-tagline">Empty four-chair scene with brass-detailed chairs in symmetric arrangement, vintage framed barber portraits above, Edison bulbs hanging from the dark ceiling. "Team of barbers work here" without showing faces.</p>
       </div>
     </article>
 
     <article class="variant">
       <div class="variant-image">
-        <img src="../assets/generated/heroes/index-the-chair-2k.jpg" alt="Variant B: single barber chair foreground, intimate">
+        <img src="../assets/generated/heroes/barbers-hands-2k.jpg" alt="Variant B: hands at work, scissors and comb mid-cut">
         <div class="overlay">
-          <p class="o-eyebrow">Westchester · Miami</p>
-          <h2 class="o-headline">Welcome to<br>Z's Barbershop</h2>
-          <a class="o-cta">Choose your barber</a>
+          <p class="o-eyebrow">Meet the team</p>
+          <h2 class="o-headline">Our<br>Barbers</h2>
         </div>
       </div>
       <div class="variant-info">
-        <span class="variant-tag">Variant B · The Chair</span>
-        <h2 class="variant-name">Single chair foreground, intimate</h2>
-        <p class="variant-tagline">One chair 3/4 angle, heavy leather + brass armrests glowing under a single Edison bulb. Mirrors with vintage product bottles softly out of focus behind. Owner-craftsman register, "this is Ziad's chair" not "this is the shop."</p>
+        <span class="variant-tag">Variant B · Hands at Work</span>
+        <h2 class="variant-name">Craft / artisan macro</h2>
+        <p class="variant-tagline">Tight macro on barber's hands holding scissors + comb mid-cut. Working-class hands, brass-tinted highlights on the steel scissors. Customer head heavily blurred at the bottom edge (no face). Craft as focal storyteller.</p>
       </div>
     </article>
 
     <article class="variant">
       <div class="variant-image">
-        <img src="../assets/generated/heroes/index-mediterranean-warmth-2k.jpg" alt="Variant C: Mediterranean warmth with Damascene tile">
+        <img src="../assets/generated/heroes/barbers-workstation-2k.jpg" alt="Variant C: workstation detail with vintage tools">
         <div class="overlay">
-          <p class="o-eyebrow">Westchester · Miami</p>
-          <h2 class="o-headline">Welcome to<br>Z's Barbershop</h2>
-          <a class="o-cta">Choose your barber</a>
+          <p class="o-eyebrow">Meet the team</p>
+          <h2 class="o-headline">Our<br>Barbers</h2>
         </div>
       </div>
       <div class="variant-info">
-        <span class="variant-tag">Variant C · Mediterranean Warmth</span>
-        <h2 class="variant-name">Z's distinct twist</h2>
-        <p class="variant-tagline">Two chairs framed by Damascene 8-point star tile pattern in the floor, cedar wood shelving on the right, arched mirrors in dark Mediterranean wood, exposed brick accent wall. Same heritage register as A, but identifiably Z's not generic.</p>
+        <span class="variant-tag">Variant C · Workstation Detail</span>
+        <h2 class="variant-name">The artisan's station</h2>
+        <p class="variant-tagline">Macro of one station's counter — vintage straight razor + scissors + comb + shaving brush + ceramic mug laid out on a leather strop. Wood-framed mirror behind, apothecary shelves with amber bottles. Owner-craftsman register.</p>
       </div>
     </article>
 

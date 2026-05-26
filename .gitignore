@@ -41,5 +41,9 @@ assets/generated/heroes/*
 !assets/generated/heroes/*-final.jpg
 !assets/generated/heroes/*-final.png
 
+# Nano Banana 2 default save directory — transient, files are moved to
+# assets/generated/heroes/ after each generation.
+generated_imgs/
+
 # Client showcase PDF — committed at milestones, whitelisted past the *.pdf rule above
 !docs/showcase/client-showcase.pdf

@@ -145,20 +145,101 @@ brass — brass stays reserved for CTAs.
 
 ---
 
-## (in flight) — Bespoke hero imagery via Nano Banana 2
+## 2026-05-26 — Bespoke hero imagery via Nano Banana 2
 
 Iterating per-page hero photography placeholders using Google's Nano Banana 2
-(Gemini 3.1 Flash Image) model. Workflow per page:
+(Gemini 3.1 Flash Image) model. Workflow: generate 3 distinct directional
+drafts at 2K, 16:9 widescreen → pick the keeper → regenerate at 4K → optimize
+via Pillow to ~2560px progressive JPEG → wire into the page `<header>`.
 
-1. Generate 3 distinct directional drafts at 2K, 16:9 aspect ratio
-2. Ziad's chosen direction refined and finalized at 4K
-3. Wire into the page's `<header>`
+Real photography of Z's actual shop interior will replace these once the
+photo session is scheduled. These placeholders give Ziad a much sharper
+"what this could look like once finished" feel during the prototype review.
 
-Explicitly placeholder — real photography of Z's actual shop interior will
-replace these once the photo session is scheduled. The goal is to give Ziad a
-much better "what this could look like once it's done" feel during the review.
+### Homepage `index.html` — Variant B "The Chair" selected
 
-Entries to be added as variants land.
+Three directions explored, all generated at 16:9 / 2K:
+
+- **Variant A — House of Z** (rejected): Wide cinematic interior, long row of
+  vintage chairs marching down the right side with Edison bulbs above each,
+  herringbone parquet floor, vintage framed photos on dark left wall, deep
+  vanishing point to the back of the shop. The most House-of-Heritage-faithful
+  of the three. Strong, but reads as "the shop as venue" rather than the
+  artisan voice we want.
+- **Variant B — The Chair** (selected): Single vintage barber chair photographed
+  3/4 angle from the side. Heavy black leather seat foreground, polished brass
+  armrests + crank handle glowing under one low-hanging tungsten Edison bulb.
+  Wall of mirrors framed in dark walnut behind, blurred warmly with shelves of
+  vintage glass product bottles. Owner-craftsman register, intimate. Lands the
+  "this is Ziad's chair" framing.
+- **Variant C — Mediterranean warmth** (rejected): Same wide composition as A,
+  but with explicit Z's-coded touches — Damascene 8-point star tile pattern in
+  the floor, cedar wood shelving, arched mirrors in dark Mediterranean wood,
+  exposed brick accent wall. Most identifiably "Z's" of the three. Beautiful
+  but heritage-anchored architecture risks reading "Lebanese-themed" rather
+  than "Lebanese-influenced." Saved as a candidate for a future about-page
+  hero or a heritage-anchor section.
+
+**Why B won:** The intimate single-chair framing matches Z's actual product
+(one chair, one barber, hands-on relationship) more honestly than the wide-shop
+shots, which sell "venue" rather than "barber." It also creates a stronger
+contrast with the multi-chair imagery we'll likely use on `barbers.html` and
+the tool / service imagery on `services.html`.
+
+**Final asset:** `assets/generated/heroes/index-the-chair-final.jpg` —
+2560×1429, 332 KB progressive JPEG. Optimized from the 4K source (8.1 MB)
+via Pillow for Lighthouse-friendly weight.
+
+**CSS wire-up:** background-image on `.hero`, stacked with a 90° darkening
+gradient (78% black on the left fading to 8% black on the right) so the
+headline + CTA read cleanly against the dark mirror-bokeh while the chair
+stays bright. Mobile breakpoint shifts to a centered text layout with a
+top-to-bottom darkening gradient to keep the image legible at narrow widths.
+
+The picker page used during selection is preserved at
+`prototype/hero-picker.html` as part of the iteration narrative.
+
+### Barbers `barbers.html` — Variant C "Workstation Detail" selected
+
+Three directions explored, all generated at 16:9 / 2K:
+
+- **Variant A — The Lineup** (rejected): Empty four-chair scene with brass-detailed
+  chairs in symmetric arrangement, vintage framed barber portraits on the back
+  wall, Edison bulbs hanging from dark ceiling, herringbone parquet. Communicates
+  "team of barbers" without faces. Strong but felt redundant against the homepage
+  hero, which already sells the shop interior.
+- **Variant B — Hands at Work** (rejected): Tight macro of a barber's working-class
+  hands holding brass-loop scissors mid-cut, comb in the off-hand, leather watch
+  strap visible on the wrist. Customer's dark hair visible but no face, no
+  recognizable features. Deep warm bokeh shop interior behind. The strongest
+  "skill of the work" framing of the three. Saved as a candidate for a future
+  in-page card or about-section asset.
+- **Variant C — Workstation Detail** (selected): Macro of a single barber's counter
+  — vintage straight razor with brass handle, two pairs of scissors, comb,
+  boar-bristle shaving brush, porcelain shaving mug, amber tonic bottle, all
+  arranged on a worn brown leather strop. Wood-framed mirror behind reflecting
+  warm bulb glow. Apothecary shelves on either side holding "Bay Rum", "Hair
+  Elixir", "Talc". Owner-craftsman / artisan register.
+
+**Why C won:** The workstation detail sells the *artisanship of the trade* in a
+way the homepage's single chair complements rather than competes with. The
+homepage answers "is this a real barber shop?" — the barbers page answers "do
+they care about how they do the work?" C delivers that craft-and-tools answer
+without showing people, which keeps the no-faces rule clean.
+
+**Final asset:** `assets/generated/heroes/barbers-workstation-final.jpg` —
+2560×1429, 281 KB progressive JPEG. Optimized from the 4K source (7.8 MB) via
+Pillow.
+
+**CSS wire-up:** `page-hero--barbers` modifier on `.page-hero`, min-height
+bumped from the default 320 px to 420 px to give the still-life room to
+breathe. Background image stacked under a top-to-bottom darkening gradient
+(55% black top → 35% mid → 65% bottom) so the centered "OUR BARBERS" headline
+reads cleanly over the warm brass + leather + bottle clutter.
+
+### Services `services.html` — in flight
+
+Coming next session. Same 3-variant workflow.
 
 ---
 
