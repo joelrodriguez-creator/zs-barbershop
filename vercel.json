@@ -5,9 +5,8 @@
   "rewrites": [
     { "source": "/", "destination": "/prototype/index.html" },
     { "source": "/services", "destination": "/prototype/services.html" },
-    { "source": "/gallery", "destination": "/prototype/gallery.html" },
-    { "source": "/about", "destination": "/prototype/about.html" },
-    { "source": "/contact", "destination": "/prototype/contact.html" },
-    { "source": "/book", "destination": "/prototype/contact.html" }
+    { "source": "/barbers", "destination": "/prototype/barbers.html" },
+    { "source": "/our-barbers", "destination": "/prototype/barbers.html" },
+    { "source": "/book", "destination": "/prototype/barbers.html" }
   ]
 }

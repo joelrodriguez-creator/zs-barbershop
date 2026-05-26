@@ -17,30 +17,28 @@ Reference exemplars in priority order:
 
 ```css
 :root {
-  /* Primary surface — near-black with subtle warmth, NOT brown. Matches HoH's bg. */
-  --color-primary:   #161413;
-  /* Cream — used for logo, headlines, body text on dark, and cream-card surfaces */
-  --color-cream:     #e8dfd0;
-  /* Brass mustard accent — RESERVED FOR CTAs ONLY. The only saturated color. */
+  /* Background — extracted from HoH's computed style rgb(25, 24, 24). Pure neutral near-black. */
+  --color-primary:   #191818;
+  /* Pure white — body text, headlines, logo. HoH uses pure white, not cream. */
+  --color-cream:     #ffffff;
+  /* Brass mustard accent — RESERVED FOR CTAs and key brand accents (eyebrows, dividers) */
   --color-accent:    #c8a35a;
-  /* Brass mustard for hover/focus on accent CTAs */
   --color-accent-hover: #d4b370;
-  /* Ink color when text is on cream surface (rare — cream cards on dark bg) */
-  --color-ink-dark:  #161413;
-  /* Muted text on dark — captions, supporting copy, fine print */
-  --color-muted:     #8a7f72;
-  /* Subtle border / divider on dark — when separation is needed */
-  --color-line:      #2a2724;
-  /* Accent-soft (very subtle brass tint for outlines / hover) */
+  --color-ink-dark:  #191818;
+  /* Muted text — slightly dimmed white for supporting copy */
+  --color-muted:     #b5b0a8;
+  --color-line:      #2a2828;
   --color-accent-soft: rgba(200, 163, 90, 0.12);
 }
 ```
+
+**Source:** HoH's computed body style returns `rgb(25, 24, 24)` for background and `rgb(255, 255, 255)` for text. Functional design specs (color values) are matched directly. No warm-brown undertones.
 
 **Color usage rules (revised 2026-05-26 — HoH 1:1 fidelity):**
 
 - `--color-primary` is the dominant background — ~90% of any given page. It's near-black with the faintest warm undertone (R26 G20 B19). It is NOT brown. The previous warm-brown surface color `#2a221b` was REMOVED.
 - `--color-cream` `#e8dfd0` does the heavy lifting for everything that's NOT a CTA: logo, headlines, body text on dark, the cedar mark in the logo, and the cream-card surfaces when content needs to float on top of the dark.
-- `--color-accent` `#c8a35a` (brass mustard) is **RESERVED FOR CTAs ONLY**. Primary buttons. The "Call or Text" / "Book Now" / "More Services" actions. Nothing else. This is the HoH discipline — brass is earned by being almost the only saturated color on the page.
+- `--color-accent` `#c8a35a` (brass mustard) is used for: primary CTAs (Call / Book / More Services), service icons, decorative dividers (Damascene star), eyebrow labels ("PRICING", "ABOUT" etc.), and select headline color accents. HoH uses it identically — brass earns its frequency by being the ONLY saturated color (no second accent color is introduced).
 - Headlines are cream, NOT brass. Logo is cream, NOT brass. The cedar mark in the logo is cream, NOT brass. (This is the major revision from yesterday — Joel correctly observed HoH's logo is white/cream, not brass.)
 - White (`#ffffff`) is NOT in the palette. If "white" is needed, use `--color-cream`.
 
@@ -50,17 +48,21 @@ Reference exemplars in priority order:
 
 ## Typography
 
-### Font stacks
+### Font stacks (HoH-exact)
+
+HoH uses two Google Fonts:
+- **Teko** — bold condensed display sans for headlines, service names, nav. All caps.
+- **Montserrat** — geometric modern sans for body, nav links, fine print. Body text is shipped at weight **700** (bold) — that's HoH's distinctive choice and contributes to their crisp readability on the dark background.
 
 ```css
 :root {
-  /* Display — vintage Americana, bold condensed industrial sans, all caps for headlines */
-  --font-display: 'Big Shoulders Display', 'Oswald', 'Impact', sans-serif;
-  /* Body — classical serif for prose, bios, service descriptions */
-  --font-body:    'Source Serif 4', Georgia, 'Times New Roman', serif;
-  /* UI / secondary — clean modern sans for nav, captions, fine print */
-  --font-ui:      'Inter', system-ui, -apple-system, sans-serif;
-  /* Arabic — for the trilingual welcome line (heritage anchor #1) */
+  /* Display — Teko (matches HoH exactly). Condensed bold sans for headlines, service names, nav-CTA. ALL CAPS by convention. */
+  --font-display: 'Teko', 'Oswald', 'Impact', sans-serif;
+  /* Body — Montserrat (matches HoH exactly). Geometric modern sans. Body weight is 700, not 400. */
+  --font-body:    'Montserrat', 'Helvetica', 'Arial', sans-serif;
+  /* Same as body — single sans-serif family, just different weights/sizes */
+  --font-ui:      'Montserrat', 'Helvetica', 'Arial', sans-serif;
+  /* Arabic — for trilingual welcome (heritage anchor #1) — pairs with Montserrat */
   --font-arabic:  'Amiri', 'Noto Naskh Arabic', serif;
 }
 ```
@@ -72,8 +74,15 @@ In `<head>` of every page:
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 ```
+
+### Type scale (HoH-exact)
+
+Extracted from HoH's computed styles:
+- Body: Montserrat 700, 16px, line-height 27.2px (1.7)
+- Service heading: Teko 800, 24px, uppercase
+- Hero headline: Teko 800, 81px, uppercase, line-height 1.2
 
 ### Type scale
 

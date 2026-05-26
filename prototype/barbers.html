@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Barbers — Z's Barbershop</title>
+  <meta name="description" content="Meet the barbers at Z's: Ziad Dib and the team. Old-school cuts and traditional hot-towel shaves in Westchester, Miami.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="welcome-strip">
+    <span>Welcome</span><span class="sep">·</span>
+    <span>Bienvenidos</span><span class="sep">·</span>
+    <span lang="ar" dir="rtl" class="arabic">أهلاً وسهلاً</span>
+  </div>
+
+  <nav class="nav-bar">
+    <a href="index.html" aria-label="Z's Barbershop home">
+      <svg class="logo-wordmark" viewBox="0 0 280 100">
+        <g transform="translate(14, 22)" fill="#ffffff">
+          <path d="M 20 0 L 16 8 L 24 8 Z"/><path d="M 20 6 L 10 16 L 30 16 Z"/>
+          <path d="M 20 14 L 4 28 L 36 28 Z"/><path d="M 20 24 L 0 42 L 40 42 Z"/>
+          <rect x="17" y="40" width="6" height="14"/>
+        </g>
+        <text x="68" y="58" font-family="Teko,sans-serif" font-weight="700" font-size="58" fill="#ffffff" letter-spacing="2">Z's</text>
+        <text x="68" y="80" font-family="Teko,sans-serif" font-weight="600" font-size="18" fill="#ffffff" letter-spacing="6">BARBERSHOP</text>
+        <text x="68" y="95" font-family="Montserrat,sans-serif" font-weight="500" font-size="7" fill="#ffffff" letter-spacing="2.5" opacity="0.7">WESTCHESTER · MIAMI</text>
+      </svg>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">HOME</a>
+      <a href="barbers.html">OUR BARBERS</a>
+      <a href="services.html">SERVICES</a>
+      <a href="index.html#visit">CONTACT</a>
+    </div>
+    <a href="barbers.html" class="nav-cta">BOOK STYLIST</a>
+  </nav>
+
+  <header class="page-hero">
+    <h1>OUR BARBERS</h1>
+  </header>
+
+  <section style="position:relative;overflow:hidden;">
+    <div class="watermark">MASTERS OF THE CRAFT</div>
+    <div class="barbers-intro">
+      <h2 class="section-headline">Four barbers in one chair on Bird Road,<br>bringing back <span class="accent-word">bespoke grooming</span>.</h2>
+      <p>The team specializes in old-school cuts, traditional hot-towel shaves, and the kind of barbering where you sit, you talk, and you leave looking like yourself but better.</p>
+    </div>
+  </section>
+
+  <!-- Thumbnail row -->
+  <div class="thumb-row">
+    <div class="thumb active" data-barber="ziad">Z</div>
+    <div class="thumb" data-barber="b2">2</div>
+    <div class="thumb" data-barber="b3">3</div>
+    <div class="thumb" data-barber="b4">4</div>
+  </div>
+
+  <!-- Featured barber card -->
+  <div class="featured-barber">
+    <div class="featured-photo" id="featured-photo">[Photo of Ziad placeholder]</div>
+    <div>
+      <h2 class="featured-name" id="featured-name">ZIAD DIB</h2>
+      <p class="featured-bio" id="featured-bio">
+        Ziad opened the shop on Bird Road over a decade ago after learning the trade in Lebanon from his father. He specializes in old-school men's cuts and the traditional Lebanese hot-towel shave — the way it's done in the old country, with steam, straight razor, and time. Cubans, Lebanese, anyone who needs a fade and a story — Ziad's chair is open.
+      </p>
+      <div class="featured-social">
+        <a id="featured-instagram" href="https://instagram.com/zbarbershop1" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+      <div class="featured-buttons">
+        <a id="featured-readmore" href="#" class="btn-outlined">READ MORE</a>
+        <a href="tel:+17862818181" class="btn-filled">BOOK NOW</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="pattern-divider" aria-hidden="true">
+    <svg viewBox="0 0 600 28">
+      <line x1="0" y1="14" x2="260" y2="14"/>
+      <g transform="translate(300, 14)">
+        <path d="M 0,-12 L 8.5,-8.5 L 12,0 L 8.5,8.5 L 0,12 L -8.5,8.5 L -12,0 L -8.5,-8.5 Z"/>
+        <path d="M 0,-12 L 3.5,-3.5 L 12,0 L 3.5,3.5 L 0,12 L -3.5,3.5 L -12,0 L -3.5,-3.5 Z"/>
+      </g>
+      <line x1="340" y1="14" x2="600" y2="14"/>
+    </svg>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <svg class="footer-logo" viewBox="0 0 280 100">
+          <g transform="translate(14, 22)" fill="#ffffff">
+            <path d="M 20 0 L 16 8 L 24 8 Z"/><path d="M 20 6 L 10 16 L 30 16 Z"/>
+            <path d="M 20 14 L 4 28 L 36 28 Z"/><path d="M 20 24 L 0 42 L 40 42 Z"/>
+            <rect x="17" y="40" width="6" height="14"/>
+          </g>
+          <text x="68" y="58" font-family="Teko,sans-serif" font-weight="700" font-size="58" fill="#ffffff" letter-spacing="2">Z's</text>
+          <text x="68" y="80" font-family="Teko,sans-serif" font-weight="600" font-size="18" fill="#ffffff" letter-spacing="6">BARBERSHOP</text>
+        </svg>
+        <p>Old-school cuts, traditional Lebanese hot-towel shaves, and family-friendly service in Westchester.</p>
+      </div>
+      <div class="footer-col">
+        <h4>CONTACT</h4>
+        <p>8455 SW Bird Rd<br>Miami, FL 33155</p>
+        <a href="tel:+17862818181" class="footer-phone">(786) 281-8181</a>
+      </div>
+      <div class="footer-col">
+        <h4>USEFUL LINKS</h4>
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="barbers.html">Our Barbers</a>
+        <a href="services.html">Services</a>
+      </div>
+      <div class="footer-col">
+        <h4>HOURS</h4>
+        <p>Monday – Saturday<br>9:00 AM – 7:30 PM</p>
+        <p style="margin-top:.75rem;opacity:.7;">Walk-ins always welcome.<br>Call or text to confirm.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 20XX Z's Barbershop · Westchester, Miami · أهلاً وسهلاً</div>
+  </footer>
+
+  <script>
+    // Barber data — Ziad is real; the other three are placeholders until names + bios arrive
+    const barbers = {
+      ziad: {
+        name: "ZIAD DIB",
+        photo: "[Photo of Ziad placeholder]",
+        bio: "Ziad opened the shop on Bird Road over a decade ago after learning the trade in Lebanon from his father. He specializes in old-school men's cuts and the traditional Lebanese hot-towel shave — the way it's done in the old country, with steam, straight razor, and time. Cubans, Lebanese, anyone who needs a fade and a story — Ziad's chair is open.",
+        instagram: "https://instagram.com/zbarbershop1"
+      },
+      b2: {
+        name: "BARBER TWO",
+        photo: "[Photo placeholder — name TBD]",
+        bio: "Bio placeholder — Z to provide name and short bio for the second barber on the team. Same format as Ziad's: a sentence about how they started, what they specialize in, and what their chair is like.",
+        instagram: "#"
+      },
+      b3: {
+        name: "BARBER THREE",
+        photo: "[Photo placeholder — name TBD]",
+        bio: "Bio placeholder — Z to provide name and short bio for the third barber. Same format as Ziad's.",
+        instagram: "#"
+      },
+      b4: {
+        name: "BARBER FOUR",
+        photo: "[Photo placeholder — name TBD]",
+        bio: "Bio placeholder — Z to provide name and short bio for the fourth barber. Same format as Ziad's.",
+        instagram: "#"
+      }
+    };
+
+    const thumbs = document.querySelectorAll('.thumb');
+    const featuredPhoto = document.getElementById('featured-photo');
+    const featuredName = document.getElementById('featured-name');
+    const featuredBio = document.getElementById('featured-bio');
+    const featuredInstagram = document.getElementById('featured-instagram');
+
+    thumbs.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        thumbs.forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+        const key = thumb.dataset.barber;
+        const b = barbers[key];
+        if (!b) return;
+        featuredPhoto.textContent = b.photo;
+        featuredName.textContent = b.name;
+        featuredBio.textContent = b.bio;
+        featuredInstagram.href = b.instagram;
+      });
+    });
+  </script>
+
+</body>
+</html>
