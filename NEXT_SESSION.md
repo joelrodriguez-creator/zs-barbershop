@@ -1,17 +1,42 @@
 # NEXT_SESSION.md
 
-_Last checkpoint: 2026-05-26 on FalconXtreme (Windows PC). Mac handoff ready._
+_Last checkpoint: 2026-05-26 on FalconXtreme PC. Switching to fresh Claude context window — see resume prompt at the bottom._
 
 ## TL;DR
 
-Z's Barbershop is now through **Phase 5 — four logo concepts shipped**. Working state:
+Z's Barbershop is through **Phase 5b/7-preview — 3 pages built and pushed, copying House of Heritage's design language as closely as legally allowed**. Working state:
 
-- **Direction LOCKED:** A "The House" (dark cinema + brass mustard + Big Shoulders Display + Source Serif 4 body + heritage seal logo).
-- **Heritage layer LOCKED:** anchors #1–5 (trilingual welcome / Lebanese cedar mark / heritage-named services / bio language / Damascene pattern). **NOT #6** — Ziad doesn't actually serve coffee, decision was: don't misrepresent.
-- **BRAND.md fully locked** — palette, type stack, spacing, radius, shadow, heritage anchor copy strings, logo direction, imagery brief, voice rules.
-- **`logo-options.html` shipped** — four logo concepts (Arched Seal / Damascene Roundel / Type Lockup with Cedar / Vintage Sign Plate), each at three scales on dark + cream.
+- **Direction LOCKED:** A "The House" — but the visual specs were re-extracted directly from HoH's computed CSS:
+  - Background **`#191818`** (HoH's actual value; the earlier `#161413` was too warm/brown)
+  - Display font **Teko** (was Big Shoulders Display)
+  - Body font **Montserrat at weight 700** (was Source Serif 4 at 400)
+  - Body color **pure white #ffffff** (was cream)
+  - Brass `#c8a35a` for CTAs, icons, eyebrow labels, dividers (NOT cream as earlier draft had it — HoH uses brass for icons)
+- **Heritage layer LOCKED:** anchors #1–5 (trilingual welcome / Lebanese cedar mark / heritage-named services / bio language / Damascene 8-point star pattern). **NOT #6 (coffee)** — Ziad doesn't serve coffee.
+- **Logo concept LOCKED:** #3 "Type Lockup with Cedar," lowercase "s" (Z's, not Z'S), cream color, Lebanese cedar to the left of the wordmark.
+- **3 pages built and pushed:**
+  - `prototype/index.html` — homepage with trilingual welcome strip, sticky nav, hero, About, Pricing (6 services with brass monoline SVG icons + "MORE SERVICES →" button), trust strip, Why Choose, 2× Damascene pattern dividers, Testimonials (PLACEHOLDER review text), 4-column footer
+  - `prototype/services.html` — HoH-faithful two-column services list, 9 services (Haircut/Kids/Senior/Beard Trim/Cut+Beard/Lebanese Hot-Towel Shave/Line-Up/Father+Son/Eyebrow Threading), original copy, JSON-LD offer catalog
+  - `prototype/barbers.html` — 4 thumbnail row + featured-barber card with click-to-swap vanilla JS. Ziad is real; barbers 2/3/4 are placeholders awaiting names + bios + photos
+- **`prototype/styles.css`** extracted and shared by all 3 pages
+- **`vercel.json`** updated: `/services`, `/barbers`, `/our-barbers`, `/book` all routed
+- **BRAND.md fully refreshed** with HoH-extracted specs
 
-**Next action: Joel picks 1 of 4 logo concepts. Then refine the winner (Phase 5b), generate atmospheric imagery (Phase 6), build the 5-page prototype (Phase 7).**
+## Open items (where the next session picks up)
+
+1. **Icons need a redesign pass via Nano Banana 2.** Joel called the current SVG icons "absolutely hideous" — they're hand-coded brass monoline SVGs and don't compare well to HoH's professional icons. Plan: one icon at a time, **4 variants per icon from Nano Banana 2**, Joel picks one, move to the next. Six total icons: scissors, beard trim, cut+beard combo, hot-towel shave, line-up, kids' cut. **Style prompt should be locked across all 6** so the set hangs together (suggested house prompt below in the resume block).
+   - **DO NOT feed HoH's actual icon files into Nano Banana 2 as reference images** — that creates a derivative-work problem. Use text-only prompts.
+   - Cost ceiling: ~$0.067/image × 4 variants × 6 icons = **$1.60 total**, under the $5 confirm-with-Joel threshold per global rule.
+
+2. **Real Google reviews need to replace the placeholder testimonials.** The 3 review excerpts on `prototype/index.html` testimonials section are made up. The 5.0 stars / 169 reviews count IS real (from Ziad's Google Business Profile). Pull 3–5 real reviews via Playwright on Ziad's Google Maps listing and update the testimonials section. Keep them short, attribute by reviewer's first name as shown on Google, link "Read all 169 reviews →" to the Google listing.
+
+3. **Phase 6 — atmospheric placeholder imagery** for hero, About storefront slot, and Meet-Ziad photo slot. Nano Banana 2, no human faces (hard rule from BRAND.md), atmospheric/interior leaning. Currently all three slots are CSS-gradient placeholders.
+
+4. **Three barber names + bios + photos** for `barbers.html`. Ziad knows the other three but Joel hasn't relayed the info yet.
+
+5. **Domain purchase** — `zsbarbershop.com` on Cloudflare Registrar (~$10/yr). Joel was deciding whether to lock it early or wait. Not blocking site work.
+
+6. Phases 8–10 (Playwright validation, case-study deliverable, Vercel deploy) remain pending.
 
 ## First actions on the other machine
 
@@ -98,37 +123,107 @@ Still needed from Z (capture in upcoming session with him):
 - Color/vibe preference (will be presented in Phase 3 direction exploration first)
 - Whether to add online booking later (Square Appointments / Booksy / Squire), or stay phone-only
 
-## Prompt to paste into next Claude Code session (MacBook)
+## Prompt to paste into next Claude Code session
 
-**If this is your first time touching the project on Mac, do the first-time clone steps above first.** Then in a Claude Code session opened at `~/Code Projects/clients/zs-barbershop/`:
+Open Claude Code at `E:\Code Projects\clients\zs-barbershop` (Windows) or `~/Code Projects/clients/zs-barbershop` (Mac), pull latest with `git pull origin main`, then paste this:
 
 ```
-I'm resuming Z's Barbershop on my MacBook. Read NEXT_SESSION.md at the
-repo root for full context.
+I'm resuming Z's Barbershop in a fresh context window. The project is at
+clients/zs-barbershop in this workspace. Read NEXT_SESSION.md at the repo
+root FIRST — full state, locked decisions, and pending items are there.
 
-Quick state: we're through Phase 5 — four logo concepts shipped in
-logo-options.html. I need to pick one of the four (Arched Seal / Damascene
-Roundel / Type Lockup with Cedar / Vintage Sign Plate). Please open
-logo-options.html in my browser so I can see them side-by-side at three
-scales on dark + cream backgrounds.
+Then open these three local files in my browser so I can see current state:
+- prototype/index.html
+- prototype/services.html
+- prototype/barbers.html
 
-Once I pick, the next action is Phase 5b — refine the winner (cleaner
-cedar silhouette, tighter proportions, finalize SVG + variants).
-Then Phase 6 (Nano Banana 2 imagery) → Phase 7 (5-page prototype build) →
-Phase 8 (Playwright validation) → Phase 9 (case-study deliverable) →
-Phase 10 (Vercel deploy, HOLD domain purchase until Ziad reviews).
+We're at Phase 5b/7-preview. Three pages are built copying House of
+Heritage (houseofheritagelv.com) as closely as legally allowed — matching
+their functional design specs (background #191818, Teko + Montserrat
+fonts from their computed CSS, brass #c8a35a accent) without lifting
+any of their copyrighted assets (icon graphics, photographs, verbatim
+service descriptions). HoH IS the design anchor; everything we build
+references their visual register but with original assets and original
+copy for Ziad.
 
-Locked already (don't revisit unless I bring it up):
-- Direction A "The House" — dark cinema + brass mustard + Big Shoulders
-  Display + heritage seal logo with Lebanese cedar
-- Heritage anchors #1–5: trilingual welcome / cedar mark / heritage-named
-  services / "the door is open" bio language / Damascene pattern accent
-- NOT #6 (Z doesn't serve coffee — confirmed)
-- All tokens in BRAND.md. Rationale in design-brief.md.
+Two open work items, in priority order:
 
-Real shop info: Ziad Dib, 8455 SW Bird Rd Miami FL, (786) 281-8181,
-Mon-Sat 9-7:30, $35 cuts, hot-towel-shave specialty, Lebanese roots
-with Muslim clientele in Hispanic Westchester.
+(1) ICONS — Joel called the current hand-coded SVG icons "absolutely
+hideous." Replace them via Nano Banana 2, one at a time, 4 variants
+each, Joel picks one before moving to the next. The first icon is
+HAIRCUT / SCISSORS. Locked style prompt prefix (use this verbatim for
+all 6 icons so they hang together):
+
+  "Vintage barbershop pictogram icon, minimalist monoline line drawing,
+  single thin clean line in brass gold color (hex #c8a35a) on
+  transparent background, centered composition, no shadows, no
+  gradients, no fill, simple geometric forms, elegant heritage
+  barbershop aesthetic, suitable for a $35 Miami neighborhood
+  barbershop website. Square 1:1 aspect ratio."
+
+Then append a subject-specific second sentence per icon:
+  1. Haircut — "Open angled barber scissors with finger loops, side view."
+  2. Beard Trim — "Stylized mustache and goatee silhouette only, no comb."
+  3. Cut + Beard — "Side-profile portrait silhouette of a man's head
+     with stylized hair and beard."
+  4. Lebanese Hot-Towel Shave — "Folded hot towel with three rising steam
+     wisps above it."
+  5. Line-Up — "Electric barber clipper, top-down view, with cord."
+  6. Kids' Cut — "Smaller side-profile silhouette of a child's head with
+     a small star or sparkle accent."
+
+CRITICAL: Do NOT pass HoH's actual icon files as reference inputs to
+Nano Banana 2. Use text-only prompts. (This avoids creating derivative
+works from their copyrighted graphics.) Cost ceiling for the full set:
+$0.067 × 4 variants × 6 icons = ~$1.60 total — under the $5 confirm-with-
+Joel threshold. Save outputs to assets/generated/icons/ with names like
+haircut-v1.png, haircut-v2.png, etc. After generating 4 variants of icon
+1, show me the paths or open the folder so I can pick.
+
+(2) REAL GOOGLE REVIEWS — replace the 3 placeholder testimonial cards on
+prototype/index.html. Use Playwright to navigate to Ziad's Google
+Business profile (search "Z's Barbershop 8455 SW Bird Rd Miami" on
+Google Maps), pull 3–5 real review excerpts with reviewer first names,
+keep each short (~2 sentences), update the .review cards. Add a "Read
+all 169 reviews on Google →" link below the grid pointing to the Google
+listing. The 5.0 stars / 169 reviews count in the section is already
+correct — only the placeholder review text needs replacement.
+
+LOCKED (do not revisit unless I bring it up):
+- Direction A "The House" — dark cinema, brass on near-black, vintage
+  Americana register, Lebanese heritage anchors
+- Stack: vanilla HTML + Vercel, no framework
+- Background #191818, fonts Teko + Montserrat (extracted from HoH
+  computed CSS), body weight 700, body color pure white
+- Brass #c8a35a — used for CTAs, icons, eyebrow labels, dividers
+- Logo concept #3 (Type Lockup with Lebanese Cedar) — cream color,
+  lowercase "s" in Z's
+- Heritage anchors #1–5: trilingual welcome (English/Spanish/Arabic) /
+  Lebanese cedar mark in logo + footer / heritage-named services
+  (Lebanese Hot-Towel Shave, Eyebrow Threading) / "Cubans, Lebanese,
+  anyone who needs a fade and a story — the door is open" bio line /
+  Damascene 8-point star pattern dividers. NOT #6 — Ziad does NOT serve
+  coffee, so don't mention "coffee on" anywhere on the site.
+- 4 barbers total: Ziad + 3 placeholders. The other 3 names/bios/photos
+  TBD from Z.
+- All tokens in BRAND.md. Rationale + Phase 7 layout in design-brief.md.
+- Workflow reference: ../../infrastructure/web-design-playbook/PLAYBOOK.md
+
+Real shop info: Ziad Dib (Lebanese, Muslim clientele included), 8455 SW
+Bird Rd, Miami FL 33155, Westchester neighborhood, phone (786) 281-8181,
+Mon-Sat 9 AM - 7:30 PM, $35 cuts, traditional hot-towel-shave specialty,
+5.0 stars / 169 Google reviews, no current website, IG @zbarbershop1.
+
+HARD RULES (per BRAND.md voice rules):
+- Body copy: no em dashes (use commas/colons/semicolons)
+- No "luxury" / "esteemed" / "lounge" / "distinction" — Z's pricing is
+  mid-market $35, copy should match
+- No human faces in Nano Banana 2 imagery (the model can't synthesize
+  real people; faces come from real photography later)
+- Commit author email is joel.rodriguez@galacticmedical.com (set in
+  this repo's git config already for Vercel attribution)
+
+Start with the Haircut/scissors Nano Banana 2 batch.
 ```
 
 ## Hard rules for this project
