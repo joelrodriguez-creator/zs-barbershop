@@ -68,7 +68,20 @@
       <a href="index.html#visit">CONTACT</a>
     </div>
     <a href="barbers.html" class="nav-cta">BOOK STYLIST</a>
+    <button class="nav-toggle" type="button" aria-controls="mobile-nav" aria-expanded="false" aria-label="Open menu">
+      <span class="hamburger-bar" aria-hidden="true"></span>
+      <span class="hamburger-bar" aria-hidden="true"></span>
+      <span class="hamburger-bar" aria-hidden="true"></span>
+    </button>
   </nav>
+
+  <div id="mobile-nav" class="mobile-nav" inert aria-label="Mobile navigation">
+    <a href="index.html">HOME</a>
+    <a href="barbers.html">OUR BARBERS</a>
+    <a href="services.html">SERVICES</a>
+    <a href="index.html#visit">CONTACT</a>
+    <a href="barbers.html" class="mobile-nav-cta">BOOK STYLIST</a>
+  </div>
 
   <main id="main-content">
 
@@ -86,11 +99,11 @@
   </section>
 
   <!-- Thumbnail row -->
-  <div class="thumb-row">
-    <div class="thumb active" data-barber="ziad">Z</div>
-    <div class="thumb" data-barber="b2">2</div>
-    <div class="thumb" data-barber="b3">3</div>
-    <div class="thumb" data-barber="b4">4</div>
+  <div class="thumb-row" role="group" aria-label="Select a barber">
+    <button class="thumb active" type="button" data-barber="ziad" aria-pressed="true">Z</button>
+    <button class="thumb" type="button" data-barber="b2" aria-pressed="false">2</button>
+    <button class="thumb" type="button" data-barber="b3" aria-pressed="false">3</button>
+    <button class="thumb" type="button" data-barber="b4" aria-pressed="false">4</button>
   </div>
 
   <!-- Featured barber card -->
@@ -160,6 +173,8 @@
     <div class="footer-bottom">© 20XX Z's Barbershop · Westchester, Miami · أهلاً وسهلاً</div>
   </footer>
 
+  <script src="nav.js" defer></script>
+
   <script>
     // Barber data — Ziad is real; the other three are placeholders until names + bios arrive
     const barbers = {
@@ -197,8 +212,12 @@
 
     thumbs.forEach(thumb => {
       thumb.addEventListener('click', () => {
-        thumbs.forEach(t => t.classList.remove('active'));
+        thumbs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-pressed', 'false');
+        });
         thumb.classList.add('active');
+        thumb.setAttribute('aria-pressed', 'true');
         const key = thumb.dataset.barber;
         const b = barbers[key];
         if (!b) return;

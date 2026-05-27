@@ -72,7 +72,20 @@
       <a href="#visit">CONTACT</a>
     </div>
     <a href="barbers.html" class="nav-cta">BOOK STYLIST</a>
+    <button class="nav-toggle" type="button" aria-controls="mobile-nav" aria-expanded="false" aria-label="Open menu">
+      <span class="hamburger-bar" aria-hidden="true"></span>
+      <span class="hamburger-bar" aria-hidden="true"></span>
+      <span class="hamburger-bar" aria-hidden="true"></span>
+    </button>
   </nav>
+
+  <div id="mobile-nav" class="mobile-nav" inert aria-label="Mobile navigation">
+    <a href="index.html">HOME</a>
+    <a href="barbers.html">OUR BARBERS</a>
+    <a href="services.html">SERVICES</a>
+    <a href="#visit">CONTACT</a>
+    <a href="barbers.html" class="mobile-nav-cta">BOOK STYLIST</a>
+  </div>
 
   <main id="main-content">
 
@@ -269,6 +282,8 @@
     </div>
     <div class="footer-bottom">© 20XX Z's Barbershop · Westchester, Miami · أهلاً وسهلاً</div>
   </footer>
+
+  <script src="nav.js" defer></script>
 
 </body>
 </html>
