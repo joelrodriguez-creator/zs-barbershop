@@ -40,6 +40,7 @@ assets/generated/icons/*
 assets/generated/heroes/*
 !assets/generated/heroes/*-final.jpg
 !assets/generated/heroes/*-final.png
+!assets/generated/heroes/*-final.webp
 
 # Nano Banana 2 default save directory — transient, files are moved to
 # assets/generated/heroes/ after each generation.

@@ -17,7 +17,7 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-body);
-  font-weight: 700;
+  font-weight: 500;
   font-size: 16px;
   line-height: 1.7;
   background: var(--color-primary);
@@ -188,6 +188,12 @@ body.nav-open { overflow: hidden; }
   background:
     linear-gradient(90deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.55) 28%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.08) 100%),
     url('../assets/generated/heroes/index-the-chair-final.jpg') center/cover no-repeat;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.55) 28%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.08) 100%),
+    image-set(
+      url('../assets/generated/heroes/index-the-chair-final.webp') type('image/webp'),
+      url('../assets/generated/heroes/index-the-chair-final.jpg') type('image/jpeg')
+    ) center/cover no-repeat;
 }
 @media (max-width: 800px) {
   .hero {
@@ -197,6 +203,12 @@ body.nav-open { overflow: hidden; }
     background:
       linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.75) 100%),
       url('../assets/generated/heroes/index-the-chair-final.jpg') 65% center/cover no-repeat;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.75) 100%),
+      image-set(
+        url('../assets/generated/heroes/index-the-chair-final.webp') type('image/webp'),
+        url('../assets/generated/heroes/index-the-chair-final.jpg') type('image/jpeg')
+      ) 65% center/cover no-repeat;
   }
 }
 .hero::before {
@@ -297,6 +309,12 @@ body.nav-open { overflow: hidden; }
   background:
     linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.6) 100%),
     url('../assets/generated/heroes/barbers-workstation-final.jpg') center 72%/cover no-repeat;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.6) 100%),
+    image-set(
+      url('../assets/generated/heroes/barbers-workstation-final.webp') type('image/webp'),
+      url('../assets/generated/heroes/barbers-workstation-final.jpg') type('image/jpeg')
+    ) center 72%/cover no-repeat;
 }
 .page-hero--barbers h1 { text-shadow: 0 2px 16px rgba(0,0,0,0.6); }
 @media (min-width: 640px) {
@@ -312,6 +330,12 @@ body.nav-open { overflow: hidden; }
   background:
     linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.55) 100%),
     url('../assets/generated/heroes/services-between-cuts-final.jpg') center center/cover no-repeat;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.55) 100%),
+    image-set(
+      url('../assets/generated/heroes/services-between-cuts-final.webp') type('image/webp'),
+      url('../assets/generated/heroes/services-between-cuts-final.jpg') type('image/jpeg')
+    ) center center/cover no-repeat;
 }
 .page-hero--services h1 { text-shadow: 0 2px 16px rgba(0,0,0,0.6); }
 .page-hero-eyebrow {
@@ -364,7 +388,7 @@ body.nav-open { overflow: hidden; }
 }
 .section-body p {
   font-family: var(--font-body);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 1rem;
   line-height: 1.7;
   color: var(--color-cream);
@@ -466,7 +490,7 @@ body.nav-open { overflow: hidden; }
 }
 .service-desc {
   font-family: var(--font-body);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 0.95rem;
   line-height: 1.65;
   color: var(--color-cream);
@@ -475,7 +499,7 @@ body.nav-open { overflow: hidden; }
 }
 .service-price {
   font-family: var(--font-body);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 0.95rem;
   color: var(--color-cream);
 }
@@ -547,7 +571,7 @@ body.nav-open { overflow: hidden; }
   gap: 1rem;
   align-items: start;
   font-family: var(--font-body);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 1rem;
   color: var(--color-cream);
   line-height: 1.65;
@@ -592,7 +616,7 @@ body.nav-open { overflow: hidden; }
 }
 .review-text {
   font-family: var(--font-body);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 0.95rem;
   line-height: 1.65;
   color: var(--color-cream);
@@ -645,7 +669,7 @@ body.nav-open { overflow: hidden; }
 }
 .svc-row-desc {
   font-family: var(--font-body);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 0.95rem;
   line-height: 1.65;
   color: var(--color-cream);
@@ -672,7 +696,7 @@ body.nav-open { overflow: hidden; }
 .accent-word { color: var(--color-accent); }
 .barbers-intro p {
   font-family: var(--font-body);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 1rem;
   line-height: 1.7;
   color: var(--color-cream);
@@ -756,7 +780,7 @@ body.nav-open { overflow: hidden; }
 }
 .featured-bio {
   font-family: var(--font-body);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 1rem;
   line-height: 1.7;
   color: var(--color-cream);
@@ -828,7 +852,7 @@ body.nav-open { overflow: hidden; }
 }
 .footer-col p, .footer-col a {
   font-family: var(--font-body);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 0.9rem;
   line-height: 1.7;
   color: var(--color-cream);
@@ -846,6 +870,7 @@ body.nav-open { overflow: hidden; }
   display: block;
 }
 .footer-logo { height: 80px; width: auto; margin-bottom: 1.25rem; display: block; }
+.footer-note { margin-top: 0.75rem; opacity: 0.7; }
 .footer-social { display: flex; gap: 1rem; margin-top: 1.25rem; }
 .footer-social a {
   width: 32px; height: 32px;

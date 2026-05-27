@@ -452,6 +452,64 @@ Changes applied symmetrically across `index.html`, `services.html`, and
 
 ---
 
+## 2026-05-27 — Body typeset, footer parity, and WebP speed-up (Impeccable P2/P3)
+
+A light tightening + performance pass before sending Z the first preview link.
+
+### Body text eased to medium (typeset)
+
+The body default was weight 700 (bold), inherited from the House of Heritage
+reference. But the actual prose classes (about copy, service descriptions, Ziad's
+bio, the why-choose list, testimonials, footer text) were explicitly set to 400
+(regular), which reads a touch thin on the near-black background. Set the body
+default and all long-form prose to 500 (medium): more solid and legible on dark,
+while every heading, eyebrow, nav link, button, the footer phone, and section
+label keeps its bold 700 weight, so the visual hierarchy is unchanged. Net effect
+is subtle, paragraphs gain presence without anything reflowing.
+
+### Footer Instagram parity
+
+The homepage footer carried an Instagram icon under the wordmark; `services.html`
+and `barbers.html` did not (pre-existing markup drift). Added the same
+`.footer-social` block to both so all three footers match. The styling already
+existed; markup-only change.
+
+### Inline-style cleanup
+
+The "Walk-ins always welcome / Call or text to confirm" footer note carried an
+inline `style` attribute on all three pages. Moved it to a `.footer-note` class in
+`styles.css`. Zero visual change; clears the IDE inline-style diagnostic.
+
+### WebP hero conversion (the speed-up)
+
+Converted the three final hero photos from progressive JPEG to WebP (quality 82,
+encoder method 6) via `scripts/webp-heroes.py`, keeping the JPEGs as a fallback.
+Measured mean per-pixel difference under 2/255 on all three (perceptually
+lossless). Weights dropped:
+
+| Hero | JPEG | WebP | Saved |
+|---|---|---|---|
+| index (the chair) | 324 KB | 154 KB | 53% |
+| services (between cuts) | 499 KB | 302 KB | 40% |
+| barbers (workstation) | 557 KB | 318 KB | 43% |
+
+Wired into the CSS hero backgrounds via a two-declaration progressive-enhancement
+pattern (plain JPEG first as fallback, then `image-set()` serving WebP to modern
+browsers), and pointed each page's hero `<link rel="preload">` at the WebP.
+OG/Twitter card images stay JPEG (more reliable for social scrapers). Verified
+in-browser: the computed background resolves to WebP, only the WebP is fetched (no
+double-download), and the photos render identically.
+
+**Result:** Lighthouse desktop across all three pages now 97–98 Performance (up
+from 74–85), with Accessibility / Best Practices / SEO holding at 100/100/100.
+
+**What we deliberately deferred:** the bigger Impeccable `critique` re-layout of the
+SaaS-template shapes (Why Choose 4-bullet, 3-cell trust strip, 3-card testimonials),
+the OKLCH color-token conversion, and the real Google reviews marquee, all held
+until after Z's first editorial pass on the preview link.
+
+---
+
 ## (planned next) — Real Google reviews marquee
 
 Replace the 3-card placeholder testimonials on `index.html` with an auto-scrolling
