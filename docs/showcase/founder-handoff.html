@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Z's Barbershop — Founder Handoff</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Montserrat:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#191818; --cream:#fafaf6; --brass:#c8a35a; --muted:#6b665e;
+    --line:#dcd7cd; --paper:#fbfaf7;
+    --display:'Teko','Oswald','Impact',sans-serif;
+    --body:'Montserrat','Helvetica','Arial',sans-serif;
+    --arabic:'Amiri','Noto Naskh Arabic',serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  @page{size:Letter;margin:0;}
+  body{font-family:var(--body);color:var(--ink);background:var(--paper);font-weight:500;line-height:1.6;}
+
+  .page{width:8.5in;padding:0.8in 0.95in 0.6in;position:relative;}
+  .page+.page{page-break-before:always;}
+
+  /* ---------- Cover ---------- */
+  .cover{min-height:11in;background:var(--ink);color:var(--cream);display:flex;flex-direction:column;
+         justify-content:center;align-items:center;text-align:center;padding:1in;}
+  .cover .welcome{font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:var(--cream);
+                  opacity:0.85;margin-bottom:2.4in;}
+  .cover .welcome .sep{color:var(--brass);margin:0 0.5em;}
+  .cover .welcome .ar{font-family:var(--arabic);font-size:15px;letter-spacing:0;vertical-align:middle;}
+  .cedar{width:74px;height:64px;margin-bottom:1.1rem;}
+  .cover .wordmark{font-family:var(--display);font-weight:700;font-size:74px;line-height:0.9;
+                   letter-spacing:0.01em;text-transform:uppercase;}
+  .cover .wordmark .apos{color:var(--brass);}
+  .cover .sub-rule{width:54px;height:2px;background:var(--brass);margin:1.5rem 0;}
+  .cover .kicker{font-family:var(--display);font-weight:600;font-size:30px;letter-spacing:0.18em;
+                 text-transform:uppercase;color:var(--brass);}
+  .cover .blurb{max-width:5in;margin:1.2rem auto 0;font-size:13.5px;line-height:1.7;color:#d8d3ca;}
+  .cover .credit{position:absolute;bottom:0.9in;left:0;right:0;font-size:11px;letter-spacing:0.16em;
+                 text-transform:uppercase;color:var(--brass);opacity:0.9;}
+
+  /* ---------- Content ---------- */
+  .eyebrow{font-family:var(--body);font-weight:700;font-size:10.5px;letter-spacing:0.26em;
+           text-transform:uppercase;color:var(--brass);display:block;margin-bottom:0.5rem;}
+  h2.section-title{font-family:var(--display);font-weight:700;font-size:42px;line-height:0.98;
+                   letter-spacing:0.01em;text-transform:uppercase;color:var(--ink);margin-bottom:0.2rem;}
+  .title-rule{width:100%;height:2px;background:var(--ink);opacity:0.12;margin:0.7rem 0 1.3rem;}
+  h3{font-family:var(--display);font-weight:600;font-size:21px;letter-spacing:0.04em;text-transform:uppercase;
+     color:var(--ink);margin:0.9rem 0 0.28rem;}
+  p{font-size:12.5px;margin-bottom:0.58rem;max-width:6.1in;}
+  .lead{font-size:13.5px;color:#3a352e;margin-bottom:1rem;}
+  strong{font-weight:700;}
+  .brass{color:#9a7a32;font-weight:700;}
+
+  ul.checklist{list-style:none;margin:0.3rem 0 0.4rem;}
+  ul.checklist li{position:relative;padding-left:1.4rem;margin-bottom:0.62rem;font-size:12.5px;max-width:6.1in;}
+  ul.checklist li::before{content:'';position:absolute;left:0;top:0.42em;width:8px;height:8px;
+                          border:1.5px solid var(--brass);border-radius:1px;}
+
+  .callout{background:#f1ece1;border-left:3px solid var(--brass);padding:0.8rem 1rem;margin:1rem 0 0;
+           font-size:12px;max-width:6.1in;}
+  .callout .label{font-weight:700;letter-spacing:0.1em;text-transform:uppercase;font-size:10px;
+                  color:#9a7a32;display:block;margin-bottom:0.25rem;}
+  a{color:#9a7a32;}
+  .stat-row{display:flex;gap:0.55rem;margin:1rem 0 0.4rem;flex-wrap:wrap;}
+  .stat{border:1px solid var(--line);border-radius:3px;padding:0.5rem 0.75rem;min-width:1.3in;}
+  .stat .n{font-family:var(--display);font-weight:700;font-size:26px;color:var(--ink);line-height:1;}
+  .stat .l{font-size:9.5px;letter-spacing:0.13em;text-transform:uppercase;color:var(--muted);margin-top:0.2rem;}
+  .signoff{margin-top:0.85rem;font-size:12.5px;}
+  .signoff .name{font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:0.06em;
+                 color:var(--brass);margin-top:0.1rem;}
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<section class="page cover">
+  <div class="welcome">Welcome <span class="sep">·</span> Bienvenidos <span class="sep">·</span> <span class="ar" lang="ar" dir="rtl">أهلاً وسهلاً</span></div>
+  <svg class="cedar" viewBox="0 0 40 54" xmlns="http://www.w3.org/2000/svg" fill="#c8a35a" aria-hidden="true">
+    <path d="M 20 0 L 16 8 L 24 8 Z"/>
+    <path d="M 20 6 L 10 16 L 30 16 Z"/>
+    <path d="M 20 14 L 4 28 L 36 28 Z"/>
+    <path d="M 20 24 L 0 42 L 40 42 Z"/>
+    <rect x="17" y="40" width="6" height="14"/>
+  </svg>
+  <div class="wordmark">Z<span class="apos">'</span>s Barbershop</div>
+  <div class="sub-rule"></div>
+  <div class="kicker">Founder Handoff</div>
+  <p class="blurb">What we built and why, where you come in to make it truly yours, and the simple things you can do to bring more people through the door.</p>
+  <div class="credit">Prepared for Ziad Dib · May 2026</div>
+</section>
+
+<!-- ============ SECTION 1 ============ -->
+<section class="page">
+  <span class="eyebrow">Section One</span>
+  <h2 class="section-title">What we built, and why</h2>
+  <div class="title-rule"></div>
+
+  <p class="lead">Z, this is your website, built as a gift. The goal was to make it feel like walking into your shop: warm, old-school, real. Not a template, not a chain. Here is the thinking behind it.</p>
+
+  <h3>The look: "The House"</h3>
+  <p>We locked a dark, cinematic register, warm brass on a near-black background, with vintage Americana lettering carved like an old sign. We tried two other directions first, a brighter Cuban-Miami palette and a cold minimalist style, and dropped both: one buried the Lebanese side of your story, the other felt too cold for a neighborhood shop. This matches the warmth of your space.</p>
+
+  <h3>The heritage, woven in quietly</h3>
+  <p>A trilingual greeting sits at the top of every page: Welcome, Bienvenidos, and Arabic. A stylized Lebanese cedar marks the logo. The tone says everyone is welcome, Cubans, Lebanese, anyone who needs a fade and a story. It is texture, not a sales pitch.</p>
+
+  <h3>Three pages, three angles on the craft</h3>
+  <p>Home sells the chair, services shows the cape and clippers, and barbers shows the workstation and tools. Three object stories, no stock photos, and by your rule no faces. The photos now are tasteful placeholders that capture the vibe; real photos of your shop replace them later (Section Two).</p>
+
+  <h3>Built to be found, and to feel fast</h3>
+  <p>Under the hood it is tuned to show up when someone nearby searches "barbershop near me," and to load almost instantly on a phone, where nearly all of your customers will see it.</p>
+  <div class="stat-row">
+    <div class="stat"><div class="n">100</div><div class="l">Accessibility</div></div>
+    <div class="stat"><div class="n">100</div><div class="l">Best Practices</div></div>
+    <div class="stat"><div class="n">100</div><div class="l">Search (SEO)</div></div>
+    <div class="stat"><div class="n">96–98</div><div class="l">Speed</div></div>
+  </div>
+  <p style="font-size:11px;color:var(--muted);">Google's own scoring, across all three pages. Higher is better; these are near-perfect.</p>
+
+  <div class="callout">
+    <span class="label">See it live</span>
+    The private preview is at <strong>zs-barbershop.vercel.app</strong>. It is not public yet. Nothing goes on the real web address until you have seen everything and given the word.
+  </div>
+</section>
+
+<!-- ============ SECTION 2 ============ -->
+<section class="page">
+  <span class="eyebrow">Section Two</span>
+  <h2 class="section-title">Where you come in</h2>
+  <div class="title-rule"></div>
+
+  <p class="lead">These are the calls only you can make. The site is built and polished; this is where your real details and your taste turn it from "a beautiful prototype" into your actual shop online. Nothing here is urgent. Take what is useful, ignore what is not, and tell me what to change.</p>
+
+  <ul class="checklist">
+    <li><strong>Real photos.</strong> The hero images are placeholders that match the mood. When you are ready, real photos of your shop, your chair, and your work will replace them. Faces are optional and entirely your call.</li>
+    <li><strong>Your story.</strong> Right now your bio is a short, fun version (the Zohan line). Tell me what is true and what you want added: how many years you have been cutting, training in Lebanon with your father, how the shop came to be on Bird Road.</li>
+    <li><strong>Prices.</strong> Confirm every price is correct (the standard cut shows $35, and so on). If one is off, tell me the right number and it changes the same day.</li>
+    <li><strong>Hours.</strong> Google shows Monday to Saturday, 9:00 to 7:30. Are you closed Sundays? Just confirm so the site matches reality.</li>
+    <li><strong>The web address.</strong> We have <span class="brass">zsbarbershop.com</span> ready. Confirm that is the name you want before it goes public.</li>
+    <li><strong>Reviews.</strong> We want your real customer reviews featured on the site. There is a catch worth knowing about, and it connects to Section Three.</li>
+  </ul>
+
+  <div class="callout">
+    <span class="label">About the reviews</span>
+    The site currently mentions strong Google reviews, but when we checked, your Google listing shows a 5.0 rating with no written reviews actually attached to it. The bigger number we had heard may be from Facebook, or from an older count. Pull your shop up on your own phone and see what Google shows today. Whatever the real number is, we will make the site match it, and Section Three is how we grow it.
+  </div>
+</section>
+
+<!-- ============ SECTION 3 ============ -->
+<section class="page">
+  <span class="eyebrow">Section Three</span>
+  <h2 class="section-title">Bringing people in</h2>
+  <div class="title-rule"></div>
+
+  <p class="lead">A website helps people decide to come in, but a few simple habits off the site are what actually drive traffic to it. These are the things only the owner can do, and they matter more than almost anything we can code. In plain English:</p>
+
+  <h3>1. Claim your Google profile (do this first)</h3>
+  <p>Your shop already shows on Google Maps, but it is marked "unclaimed," which means you do not control it yet. Claiming it is free and takes about ten minutes. Google confirms you are the owner by sending a code. Once it is yours, you can fix your hours and info, add photos, reply to reviews, and most importantly, show up higher when someone nearby searches for a barber. After you claim it, you can add me as a manager so I can help keep it sharp.</p>
+
+  <h3>2. Ask happy customers for a Google review</h3>
+  <p>This is the engine. After a great cut, a simple "if you liked it, a quick Google review really helps the shop" works wonders. Even one or two a week adds up fast, and those reviews are exactly what we will feature on the site. This is how the reviews question from Section Two gets solved for good.</p>
+
+  <h3>3. Keep your details identical everywhere</h3>
+  <p>Your shop name, address, and phone number should read exactly the same on Google, Yelp, Instagram, Facebook, and the site. Google trusts a business that is consistent, and rewards it with better placement.</p>
+
+  <h3>4. Put the link everywhere</h3>
+  <p>Once the site is live, add the link to your Google profile, your Instagram bio (@zbarbershop1), your Facebook page, your business cards, and the shop window. Every place someone might look for you should point to the same front door.</p>
+
+  <h3>5. Post a few photos to Google now and then</h3>
+  <p>Fresh cuts, the shop, the chair. Google quietly favors a profile that stays active, and customers love seeing recent work before they walk in.</p>
+
+  <div class="signoff">
+    <div>This site is yours. Tell me what to change and it changes. Take your time with it.</div>
+    <div class="name">— Joel</div>
+  </div>
+</section>
+
+</body>
+</html>

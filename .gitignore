@@ -50,5 +50,6 @@ generated_imgs/
 .lighthouse*/
 .unlighthouse/
 
-# Client showcase PDF — committed at milestones, whitelisted past the *.pdf rule above
+# Client-facing PDFs — committed at milestones, whitelisted past the *.pdf rule above
 !docs/showcase/client-showcase.pdf
+!docs/showcase/founder-handoff.pdf
