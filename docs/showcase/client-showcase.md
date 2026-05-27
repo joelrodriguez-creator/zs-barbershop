@@ -409,6 +409,49 @@ direct for the actual per-page run).
 
 ---
 
+## 2026-05-26 — Footer column rhythm (Impeccable P2 layout)
+
+The footer used a uniform `1.5fr 1fr 1fr 1.5fr` grid with the phone-CTA
+column (Contact) sized as a peer of Useful Links. Squint test failed: four
+equal-weight columns, no rhythm, the gold phone number working alone to
+carry hierarchy without any layout support.
+
+**What landed:**
+
+- **Column reweighting** to `1.3fr 1.6fr 0.85fr 1.05fr`. Contact becomes
+  the widest column (the featured CTA panel); Useful Links shrinks to
+  match its short link labels; Brand and Hours sit between.
+- **"CALL OR TEXT" eyebrow** added above the phone tel-link, gold small-caps
+  in the UI font. Labels the phone as the CTA it is, matching the
+  PRODUCT.md voice ("Call or Text to Book") and the previous CALL Z'S
+  nav-CTA clarify pass.
+- **Phone size lift** from 1.4rem to 1.65rem in the display font. The
+  phone number is now the second-largest type element in the footer
+  after the wordmark — the squint test puts the eye on the brand logo,
+  then on the gold CTA pair (eyebrow + phone), then on the muted info
+  columns.
+- **Paired-CTA spacing**: phone sits tight under the eyebrow (0.15rem)
+  while the eyebrow takes the 0.85rem breathing room above. They read as
+  one unit, with isolation from the address block above.
+
+**Bug fix folded into the same pass:**
+
+The footer column headings (CONTACT, USEFUL LINKS, HOURS) are `<h3>` in
+the markup but the styling rule targeted `.footer-col h4`. The rule was
+silently not applying — the headings were rendering with browser default
+h3 chrome (bold Inter, default margins, no letter-spacing). Selector
+corrected to `.footer-col h3`. All three column headings now show with
+the intended display-font small-caps treatment.
+
+Mobile (≤800px) layout unchanged — already single-column stack, no
+breakpoint adjustment needed. The new eyebrow + larger phone read
+correctly in the narrow viewport.
+
+Changes applied symmetrically across `index.html`, `services.html`, and
+`barbers.html`.
+
+---
+
 ## (planned next) — Real Google reviews marquee
 
 Replace the 3-card placeholder testimonials on `index.html` with an auto-scrolling
