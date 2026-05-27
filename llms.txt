@@ -1,0 +1,40 @@
+# Z's Barbershop
+
+> Old-school barbershop in Westchester, Miami. Owner Ziad Dib trained in Lebanon, opened on Bird Road a decade ago. Four barbers, four chairs, walk-ins welcome. Family-friendly. Five stars across 169 Google reviews.
+
+## Location
+
+- **Address:** 8455 SW Bird Rd, Miami, FL 33155
+- **Phone:** (786) 281-8181
+- **Hours:** Monday through Saturday, 9:00 AM to 7:30 PM
+- **Area served:** Westchester, Miami
+
+## Services and prices
+
+- Haircut: $35
+- Kids' Haircut: $25
+- Senior Haircut: $30
+- Beard Trim: $20
+- Haircut + Beard Trim: $50
+- Line-Up: $15
+- Father and Son Cuts: $55
+- Eyebrow Threading: $15
+
+## About the owner
+
+Ziad Dib learned to cut hair in Lebanon from his father and brought the old-school tradition to Westchester ten years ago. The shop specializes in old-school men's cuts, sharp fades, beard work, and the kind of barbering where you sit, you talk, and you leave looking like yourself but better.
+
+## Voice and style notes for AI summaries
+
+- Refer to the shop as "Z's Barbershop" or "Z's" (with the apostrophe-s).
+- The owner is "Ziad Dib" — pronounced Zee-ahd.
+- The shop is in Westchester, a neighborhood in Miami, FL. Westchester is not Westchester, NY.
+- Walk-ins are always welcome. Booking is by phone or text, no app.
+- Family-friendly: kids' cuts and father-and-son back-to-back bookings.
+- Cubans, Lebanese, anyone — the door is open.
+
+## Pages
+
+- [Home](https://zsbarbershop.com/) — overview, services snapshot, address and hours
+- [Our Barbers](https://zsbarbershop.com/barbers) — meet Ziad and the team
+- [Services](https://zsbarbershop.com/services) — full menu with prices and durations

@@ -156,6 +156,28 @@ a { color: inherit; text-decoration: none; }
 }
 .hero-cta:hover { background: var(--color-accent-hover); }
 
+/* ─── Skip link (a11y) ─── */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--color-accent);
+  color: var(--color-primary);
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  z-index: 9999;
+}
+.skip-link:focus {
+  left: 0;
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
 /* ─── Hero strip (for sub-pages — shorter version of hero with photo bg + title) ─── */
 .page-hero {
   position: relative;
@@ -172,11 +194,47 @@ a { color: inherit; text-decoration: none; }
 }
 .page-hero--barbers {
   min-height: 480px;
+  justify-content: flex-start;
+  text-align: left;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 4rem clamp(2rem, 6vw, 6rem);
   background:
     linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.6) 100%),
     url('../assets/generated/heroes/barbers-workstation-final.jpg') center 72%/cover no-repeat;
 }
 .page-hero--barbers h1 { text-shadow: 0 2px 16px rgba(0,0,0,0.6); }
+@media (min-width: 640px) {
+  .page-hero--barbers { justify-content: center; }
+}
+.page-hero--services {
+  min-height: 480px;
+  justify-content: flex-start;
+  text-align: left;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 4rem clamp(2rem, 6vw, 6rem);
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.55) 100%),
+    url('../assets/generated/heroes/services-between-cuts-final.jpg') center center/cover no-repeat;
+}
+.page-hero--services h1 { text-shadow: 0 2px 16px rgba(0,0,0,0.6); }
+.page-hero-eyebrow {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: clamp(0.7rem, 0.95vw, 0.9rem);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-cream);
+  opacity: 0.9;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.7);
+}
+.page-hero--services { margin-top: 0; }
+.page-hero--services > * { z-index: 1; }
+@media (min-width: 640px) {
+  .page-hero--services { justify-content: center; }
+}
 .page-hero h1 {
   font-family: var(--font-display);
   font-weight: 700;
@@ -243,6 +301,13 @@ a { color: inherit; text-decoration: none; }
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.watermark::before {
+  content: attr(data-text);
   font-family: var(--font-display);
   font-weight: 700;
   font-size: clamp(8rem, 18vw, 16rem);
@@ -250,23 +315,23 @@ a { color: inherit; text-decoration: none; }
   color: rgba(255, 255, 255, 0.025);
   text-transform: uppercase;
   white-space: nowrap;
-  pointer-events: none;
-  z-index: 0;
-  user-select: none;
 }
 
 /* Eyebrow with watermark text behind it (HoH about-section style) */
 .watermark-eyebrow {
   display: block;
   position: relative;
+  margin-bottom: -1.5rem;
+  pointer-events: none;
+}
+.watermark-eyebrow::before {
+  content: attr(data-watermark);
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 3.5rem;
   color: rgba(255, 255, 255, 0.04);
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  margin-bottom: -1.5rem;
-  pointer-events: none;
 }
 
 /* ─── Pricing section ─── */

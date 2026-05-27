@@ -45,5 +45,10 @@ assets/generated/heroes/*
 # assets/generated/heroes/ after each generation.
 generated_imgs/
 
+# Lighthouse + Unlighthouse audit outputs — ephemeral, regenerable via the CLI.
+.lighthouse/
+.lighthouse-post/
+.unlighthouse/
+
 # Client showcase PDF — committed at milestones, whitelisted past the *.pdf rule above
 !docs/showcase/client-showcase.pdf

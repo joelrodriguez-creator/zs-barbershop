@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Z's Barbershop — Services Page Hero Variant Picker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #191818;
+      --color-cream: #ffffff;
+      --color-accent: #c8a35a;
+      --color-line: #2a2828;
+      --font-display: 'Teko', sans-serif;
+      --font-body: 'Montserrat', sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--color-primary);
+      color: var(--color-cream);
+      font-family: var(--font-body);
+      font-weight: 600;
+      padding: 3rem 2rem;
+      min-height: 100vh;
+    }
+    .page-head { max-width: 1400px; margin: 0 auto 3rem; text-align: center; }
+    .page-head .eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 0.5rem;
+    }
+    .page-head h1 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+    }
+    .page-head p {
+      font-weight: 500;
+      font-size: 0.95rem;
+      opacity: 0.7;
+      margin-top: 1rem;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .variants {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      gap: 2.5rem;
+      grid-template-columns: 1fr;
+    }
+    .variant { background: #0e0d0d; border: 1px solid var(--color-line); overflow: hidden; }
+    .variant-image {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #050505;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .variant-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .variant-image .overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 6%;
+      background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.55) 100%);
+    }
+    .overlay .o-eyebrow {
+      font-size: clamp(0.7rem, 0.9vw, 0.85rem);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--color-cream);
+      margin-bottom: 0.75rem;
+      opacity: 0.85;
+    }
+    .overlay .o-headline {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2.5rem, 5.5vw, 5rem);
+      text-transform: uppercase;
+      line-height: 1;
+      color: var(--color-cream);
+      text-shadow: 0 2px 16px rgba(0,0,0,0.6);
+      letter-spacing: 0.02em;
+    }
+    .variant-info { padding: 2rem 2rem 2.25rem; border-top: 1px solid var(--color-line); }
+    .variant-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      padding: 0.25rem 0.75rem;
+      border: 1px solid var(--color-accent);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    .variant-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .variant-tagline { font-size: 0.9rem; font-weight: 500; opacity: 0.75; line-height: 1.6; }
+    .variant-note { font-size: 0.8rem; font-weight: 500; opacity: 0.55; line-height: 1.6; margin-top: 0.75rem; font-style: italic; }
+    .toggle-bar { max-width: 1400px; margin: 0 auto 2rem; text-align: center; }
+    .toggle-bar button {
+      background: transparent;
+      color: var(--color-cream);
+      border: 1px solid var(--color-line);
+      padding: 0.6rem 1.25rem;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin: 0 0.5rem;
+      transition: border-color 0.2s;
+    }
+    .toggle-bar button.active { border-color: var(--color-accent); color: var(--color-accent); }
+    body.no-overlay .overlay { display: none; }
+  </style>
+</head>
+<body>
+
+  <header class="page-head">
+    <p class="eyebrow">SERVICES PAGE HERO</p>
+    <h1>Pick your direction</h1>
+    <p>Three bespoke placeholder heroes for the Services page. Each is a distinct register: the tools elevated on a wall, the chair between cuts, or the price board as signage. Pick the keeper.</p>
+  </header>
+
+  <div class="toggle-bar">
+    <button class="active" onclick="document.body.classList.remove('no-overlay'); this.classList.add('active'); this.nextElementSibling.classList.remove('active');">SHOW WITH OVERLAY TEXT</button>
+    <button onclick="document.body.classList.add('no-overlay'); this.classList.add('active'); this.previousElementSibling.classList.remove('active');">HIDE OVERLAY (IMAGE ONLY)</button>
+  </div>
+
+  <div class="variants">
+
+    <article class="variant">
+      <div class="variant-image">
+        <img src="../assets/generated/heroes/services-variant-a-tools-wall.jpg" alt="Variant A: vertical leather strop hanging on a dark wood-paneled wall with brass pegboard and tools">
+        <div class="overlay">
+          <p class="o-eyebrow">What we do</p>
+          <h2 class="o-headline">Services</h2>
+        </div>
+      </div>
+      <div class="variant-info">
+        <span class="variant-tag">Variant A · The Tools Wall</span>
+        <h2 class="variant-name">Tools as altar</h2>
+        <p class="variant-tagline">Vertical leather strop hanging from a brass hook on near-black wood paneling, brass pegboard beside it holding scissors, comb, straight razor. Soft side-light from a single Edison bulb. The trade elevated to display.</p>
+        <p class="variant-note">Note: thematically related to the barbers hero (tools), but vertical/wall framing vs. the barbers' horizontal counter framing. Visual narrative becomes chair → tools-on-counter → tools-on-wall.</p>
+      </div>
+    </article>
+
+    <article class="variant">
+      <div class="variant-image">
+        <img src="../assets/generated/heroes/services-variant-b-between-cuts.jpg" alt="Variant B: folded barber's cape draped over a vintage chair armrest with clippers and comb">
+        <div class="overlay">
+          <p class="o-eyebrow">What we do</p>
+          <h2 class="o-headline">Services</h2>
+        </div>
+      </div>
+      <div class="variant-info">
+        <span class="variant-tag">Variant B · Between Cuts</span>
+        <h2 class="variant-name">The moment before the next chair</h2>
+        <p class="variant-tagline">A folded cape draped over the leather armrest of a vintage barber chair, clippers and comb resting on top, coiled cord beside. Warm rim light from a single Edison bulb. The moment between cuts. "This is what you sit down to."</p>
+      </div>
+    </article>
+
+    <article class="variant">
+      <div class="variant-image">
+        <img src="../assets/generated/heroes/services-variant-c-price-board.jpg" alt="Variant C: vintage hand-lettered service price board with brass and cream lettering">
+        <div class="overlay">
+          <p class="o-eyebrow">What we do</p>
+          <h2 class="o-headline">Services</h2>
+        </div>
+      </div>
+      <div class="variant-info">
+        <span class="variant-tag">Variant C · The Price Board</span>
+        <h2 class="variant-name">Old-school signage</h2>
+        <p class="variant-tagline">Vintage hand-lettered service price board mounted on dark wood paneling, cream and brass-gold lettering in vintage Americana display-type, picture light pooling warm honey on the board. The most on-nose direction for a services page.</p>
+        <p class="variant-note">Note: text rendering in generative models is imperfect. Expect prices and service names to be approximations, not literal. If we ship C, the board reads as signage atmosphere; real prices live on the page below the hero.</p>
+      </div>
+    </article>
+
+  </div>
+
+</body>
+</html>

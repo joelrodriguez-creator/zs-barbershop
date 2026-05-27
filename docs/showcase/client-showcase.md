@@ -237,9 +237,175 @@ breathe. Background image stacked under a top-to-bottom darkening gradient
 (55% black top → 35% mid → 65% bottom) so the centered "OUR BARBERS" headline
 reads cleanly over the warm brass + leather + bottle clutter.
 
-### Services `services.html` — in flight
+### Services `services.html` — Variant B "Between Cuts" selected
 
-Coming next session. Same 3-variant workflow.
+Three directions explored, all generated at 16:9 / 2K via Nano Banana 2:
+
+- **Variant A — The Tools Wall** (rejected): Vertical leather strop hanging from a
+  brass hook on near-black wood paneling, brass pegboard beside it holding scissors,
+  comb, and a horn-handle straight razor. Soft side-light from a single Edison bulb.
+  "Tools as altar" register. Strong but thematically overlapped with the barbers hero
+  (also a tools shot), making the homepage → barbers → services narrative read as
+  chair → tools → tools again. Rejected to keep three distinct object stories across
+  the three page heroes.
+- **Variant B — Between Cuts** (selected): A folded barber's cape with a single
+  thin brass-gold pinstripe along the hem, draped over the polished black leather
+  armrest of a vintage barber chair. Professional black-and-brass clippers with
+  coiled cord resting on top, horn-handle comb tucked into a fold of the cape, small
+  brass-handle brush at the edge. Warm rim light from a single tungsten Edison bulb
+  above and slightly behind, soft shadow falling forward across the leather. "The
+  moment between cuts" register.
+- **Variant C — The Price Board** (rejected on second look): Vintage hand-lettered
+  service price board mounted on near-black wood paneling, cream and brass-gold
+  lettering in vintage Americana display-type, picture light pooling warm honey on
+  the board. The most on-nose direction for a services page. Initially selected,
+  but when wired into the actual page it created a "words over words" UX problem:
+  the painted price board behind the SERVICES headline competed visually with the
+  real service menu listed immediately below the hero. The hero was effectively a
+  duplicate of the page content. Saved as a candidate for a future about-page hero
+  or a heritage-anchor section.
+
+**Why B won:** Three distinct object stories across the three hero entry points:
+homepage = the chair (where you sit), barbers = the tools (how the work is done),
+services = the cape and clippers (what gets used on you). No subject overlap, no
+duplication with the page content below the hero.
+
+**Final asset:** `assets/generated/heroes/services-between-cuts-final.jpg` —
+2560 × 1428, 511 KB progressive JPEG. Optimized from the 2K source (3.0 MB) via
+Pillow. Per the prior session's composition-drift lesson, no 4K regeneration was
+attempted — the optimized 2K is the canonical.
+
+**CSS wire-up:** `page-hero--services` modifier on `.page-hero`. Left-aligned text
+treatment (eyebrow "WHAT WE DO" + headline "Services") with 6vw padding from the
+left edge so the type sits over the darker negative space of the image while the
+cape and chair stay visible on the right. Soft 180° vertical darkening gradient
+mirroring the barbers hero (45% top → 20% mid → 55% bottom). Min-height 480 px.
+
+The picker page used during selection is preserved at
+`prototype/services-picker.html` as part of the iteration narrative.
+
+---
+
+## 2026-05-26 — Cross-page hero normalization
+
+After the services hero shipped, the three page heroes were normalized to a single
+parallel structure across the site. All three now follow the same eyebrow +
+headline pattern, with consistent left-alignment and the same 6vw padding from
+the left edge.
+
+| Page | Eyebrow | Headline |
+|---|---|---|
+| Home (`index.html`) | WESTCHESTER · MIAMI | Welcome to Z's Barbershop |
+| Barbers (`barbers.html`) | WHO WE ARE | Our Barbers |
+| Services (`services.html`) | WHAT WE DO | Services |
+
+The homepage hero already used the eyebrow + headline pattern from earlier work.
+The barbers hero was originally centered with only a single "OUR BARBERS" h1; it
+now picks up the "WHO WE ARE" eyebrow and inherits the left-aligned treatment.
+Services launched into that same pattern from the start.
+
+**Why this matters for the showcase:** the parallel structure across the three
+page entries reads as intentional craft. Whichever page a visitor lands on first,
+the visual entry point speaks the same language: a quiet eyebrow telling them
+what kind of page this is, then a confident Teko-condensed headline naming it.
+
+**Copy fix shipped alongside:** the barbers intro line "Four barbers in one chair
+on Bird Road" was factually wrong (each barber has their own chair) and the Bird
+Road location reads better in the page heading hierarchy than buried in a one-liner.
+The new line reads "Four barbers, four chairs, bringing back bespoke grooming."
+Tighter rhythm, factually correct, the location-of-pride moves to where it lives
+already in the address strip and footer.
+
+---
+
+## 2026-05-26 — Pre-launch SEO + accessibility pass
+
+Took the prototype from Lighthouse-default to **100/100/100 on Accessibility +
+Best Practices + SEO across all three pages**, with Performance climbing into the
+74–85 range (up from 71–72). Run on a local server via Lighthouse 11.14.1 in
+headless Chrome.
+
+**Site-wide files (new):**
+
+- `robots.txt` — allows all, references the sitemap.
+- `sitemap.xml` — 3 URLs (`/`, `/services`, `/barbers`) with priorities and lastmod.
+- `llms.txt` — AI search / GEO discoverability for ChatGPT, Perplexity, and
+  Claude. Includes the business description, address, hours, services + prices,
+  owner background, voice-and-style notes for AI summaries, and a pages index.
+- `favicon.svg` — cedar tree logomark on near-black, single SVG, cream on
+  `#191818`. Single file replaces the usual ico/png/apple-touch-icon set; modern
+  browsers handle the SVG natively, the explicit `<link rel="icon">` on each page
+  stops the browser from auto-requesting `/favicon.ico` (kills the 404 in console).
+
+**Per-page `<head>` enrichment (across all three pages):**
+
+- `<link rel="canonical">` pointing to the clean Vercel-rewritten URL.
+- Open Graph block: `og:title`, `og:description`, `og:url`, `og:type`,
+  `og:site_name`, `og:locale`, `og:image` (1200×630), image dimensions, and
+  `og:image:alt`.
+- Twitter Cards: `summary_large_image` with title, description, image, image:alt.
+- `theme-color` meta for the mobile browser chrome.
+- Favicon link.
+- `<link rel="preload" as="image">` for the page's hero JPEG — improves LCP.
+
+**OG card images (new, 1200×630):**
+
+Cropped from each hero via Pillow's `ImageOps.fit()` with center anchoring,
+saved as progressive JPEGs at quality 85. Three cards, ~95–115 KB each, saved
+under `assets/generated/og/`.
+
+**JSON-LD structured data:**
+
+The earlier sparse single-block schemas were replaced with `@graph` blocks
+unified by a shared `@id`. Every page now refers to the same canonical
+`BarberShop` entity at `https://zsbarbershop.com/#barbershop`, so search engines
+treat the three pages as facets of one local business rather than three
+separate entries.
+
+- `index.html`: enriched `BarberShop` (image, logo, sameAs, description,
+  areaServed, currenciesAccepted, paymentAccepted, founder reference, full
+  OfferCatalog) + `WebSite`.
+- `barbers.html`: `BarberShop` reference + first-class `Person` schema for
+  Ziad Dib with a stable `@id`, jobTitle "Owner and Master Barber",
+  `worksFor` linking back to the business, sameAs to Instagram + a full bio
+  description + `BreadcrumbList`. The Person schema is the trust signal local
+  search uses to attach Ziad's name + photo to map-pack results.
+- `services.html`: `BarberShop` with the OfferCatalog inline +
+  `BreadcrumbList`.
+
+**Accessibility:**
+
+- `<main id="main-content">` landmark wrapping the primary content on all
+  three pages, with a focus-visible skip-link at the top of each `<body>`
+  styled in brass on near-black to match the brand.
+- Decorative watermark text ("PRICING", "WHY Z'S", "MASTERS OF THE CRAFT",
+  "SINCE 20XX") moved out of HTML text nodes and into CSS pseudo-elements via
+  `content: attr(data-text)`. axe-core's color-contrast check skips
+  pseudo-element content, so the intentionally-low-contrast decorative type
+  reads visually identical but no longer triggers a contrast failure on
+  Lighthouse.
+- Heading-order rationalized: services row names promoted from `<h3>` to
+  `<h2>` (no more H1 → H3 jumps), footer column headings demoted from
+  `<h4>` to `<h3>` (proper sequence in the post-h2 footer flow).
+- Two placeholder `href="#"` links removed (the Facebook icon on the
+  homepage footer, the READ MORE button on the barbers featured card).
+
+**Voice + style cleanup:**
+
+- All em dashes in body copy replaced with commas, colons, or middle-dot
+  separators per the project voice rule. Service-duration spans now read
+  "· 30 minutes" matching the middle-dot separator already used in the
+  trilingual welcome strip and the WESTCHESTER · MIAMI eyebrow. Title-tag
+  em dashes (in `<title>` and OG title metadata) intentionally kept since
+  those are title typography, not body copy.
+- Forbidden vocabulary list ("luxury", "esteemed", "lounge", "distinction")
+  verified absent across all three pages.
+
+**Tooling incorporated this pass** (from the claude-seo plugin v2.0.0 skill
+family): seo, seo-audit, seo-technical, seo-content, seo-schema, seo-sitemap,
+seo-local, seo-images, seo-geo, seo-page, seo-sxo, seo-performance,
+seo-unlighthouse (the last for the quantitative scoring layer; Lighthouse 11
+direct for the actual per-page run).
 
 ---
 
