@@ -1,29 +1,20 @@
 # NEXT_SESSION.md
 
-_Last checkpoint: 2026-05-26 late evening on MacBook. Continuing session after the FalconXtreme PC checkpoint earlier in the day; this evening pushed the Mac side forward through 4 more commits._
+_Last checkpoint: 2026-05-27 on FalconXtreme PC. Polish pass shipped + deployed to a Vercel preview, and a branded founder-handoff PDF was built for Ziad. Joel is forwarding the PDF + preview link to Z and will relay his editorial feedback next session._
 
 ## TL;DR
 
-The pre-launch SEO + accessibility pass already landed earlier today (commit
-`5da5cda` brought all 3 prototype pages to 100/100/100 on A11y + Best
-Practices + SEO; performance 74–85). Tonight ran the Impeccable audit queue
-on top of that — P1 fixes (`1472ef1`: cream token warmer, thumb-row buttons,
-hamburger mobile nav), P2 clarify (`cd42990`: nav CTA "BOOK STYLIST" → "CALL
-Z'S" with tel-link), and P2 layout (`f4fd4b8`: footer column rhythm
-reweighted + display-font heading-selector bug fixed + "CALL OR TEXT"
-eyebrow paired with bigger gold phone). Lighthouse re-verified at session
-end: all 3 pages still 100/100/100 across A11y/BP/SEO.
+The light polish + speed-up pass shipped and is **live on a Vercel preview**:
+`https://zs-barbershop.vercel.app/` (also `/services`, `/barbers`). All three
+pages are at **100/100/100** Lighthouse (A11y/BP/SEO) and **96–98** Performance
+(up from 74–85, thanks to WebP heroes). A branded 4-page **Founder Handoff PDF**
+(`docs/showcase/founder-handoff.pdf`) was built and is being forwarded to Z.
 
-Also shipped one global-config change tonight: audio-chime Stop hook
-(`db7a3e6` in `claude-global-config`) — plays a soft system chime when
-Claude finishes a turn. Mac is already bootstrapped; PC needs `sync claude
-config` + Claude Code restart before the chime fires there.
-
-**Where the next session picks up:** continue the Impeccable queue. Next
-in line is `/impeccable typeset` (body weight audit, ease 700 → 500 where
-readability benefits), then `/impeccable critique` on the SaaS-template
-shapes (Why Choose Z's 4-bullet, 3-cell trust strip, 3-card testimonials),
-then OKLCH color conversion, then the P3 items.
+**Where the next session picks up: awaiting Z's editorial feedback.** Nothing
+new should ship to the site until Z responds, because the next queued items
+(testimonials re-layout, real reviews) are gated on his input. The
+custom domain `zsbarbershop.com` is **bought (Cloudflare) but deliberately NOT
+attached to Vercel** — it stays out of production until Z approves the site.
 
 ## First actions on the other machine
 
@@ -33,100 +24,111 @@ cd "$HOME/Code Projects/clients/zs-barbershop"
 git pull origin main
 python3 -m http.server 8000 &
 open http://localhost:8000/prototype/index.html
+# Live preview (already deployed): https://zs-barbershop.vercel.app/
 ```
 
 ### Windows (FalconXtreme)
 ```powershell
-# Pull global-config FIRST so the audio chime + bootstrap idempotent re-run lands
-git -C "E:\Code Projects\claude-global-config" pull
-powershell -ExecutionPolicy Bypass -File "E:\Code Projects\claude-global-config\bootstrap.ps1"
-# Restart Claude Code to register the new Stop hook (chime won't fire until restart)
-
-# Then pull the project
 cd "E:\Code Projects\clients\zs-barbershop"
 git pull origin main
 python -m http.server 8000
 # In another terminal:
 start http://localhost:8000/prototype/index.html
+# Live preview (already deployed): https://zs-barbershop.vercel.app/
 ```
 
 ## Recreate local-only files
 
-No new local-only files this session. Previously-noted:
+No local-only files required for site work this session. Notes:
 
-- `~/.claude.json` `mcpServers.nano-banana-2.env.GEMINI_API_KEY` — already
-  present on both machines. Not used this session (no image generation).
-- `~/.claude/skills/seo*` — claude-seo plugin v2.0.0 installed globally on
-  both machines. Verify via the `/seo` skills appearing in the Skill tool.
+- **Vercel CLI auth** — already present on PC at
+  `C:/Users/Trader/AppData/Roaming/com.vercel.cli/Data/auth.json`. The project is
+  linked (a `.vercel/` dir exists locally, gitignored). Redeploy with
+  `vercel --prod` from the repo root. Do NOT add the custom domain.
+- `~/.claude.json` `GEMINI_API_KEY` — present on both machines; not used this
+  session. (Rotation of the exposed key is still an open hygiene item, deprioritized
+  by Joel.)
 
 ## What's done (this session)
 
-This evening's commits on top of the morning PC work:
+- `e02d400` — **P2/P3 polish**: body prose eased to weight 500 (medium, more legible
+  on dark; hierarchy stays bold); Instagram footer block added to services + barbers
+  (parity with index); footer-note inline style moved to `.footer-note` class; 3 hero
+  JPEGs converted to WebP via `scripts/webp-heroes.py` (40–53% lighter, perceptually
+  lossless), wired with `image-set()` + JPEG fallback, preloads point at WebP.
+- `e35e491` — **Vercel routing fix**: removed `cleanUrls` (was 308-redirecting rewrite
+  destinations → 404s) and added a `/:path*` catch-all so the pages in `/prototype/`
+  resolve their relative refs when served at clean root URLs. Verified live: all
+  routes 200, homepage fully styled, zero console errors.
+- `7d9c7ab` — **Founder handoff doc**: `docs/showcase/founder-handoff.html` + rendered
+  `founder-handoff.pdf` (4 pages, branded). Whitelisted the PDF in `.gitignore`.
+- **Deployed** to Vercel production alias `zs-barbershop.vercel.app` (custom domain
+  intentionally NOT attached). Lighthouse re-verified live at 100/100/100 + 96–98 perf.
+- Showcase log updated (`docs/showcase/client-showcase.md`) with the 2026-05-27 entry.
 
-- `db7a3e6` (claude-global-config) — Add audio chime Stop hook (Mac + PC). New `hooks/audio-chime.sh` + `.ps1`. Wired into both `bootstrap.sh` and `bootstrap.ps1` as a second Stop entry alongside the existing checkpoint nudge. Bootstrap ran on Mac → live this session restart onward.
-- `f4fd4b8` (zs-barbershop) — P2 layout: footer rhythm + h3 selector fix. Reweighted footer grid from uniform `1.5fr 1fr 1fr 1.5fr` to asymmetric `1.3fr 1.6fr 0.85fr 1.05fr` so the Contact column (phone CTA) outweighs Useful Links and Hours. Added "CALL OR TEXT" gold eyebrow above the phone tel-link. Lifted phone size 1.4rem → 1.65rem (second-largest type after wordmark). Folded in a bug fix: `.footer-col h4` selector targeted a tag the markup doesn't contain — corrected to `.footer-col h3`, so the intended display-font small-caps treatment now applies to CONTACT/USEFUL LINKS/HOURS headings.
+## What's pending (in order)
 
-Earlier today on the PC (already shipped, summarized here for continuity):
-
-- `5da5cda` — Services hero (Variant B "Between Cuts") + cross-page hero normalization (WHO WE ARE / WHAT WE DO eyebrows) + pre-launch SEO/a11y pass to 100/100/100.
-- `1472ef1` — Impeccable P1 fixes: `--color-cream` pure white → `#fafaf6` (warm-tinted off-white); thumb-row divs → semantic `<button>` with `aria-pressed`; hamburger mobile nav (button + slide-down drawer + `nav.js` + `inert` attribute for proper a11y).
-- `cd42990` — Impeccable P2 clarify: nav CTA "BOOK STYLIST" → "CALL Z'S" (tel-link) on desktop nav + mobile drawer across all 3 pages.
-
-## What's pending (in priority order)
-
-1. **P2 `/impeccable typeset`** — audit body font-weight per section; ease long-form prose from 700 to 500 where readability benefits. Apply to index/services/barbers consistently.
-2. **P2 `/impeccable critique`** — UX heuristic deep-dive on the SaaS-template shapes: the "Why Choose Z's" 4-bullet feature list + 3-cell trust strip + 3-card testimonials trio. Goal: break the template into more editorial brand-register layouts.
-3. **P2 OKLCH conversion** — leftover piece of the P1 #2 colorize work. Convert hex tokens in `styles.css` to OKLCH (visually near-identical, no user-facing change, future-proofs the palette).
-4. **P3 `/impeccable optimize`** — convert 3 hero JPEGs (`assets/generated/heroes/*-final.jpg`) to WebP for ~30% weight savings. Should lift Performance score (currently 74–85) toward 90+.
-5. **P3 `/impeccable polish`** — final pass after all of the above land.
-6. **Footer parity fix** — `services.html` and `barbers.html` brand columns are missing the Instagram social icon block that `index.html` has. Pre-existing markup drift, surfaced during the P2 layout pass. Small fix (`<div class="footer-social">…</div>` block, ~6 lines).
-7. **Inline-style cleanup** — `prototype/index.html:281` has `<p style="margin-top:.75rem;opacity:.7;">` inline style flagged by IDE diagnostic. Move to a class in `styles.css` if doing a CSS-pass sweep.
-8. **Add `/seo-first` rule to `infrastructure/claude-global-config/workspace-CLAUDE.md`** — so future web projects default to the `/seo*` skill family over hand-rolling. Joel authorized this earlier; deferred again as not blocking.
-9. **Rotate exposed `GEMINI_API_KEY`** — the key (`AIzaSyA9hdz-OQX4MVmLswZ39WahQbUMFD_BqFg`) was shared in a screenshot earlier in this chat transcript. Hygiene: delete it in AI Studio, create a fresh one, update `~/.claude.json` on both machines.
-10. **Parked: real Google reviews marquee** — scrape 8–10 reviews from Birdeye via Playwright, save to `assets/data/reviews.json`, replace 3-card placeholder testimonials with an auto-scrolling marquee. Full plan in `C:/Users/Trader/.claude/plans/after-restart-paste-this-graceful-fairy.md` "Parked: reviews marquee" section.
+1. **Z's editorial feedback (BLOCKER for most below).** Joel forwarded the handoff
+   PDF + preview link. Resume when Z responds. His handoff covers: real photos, his
+   real bio, confirm prices, Sunday hours, confirm the domain name, and the reviews
+   question.
+2. **Reviews marquee (PARKED — gated on Z).** The Google listing is unclaimed and shows
+   a 5.0 rating with **no written reviews** to scrape; the "169 Google reviews" figure
+   isn't reflected on the live listing (may be stale or from Facebook). Yelp has 66 real
+   reviews but TOS prohibits republishing + it's not Google. Plan: Z claims his Google
+   Business Profile and gathers real reviews, then build the auto-scroll marquee from
+   real data. Until then, the 3 placeholder testimonial cards stay as-is. (The site copy
+   still says "169 Google reviews" / `aggregateRating` 169 in JSON-LD — correct this to
+   the real number once confirmed.)
+3. **P2 `/impeccable critique` (DEFERRED — gated on Z).** Re-layout the SaaS-template
+   shapes (Why Choose 4-bullet, 3-cell trust strip, 3-card testimonials) into more
+   editorial layouts. Held until after Z reacts to the current look (he likes it as-is).
+4. **P2 OKLCH conversion** — convert hex tokens in `styles.css` to OKLCH. Invisible,
+   future-proofing. Safe to do anytime; low priority.
+5. **P3 `/impeccable polish`** — final pass after the above land.
+6. **Domain go-live (Stage 2, gated on Z's approval).** `zsbarbershop.com` is bought at
+   Cloudflare. When Z approves: attach the domain in Vercel + point Cloudflare DNS
+   (see DEPLOY.md Stage 2). Do NOT run prematurely.
+7. **Rotate exposed `GEMINI_API_KEY`** — hygiene, deprioritized by Joel.
 
 ## Prompt to paste into next Claude Code session
 
 ```
-I'm resuming Z's Barbershop. Read NEXT_SESSION.md at the repo root for full
-context.
+I'm resuming Z's Barbershop. Read NEXT_SESSION.md at the repo root for full context.
 
-Quick state: the pre-launch 100/100/100 SEO/A11y/BP scores are locked in
-across all 3 pages, the Impeccable P1 fixes shipped, and tonight the P2
-clarify (nav CTA → CALL Z'S) and P2 layout (footer rhythm + h3 selector
-fix) also shipped. All 3 pages still at 100/100/100 Lighthouse-verified at
-session end.
+Quick state: the polish + speed-up pass shipped and is live on a Vercel preview
+(https://zs-barbershop.vercel.app/), 100/100/100 + 96-98 perf across all 3 pages.
+A branded founder-handoff PDF (docs/showcase/founder-handoff.pdf) was forwarded to
+Ziad. We're now AWAITING his editorial feedback — most pending work is gated on it.
 
-Next in the Impeccable queue (in order): P2 typeset (body weight audit), P2
-critique (SaaS-template-shape break), P2 OKLCH conversion, P3 optimize
-(JPEG → WebP), P3 polish. Plus a small footer parity fix (services and
-barbers brand columns are missing the Instagram icon block that index has).
+Key finding to remember: Z's Google Business Profile is unclaimed and shows no real
+written reviews, so the reviews marquee is parked until he claims it + gathers
+reviews. The "169 Google reviews" on the site isn't reflected on the live Google
+listing and needs correcting to the real number once confirmed.
 
 Hard constraints (also in CLAUDE.md):
-- No AI human faces
-- No hot-towel mentions (already purged)
-- No em dashes in body copy
-- Forbidden words: "luxury", "esteemed", "lounge", "distinction"
+- No AI human faces; no hot-towel mentions
+- No em dashes in body copy; forbidden words: luxury, esteemed, lounge, distinction
 - Commit author: joel.rodriguez@galacticmedical.com (per-commit via git -c)
-- /book URL is reserved in vercel.json
-- HOLD domain purchase until Ziad reviews case-study
+- Domain zsbarbershop.com is BOUGHT but must NOT be attached to Vercel / go to
+  production until Z approves
+- Redeploy preview via `vercel --prod`; do NOT add the custom domain
 - Design moves that ship → append dated entry to docs/showcase/client-showcase.md
 
-Start by asking me which Impeccable item to run first — they're sequential
-but the parity fix is a 2-minute aside that could land first if it fits.
+Start by asking me what Z said, before doing any new work.
 ```
 
 ## Hard rules for this project
 
-- **Commit author email:** `joel.rodriguez@galacticmedical.com` (Vercel Hobby attribution). Use `git -c user.email=...` per-commit; do NOT update git config.
-- **No em dashes in body copy.** Use commas, colons, semicolons, middle-dots.
-- **No AI-generated human faces.** Anywhere. Silhouettes / hands-only / back-of-head only.
-- **No hot-towel mentions.** Ziad doesn't offer it as a service.
-- **Mobile-first CSS.** Default styles target mobile, `@media (min-width: …)` for desktop.
-- **JSON-LD on every page.** `LocalBusiness` schema. All 3 pages currently have it (added in `5da5cda`); preserve it.
-- **Default to `/seo *` skills** over hand-rolling SEO checks (claude-seo plugin installed globally on both machines).
-- **Append to `docs/showcase/client-showcase.md`** when a design move ships (icon set, hero, logo, major copy lockdown, new component). The running narrative is what Ziad reviews; render to PDF via Claude Design when polished output is needed.
-- **HOLD domain purchase** until Z reviews case-study.
-- **`/book` URL** is reserved in `vercel.json` for the future booking system; do not wire to anything else.
-- **Pre-deploy gate** on touched prototype HTML: SEO=100, A11y≥95, BP≥95 (per project CLAUDE.md). Use `lighthouse <url> --only-categories=accessibility,best-practices,seo --preset=desktop`. Currently all 3 pages at 100/100/100.
-- **Cost ceiling on image gen** — under $5 just run, $5–$50 confirm, >$50 propose splitting. Nano Banana 2 is ~$0.067/1K image, ~$0.151/4K.
+- **Commit author email:** `joel.rodriguez@galacticmedical.com` (per-commit via `git -c user.email=...`; do NOT change git config).
+- **No em dashes in body copy.** Commas, colons, semicolons, middle-dots.
+- **No AI-generated human faces.** Silhouettes / hands-only / back-of-head only.
+- **No hot-towel mentions.** Ziad doesn't offer it.
+- **Mobile-first CSS.**
+- **JSON-LD `LocalBusiness` on every page** — preserve it.
+- **Default to `/seo *` skills** over hand-rolling SEO checks.
+- **Append to `docs/showcase/client-showcase.md`** when a design move ships; render to PDF for milestones.
+- **Domain `zsbarbershop.com`: bought but HOLD.** Not attached to Vercel; no DNS pointing at Vercel until Z approves the site.
+- **`/book` URL** reserved in `vercel.json`.
+- **Pre-deploy gate** on touched prototype HTML: SEO=100, A11y≥95, BP≥95. Currently all 3 pages at 100/100/100, 96–98 perf.
+- **Vercel deploys are CLI-based** (`vercel --prod`), not yet wired to GitHub auto-deploy. The `vercel.json` routing relies on a `/:path*` catch-all into `/prototype/`; do not re-add `cleanUrls`.
